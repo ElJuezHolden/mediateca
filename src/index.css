@@ -1,0 +1,460 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Bebas Neue', 'Inter', sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  --fondo: #121014;
+  --panel: #1b181f;
+  --panel-2: #24202a;
+  --borde: #2f2a36;
+  --texto: #ece8f0;
+  --suave: #9d95a8;
+  --acento: #e8a33d;
+}
+
+:root[data-seccion='discoteca'] {
+  --acento: #b18cff;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Un leve foco de luz arriba, como sobre una estantería. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  height: 420px;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% -20%, color-mix(in srgb, var(--acento) 14%, transparent), transparent 70%);
+  z-index: -1;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--acento) 40%, transparent);
+}
+
+.acento {
+  color: var(--acento);
+}
+
+/* ---------- Estantería ---------- */
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 22px 12px;
+  align-items: end;
+}
+
+@media (min-width: 640px) {
+  .rejilla {
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 28px 22px;
+  }
+}
+
+@media (min-width: 900px) {
+  .rejilla {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.tarjeta:hover,
+.tarjeta:focus-visible {
+  z-index: 2;
+}
+
+.tarjeta:focus-visible .funda {
+  box-shadow: 0 0 0 2px var(--acento);
+}
+
+/* ---------- Objetos: cada formato con sus proporciones reales ---------- */
+
+.objeto {
+  position: relative;
+  width: 100%;
+  transition: transform 0.25s ease;
+}
+
+.tarjeta:hover .objeto {
+  transform: translateY(-4px);
+}
+
+.objeto-dvd {
+  aspect-ratio: 135 / 190;
+}
+.objeto-bluray,
+.objeto-uhd {
+  aspect-ratio: 148 / 170;
+}
+.objeto-vhs {
+  aspect-ratio: 105 / 190;
+}
+.objeto-cd {
+  aspect-ratio: 1;
+  width: 92%;
+}
+.objeto-vinilo {
+  aspect-ratio: 1;
+}
+.objeto-cassette {
+  aspect-ratio: 70 / 110;
+  width: 72%;
+  margin-inline: auto;
+}
+.objeto-otro {
+  aspect-ratio: 1;
+}
+
+.funda {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  background: #0d0c0f;
+  box-shadow:
+    0 10px 24px -8px rgb(0 0 0 / 0.75),
+    0 2px 4px rgb(0 0 0 / 0.4);
+  transition: box-shadow 0.25s ease;
+}
+
+.tarjeta:hover .funda {
+  box-shadow:
+    0 18px 34px -10px rgb(0 0 0 / 0.85),
+    0 2px 4px rgb(0 0 0 / 0.4);
+}
+
+.funda img,
+.sin-portada {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Brillo del plástico. */
+.brillo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgb(255 255 255 / 0.13) 0%, rgb(255 255 255 / 0.03) 32%, transparent 33%);
+}
+
+.banda {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(7px, 0.62rem, 11px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+  z-index: 1;
+}
+
+/* DVD: caja Amaray negra con la franja de arriba. */
+.objeto-dvd .funda {
+  border-radius: 3px;
+  border: 3px solid #0e0e10;
+  padding-top: 9%;
+}
+.objeto-dvd .banda {
+  background: #0e0e10;
+}
+.objeto-dvd img,
+.objeto-dvd .sin-portada {
+  height: 100%;
+}
+
+/* Blu-ray: caja azul, más baja. */
+.objeto-bluray .funda {
+  border-radius: 4px;
+  border: 3px solid #1560bd;
+  padding-top: 11%;
+  background: #1560bd;
+}
+.objeto-bluray .banda {
+  height: 11%;
+  background: linear-gradient(#1a6fd6, #1157aa);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 4K: igual que el Blu-ray, en negro. */
+.objeto-uhd .funda {
+  border-radius: 4px;
+  border: 3px solid #050505;
+  padding-top: 11%;
+  background: #050505;
+}
+.objeto-uhd .banda {
+  height: 11%;
+  background: #050505;
+}
+
+/* VHS: funda de cartón, alta, con canto gastado. */
+.objeto-vhs .funda {
+  border-radius: 2px;
+  border: 4px solid #151515;
+  border-left-width: 7px;
+}
+.objeto-vhs .funda::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.45), transparent 9%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.025) 0 1px, transparent 1px 3px);
+}
+.objeto-vhs .brillo {
+  background: linear-gradient(115deg, rgb(255 255 255 / 0.05) 0%, transparent 40%);
+}
+
+/* CD: caja de plástico transparente con bisagra a la izquierda. */
+.objeto-cd .funda {
+  border-radius: 2px;
+  border: 2px solid rgb(220 225 235 / 0.35);
+  padding-left: 7%;
+  background: linear-gradient(90deg, #26262c 0 2%, #3a3a42 2% 3%, #1d1d22 3% 100%);
+}
+.objeto-cd .funda::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 7%;
+  background: repeating-linear-gradient(0deg, rgb(255 255 255 / 0.1) 0 2px, rgb(0 0 0 / 0.2) 2px 4px);
+  z-index: 1;
+}
+.objeto-cd .brillo {
+  background: linear-gradient(120deg, rgb(255 255 255 / 0.2) 0%, rgb(255 255 255 / 0.04) 35%, transparent 36%);
+}
+
+/* Cassette: caja transparente alta con la carátula plegada. */
+.objeto-cassette .funda {
+  border-radius: 4px;
+  border: 3px solid rgb(220 225 235 / 0.3);
+  border-top-width: 6px;
+  border-bottom-width: 6px;
+}
+
+.objeto-vinilo .funda {
+  border-radius: 2px;
+}
+
+.objeto-otro .funda {
+  border-radius: 6px;
+}
+
+/* El disco que asoma de su caja o funda al pasar el ratón. */
+.disco {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  width: 94%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.disco-cd {
+  background:
+    radial-gradient(circle, #121014 0 8%, rgb(255 255 255 / 0.6) 8% 9%, transparent 9% 15%, rgb(255 255 255 / 0.15) 15% 16%, transparent 16%),
+    conic-gradient(from 30deg, #d9dde6, #b9c0cc, #f2e7ff, #c7f0ff, #d9dde6, #fff1c9, #c3c9d4, #d9dde6);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);
+}
+
+.disco-vinilo {
+  background:
+    radial-gradient(circle, transparent 0 34%, rgb(255 255 255 / 0.06) 34% 35%, transparent 35%),
+    repeating-radial-gradient(circle, #141414 0 1px, #1c1c1c 1px 2px),
+    #151515;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.6);
+  top: 1%;
+  left: 1%;
+  width: 98%;
+}
+
+.galleta {
+  position: absolute;
+  inset: 33%;
+  border-radius: 50%;
+  background: var(--acento) center / cover;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.5);
+}
+.galleta::after {
+  content: '';
+  position: absolute;
+  inset: 45%;
+  border-radius: 50%;
+  background: var(--fondo);
+}
+
+.tarjeta:hover .disco-cd,
+.tarjeta:focus-visible .disco-cd,
+.grande .disco-cd {
+  transform: translateX(34%) rotate(40deg);
+}
+
+.tarjeta:hover .disco-vinilo,
+.tarjeta:focus-visible .disco-vinilo,
+.grande .disco-vinilo {
+  transform: translateX(38%) rotate(60deg);
+}
+
+/* Portada provisional mientras no haya imagen. */
+.sin-portada {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 10% 10% 12%;
+  background:
+    linear-gradient(160deg, hsl(var(--h) 45% 32%), hsl(calc(var(--h) + 40) 50% 14%));
+  color: hsl(var(--h) 60% 92%);
+  overflow: hidden;
+}
+.sp-artista {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
+.sp-titulo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 0.95;
+  overflow-wrap: anywhere;
+}
+.grande .sp-titulo {
+  font-size: 2.4rem;
+}
+.grande .sp-artista {
+  font-size: 0.85rem;
+}
+
+/* ---------- Ficha ---------- */
+
+.velo {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgb(8 6 10 / 0.78);
+  backdrop-filter: blur(6px);
+  animation: aparecer 0.18s ease;
+}
+
+.ventana {
+  animation: subir 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+/* En una capa, para que las utilidades de Tailwind (pl-9, py-1…) puedan con ellas. */
+@layer components {
+.campo {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--borde);
+  background: var(--fondo);
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  outline: none;
+}
+.campo:focus {
+  border-color: var(--acento);
+}
+
+.chip {
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  color: var(--suave);
+  white-space: nowrap;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+}
+.chip:hover {
+  color: var(--texto);
+}
+.chip[aria-pressed='true'] {
+  color: var(--fondo);
+  background: var(--acento);
+  border-color: var(--acento);
+  font-weight: 600;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--borde);
+  background: var(--panel-2);
+  transition: border-color 0.15s, background 0.15s;
+}
+.boton:hover {
+  border-color: var(--suave);
+}
+.boton-acento {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #141016;
+}
+.boton-acento:hover {
+  filter: brightness(1.08);
+  border-color: var(--acento);
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
