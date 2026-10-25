@@ -48,7 +48,10 @@
    "titulo": "Aladdin y El Rey de los Ladrones",
    "edicion": "Walt Disney Tesoros",
    "formato": "VHS",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/c/c5/Aladdin_and_the_King_of_Thieves_VHS.jpg",
+   "portadaAuto": true,
+   "anio": 1996
   },
   {
    "id": "f347d6f802",
@@ -86,7 +89,11 @@
    "seccion": "videoteca",
    "titulo": "Benjamin Button",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/7/7c/The_Curious_Case_of_Benjamin_Button_%28film%29.png",
+   "portadaAuto": true,
+   "anio": 2008,
+   "director": "David Fincher"
   },
   {
    "id": "f14e49af43",
@@ -190,7 +197,11 @@
    "titulo": "El Dia de Mañana",
    "edicion": "Ed Especial 2 DVD",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/5/58/The_Day_After_Tomorrow_movie.jpg",
+   "portadaAuto": true,
+   "anio": 2004,
+   "director": "Roland Emmerich"
   },
   {
    "id": "48048fbe1a",
@@ -258,7 +269,11 @@
    "seccion": "videoteca",
    "titulo": "El Silencio de los Corderos",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg",
+   "portadaAuto": true,
+   "anio": 1991,
+   "director": "Jonathan Demme"
   },
   {
    "id": "f4f6ace6cb",
@@ -318,14 +333,22 @@
    "seccion": "videoteca",
    "titulo": "Hermano Oso",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/8/86/Brother_Bear_Poster.png",
+   "portadaAuto": true,
+   "anio": 2003,
+   "director": "Robert Walker y Aaron Blaise"
   },
   {
    "id": "0d7435cb2c",
    "seccion": "videoteca",
    "titulo": "Horton",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/8/8b/Horton_Hears_a_Who%21.jpg",
+   "portadaAuto": true,
+   "anio": 2004,
+   "director": "Jimmy Hayward y Steve Martino"
   },
   {
    "id": "40470dee52",
@@ -339,7 +362,10 @@
    "seccion": "videoteca",
    "titulo": "Ice Age La Edad de Hielo",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/3/3c/Ice_Age_%282002_film%29_poster.jpg",
+   "portadaAuto": true,
+   "anio": 2002
   },
   {
    "id": "8a4cfc6ee2",
@@ -630,7 +656,10 @@
    "seccion": "videoteca",
    "titulo": "Monstruos SA",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/6/63/Monsters_Inc.JPG",
+   "portadaAuto": true,
+   "anio": 2001
   },
   {
    "id": "f030743aae",
@@ -828,14 +857,22 @@
    "titulo": "Una Mente Maravillosa",
    "edicion": "Award's Edition 2 DVD",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/b/b8/A_Beautiful_Mind_Poster.jpg",
+   "portadaAuto": true,
+   "anio": 2001,
+   "director": "Ron Howard"
   },
   {
    "id": "a864d19e72",
    "seccion": "videoteca",
    "titulo": "V de Vendetta",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/9/9f/Vforvendettamov.jpg",
+   "portadaAuto": true,
+   "anio": 2006,
+   "director": "James McTeigue"
   },
   {
    "id": "c57b8b000f",
@@ -850,7 +887,11 @@
    "seccion": "videoteca",
    "titulo": "Zafarrancho en el Rancho",
    "formato": "DVD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://upload.wikimedia.org/wikipedia/en/b/b9/Homerangeposter.jpg",
+   "portadaAuto": true,
+   "anio": 2004,
+   "director": "Will Finn y John Sanford"
   },
   {
    "id": "f2827a7d6c",
@@ -859,7 +900,10 @@
    "titulo": "Greatest Hits",
    "edicion": "2 x CD, Compilation, Digipak",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/5c9aa293-af82-3e2e-bb12-6fd4a5b6987f/3134772217-500.jpg",
+   "portadaAuto": true,
+   "anio": 1976
   },
   {
    "id": "67afb86c93",
@@ -868,7 +912,10 @@
    "titulo": "The Albums",
    "edicion": "9 x CD, Compilation,Cofre,Falta RING RING",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/35a70166-074b-407d-b45b-1d12411296b1/17920111012-500.jpg",
+   "portadaAuto": true,
+   "anio": 2008
   },
   {
    "id": "012ec17722",
@@ -1034,7 +1081,9 @@
    "artista": "Britney Spears",
    "titulo": "Blackout",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/3a2efa90-4bc6-4008-b8c2-405313e8e65f/26190681009-500.jpg",
+   "portadaAuto": true
   },
   {
    "id": "fe4d9004f1",
@@ -1067,7 +1116,10 @@
    "titulo": "Los Grandes Éxitos del Sonido Quijano",
    "edicion": "CD, DVD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/7fd9c15f-e0c8-4e47-acdc-53b5b3c681b0/41520352148-500.jpg",
+   "portadaAuto": true,
+   "anio": 2008
   },
   {
    "id": "634854a79d",
@@ -1076,7 +1128,9 @@
    "titulo": "Oro",
    "edicion": "2 x CD, DVD, Compilation, Falta Libreto",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/f4ef7ce0-aca2-4689-8878-402a1eaacfa1/7135559697-500.jpg",
+   "portadaAuto": true
   },
   {
    "id": "e61d130421",
@@ -1156,7 +1210,10 @@
    "titulo": "Lusitânia Playboys",
    "edicion": "CD, DVD",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/3494af72-486b-4bd8-8d94-cc77bbc6f61d/3371010932-500.jpg",
+   "portadaAuto": true,
+   "anio": 2008
   },
   {
    "id": "12a8592c43",
@@ -1165,7 +1222,10 @@
    "titulo": "Alchemy",
    "edicion": "2 x CD,Compilation,Concierto",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/dfcbe6e5-d4cf-404f-bf3d-bc639c00ed30/18199434508-500.jpg",
+   "portadaAuto": true,
+   "anio": 1984
   },
   {
    "id": "5d00892b98",
@@ -1309,7 +1369,10 @@
    "titulo": "30 Exitos Remasterizados",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/607947b9-44b9-40bb-a7bb-e328b074f9ab/18209911268-500.jpg",
+   "portadaAuto": true,
+   "anio": 2003
   },
   {
    "id": "55b02b4b2d",
@@ -1442,7 +1505,10 @@
    "titulo": "The Very Best Of",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/c4134110-2125-4951-acf1-278f74b7122d/29291261909-500.jpg",
+   "portadaAuto": true,
+   "anio": 1990
   },
   {
    "id": "8a97ec3d42",
@@ -1451,7 +1517,10 @@
    "titulo": "30 #1 Hits",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5f/85/be/5f85be9b-5810-456a-189d-313f0eae2f95/886449920068.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 2022
   },
   {
    "id": "985db15c3c",
@@ -1470,7 +1539,10 @@
    "artista": "Era",
    "titulo": "Era",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/e6ad5820-ad0a-3a8d-9dc8-5588aa4643d9/9943104925-500.jpg",
+   "portadaAuto": true,
+   "anio": 1997
   },
   {
    "id": "ee791ab12a",
@@ -1511,7 +1583,10 @@
    "artista": "Estopa",
    "titulo": "Estopa 2.0",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/f3d3c51e-1b28-4032-8cde-a3ebee4a1c78/30481711631-500.jpg",
+   "portadaAuto": true,
+   "anio": 2011
   },
   {
    "id": "90c28c45e8",
@@ -1592,7 +1667,10 @@
    "artista": "Fito & Fitipaldis",
    "titulo": "Los Sueños Locos",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/81f01074-89bb-44cb-ae1b-7a9e9b9e53d0/37263149367-500.jpg",
+   "portadaAuto": true,
+   "anio": 2002
   },
   {
    "id": "2e416cc412",
@@ -1600,7 +1678,10 @@
    "artista": "Fito & Fitipaldis",
    "titulo": "A Puerta Cerrada",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/2b6796a5-5b27-454f-9e49-7e590c154ac0/7137489097-500.jpg",
+   "portadaAuto": true,
+   "anio": 2008
   },
   {
    "id": "c89da734da",
@@ -1609,7 +1690,10 @@
    "titulo": "One By One",
    "edicion": "CD, DVD",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/78e5d860-50b9-3e03-86ba-633f689ed308/28353424215-500.jpg",
+   "portadaAuto": true,
+   "anio": 2002
   },
   {
    "id": "ab6d36fd4e",
@@ -1701,7 +1785,10 @@
    "titulo": "Los 30 Mejores",
    "edicion": "2 x CD, Compilation, Falta CD 1",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/663aadf4-c29e-45df-a56e-12270af0fa84/9006335223-500.jpg",
+   "portadaAuto": true,
+   "anio": 1998
   },
   {
    "id": "ee4bc292f0",
@@ -1709,7 +1796,10 @@
    "artista": "Guns N' Roses",
    "titulo": "\"The Spaghetti Incident?\"",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/b88f5ee0-a41f-3ce7-8c5d-473ae88e6563/2330754520-500.jpg",
+   "portadaAuto": true,
+   "anio": 1993
   },
   {
    "id": "e7a4cf50e4",
@@ -1750,7 +1840,9 @@
    "titulo": "Colección Pop",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/e5f79768-367f-4cb5-97d7-228e1dd5f431/42186647262-500.jpg",
+   "portadaAuto": true
   },
   {
    "id": "17507e14dd",
@@ -1826,7 +1918,10 @@
    "titulo": "¿Grandes Exitos?",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/554a491d-3403-4816-b135-622039894777/16058944225-500.jpg",
+   "portadaAuto": true,
+   "anio": 2003
   },
   {
    "id": "2695221632",
@@ -1855,7 +1950,10 @@
    "titulo": "The John Lennon Collection",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/bbe815e2-3ca2-49be-b2ac-ec722d1ddb8a/22069616684-500.jpg",
+   "portadaAuto": true,
+   "anio": 1990
   },
   {
    "id": "c56c069f85",
@@ -1864,7 +1962,9 @@
    "titulo": "The Collection",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/3647fbec-35f8-4982-ae68-c538bf521b86/38679543159-500.jpg",
+   "portadaAuto": true
   },
   {
    "id": "7cb80d90df",
@@ -1873,7 +1973,10 @@
    "titulo": "The Best Of",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music/d9/1d/3f/mzi.gwtrsqyi.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 2008
   },
   {
    "id": "b8331e367d",
@@ -1901,7 +2004,9 @@
    "artista": "La Húngara",
    "titulo": "A Camaron",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/50b30d17-dbab-4f7f-9c1b-dccd104eecbd/1016747127-500.jpg",
+   "portadaAuto": true
   },
   {
    "id": "5c508674b2",
@@ -1976,7 +2081,10 @@
    "artista": "Led Zeppelin",
    "titulo": "II",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/3d/bb/1a3dbb86-c1f8-737e-571f-d6b647a230be/dj.rhubuvkd.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 1969
   },
   {
    "id": "a6376fd2ee",
@@ -2086,7 +2194,10 @@
    "titulo": "Louis Armstrong",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/44f4da40-a2cd-4a15-86ef-5e6808258daa/31872237997-500.jpg",
+   "portadaAuto": true,
+   "anio": 1987
   },
   {
    "id": "a04741d3b0",
@@ -2128,7 +2239,10 @@
    "titulo": "Siempre",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/74d57900-5766-434b-a2b5-6a2df6d76594/45042823209-500.jpg",
+   "portadaAuto": true,
+   "anio": 1996
   },
   {
    "id": "105f8ba246",
@@ -2200,7 +2314,10 @@
    "artista": "Maná",
    "titulo": "Unplugged",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a9/82/98/a9829873-94c4-5646-23eb-d8b510e0d1fc/mzi.epzhnszn.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 1999
   },
   {
    "id": "2a53749b19",
@@ -2209,7 +2326,9 @@
    "titulo": "Grandes",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/36524f11-01b9-41b6-a632-d5b110f89440/44797781991-500.jpg",
+   "portadaAuto": true
   },
   {
    "id": "1fe3c31ad7",
@@ -2363,7 +2482,10 @@
    "titulo": "20 Grandes Canciones",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/fc9cff10-dfb5-4fa7-84f6-a5f5b8a98ff1/21260657304-500.jpg",
+   "portadaAuto": true,
+   "anio": 1989
   },
   {
    "id": "bdb6bfeb72",
@@ -2525,7 +2647,10 @@
    "titulo": "Greatest Hits",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/72870020-6be9-46ce-b311-993320b2d7c6/20274896779-500.jpg",
+   "portadaAuto": true,
+   "anio": 1998
   },
   {
    "id": "45b5c1522a",
@@ -2556,7 +2681,10 @@
    "titulo": "The Greatest Hits",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/820c55cb-98a6-44c8-98fb-8f7cfea3d1b1/37665784237-500.jpg",
+   "portadaAuto": true,
+   "anio": 2023
   },
   {
    "id": "b4adf650b3",
@@ -2576,7 +2704,10 @@
    "artista": "Nirvana",
    "titulo": "Unplugged in New York",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/24/33/462433f9-ee74-2d60-4538-859826a7bed7/00720642472729.rgb.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 1994
   },
   {
    "id": "3bf5b7f451",
@@ -2628,7 +2759,10 @@
    "titulo": "Lo Mejor De Radio Futura, Paisajes Eléctricos",
    "edicion": "2 x CD, Compilation, DVD",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/ce700a75-c264-47df-867d-4f66d8ea9dba/4598095483-500.jpg",
+   "portadaAuto": true,
+   "anio": 2004
   },
   {
    "id": "5f832a653b",
@@ -2705,7 +2839,10 @@
    "artista": "Sade",
    "titulo": "Diamond Life",
    "formato": "Cassette",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/63bbbb56-b5da-423b-9484-5ae1ad5be2f0/28468915638-500.jpg",
+   "portadaAuto": true,
+   "anio": 1985
   },
   {
    "id": "4fda5d3451",
@@ -2736,7 +2873,10 @@
    "artista": "Santana",
    "titulo": "Soul Sacrifice",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/50ed09dd-1c2d-41cb-a4d6-3b1750a71fcd/18677977992-500.jpg",
+   "portadaAuto": true,
+   "anio": 1993
   },
   {
    "id": "f81eab4a36",
@@ -2745,7 +2885,10 @@
    "titulo": "The Best Of",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/4796e36a-ec4e-4e90-ba17-e4b14e66bc21/45362311351-500.jpg",
+   "portadaAuto": true,
+   "anio": 1995
   },
   {
    "id": "9fa1e6b024",
@@ -2754,7 +2897,10 @@
    "titulo": "25 Años de Rock & Roll",
    "edicion": "2 x CD, Compilation, DVD",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/35ee8a36-ee08-43ac-8ad4-b9b4f5a259e3/4176834287-500.jpg",
+   "portadaAuto": true,
+   "anio": 2007
   },
   {
    "id": "01ebf863cd",
@@ -2827,7 +2973,10 @@
    "titulo": "The Very Best Of",
    "edicion": "Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/92c7aafb-e174-4e46-b61b-f4320efb89c9/38485281519-500.jpg",
+   "portadaAuto": true,
+   "anio": 1991
   },
   {
    "id": "cae5451253",
@@ -2836,7 +2985,10 @@
    "titulo": "1962 - 1966",
    "edicion": "2 x CD, Compilation, Digipack",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/2a/4a/e6/2a4ae63d-ada7-fa57-6f16-02eebcf72f95/18UMGIM29770.rgb.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 1973
   },
   {
    "id": "9053f09616",
@@ -2845,7 +2997,10 @@
    "titulo": "1967 - 1970",
    "edicion": "2 x CD, Compilation, Digipack",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a6/8b/65/a68b657c-cac6-68e6-3bde-b79d58fbc795/18UMGIM30762.rgb.jpg/600x600bb.jpg",
+   "portadaAuto": true,
+   "anio": 1973
   },
   {
    "id": "977d028670",
@@ -2866,7 +3021,10 @@
    "titulo": "Love Me Two Times",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/5266efba-9b52-4fbd-bd4f-cbdd20ba3a62/29036090225-500.jpg",
+   "portadaAuto": true,
+   "anio": 2003
   },
   {
    "id": "935af62440",
@@ -3093,7 +3251,10 @@
    "titulo": "Music of The Millennium 2",
    "edicion": "2 x CD, Compilation",
    "formato": "CD",
-   "anadido": "2026-10-25"
+   "anadido": "2026-10-25",
+   "portada": "https://coverartarchive.org/release/f37af9da-28f0-4789-979e-17655f638d57/28404626509-500.jpg",
+   "portadaAuto": true,
+   "anio": 2000
   },
   {
    "id": "bbb69d05b8",
@@ -3195,5 +3356,5 @@
    "anadido": "2026-10-25"
   }
  ],
- "actualizado": "2026-10-25T05:25:12.276Z"
+ "actualizado": "2026-10-25T05:52:37.238Z"
 }

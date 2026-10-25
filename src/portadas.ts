@@ -3,7 +3,8 @@
 //  - Películas: Wikipedia. Se busca el título en la española (que es como
 //    están apuntadas) y se coge el póster del artículo en inglés, porque la
 //    española solo admite imágenes libres y no tiene carteles.
-//  - Discos: la API de búsqueda de iTunes, con portadas a 600 px.
+//  - Discos: la API de búsqueda de iTunes, con portadas a 600 px, y las
+//    ediciones físicas de MusicBrainz con portada en el Cover Art Archive.
 
 export interface Candidata {
   url: string;
@@ -13,7 +14,9 @@ export interface Candidata {
   detalle?: string;
   anio?: number;
   director?: string;
-  fuente: 'Wikipedia' | 'iTunes';
+  fuente: 'Wikipedia' | 'iTunes' | 'MusicBrainz';
+  /** Otros títulos de la película (el de España, el original…), para comparar. */
+  otrosTitulos?: string;
   /** Salió de la búsqueda de respaldo en la Wikipedia inglesa. */
   respaldo?: boolean;
 }
@@ -29,6 +32,8 @@ export function normalizar(texto: string): string {
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
+    // «S.A.» como «SA».
+    .replace(/(?<=\b\w)\.(?=\w\b)/g, '')
     .replace(/&/g, ' and ')
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
@@ -74,6 +79,7 @@ interface PaginaWiki {
   description?: string;
   thumbnail?: { source: string };
   langlinks?: { lang: string; '*': string }[];
+  extract?: string;
 }
 
 function wiki(lang: 'es' | 'en', params: Record<string, string>) {
@@ -101,6 +107,17 @@ function anioDe(texto?: string) {
 const ES_AUDIOVISUAL = /^(pel[ií]cula|serie(?! de (libros|novelas|historietas|c[oó]mics))|miniserie|telefilme|documental|anime|cortometraje|film)/i;
 const EN_AUDIOVISUAL = /film|movie|series|television|animated|miniseries|documentary|anime/i;
 
+/**
+ * El arranque de la entradilla, hasta «es una película…»: ahí Wikipedia pone
+ * los otros títulos, como «The Silence of the Lambs (titulada El silencio de
+ * los corderos en España…)». Más allá ya habla de otras películas.
+ */
+function otrosTitulos(entradilla?: string) {
+  if (!entradilla) return undefined;
+  const fin = entradilla.search(/\b(es|fue) (una?|la|el)\b/);
+  return entradilla.slice(0, fin > 0 ? fin : 300);
+}
+
 export async function buscarPelicula(titulo: string): Promise<Candidata[]> {
   const q = tituloParaBuscar(titulo);
   const [es, enBusqueda] = await Promise.all([
@@ -108,12 +125,16 @@ export async function buscarPelicula(titulo: string): Promise<Candidata[]> {
       generator: 'search',
       gsrsearch: `${q} película`,
       gsrlimit: '8',
-      prop: 'langlinks|description|pageimages',
+      prop: 'langlinks|description|pageimages|extracts',
       lllang: 'en',
       lllimit: '50',
       piprop: 'thumbnail',
       pithumbsize: '500',
       pilicense: 'any',
+      exintro: '1',
+      explaintext: '1',
+      exlimit: 'max',
+      exchars: '600',
     }),
     wiki('en', { generator: 'search', gsrsearch: `${q} film`, gsrlimit: '6', ...IMAGEN }),
   ]);
@@ -145,6 +166,7 @@ export async function buscarPelicula(titulo: string): Promise<Candidata[]> {
     resultado.push({
       url: sinQuery(imagen),
       titulo: sinParentesis(p.title),
+      otrosTitulos: [otrosTitulos(p.extract), en ? sinParentesis(en.title) : ''].filter(Boolean).join(' · '),
       detalle: p.description,
       anio: anioDe(p.description),
       director: p.description?.match(/dirigid[ao] por (.+?)(?:\s+y\s+protagonizad.*)?$/i)?.[1],
@@ -175,9 +197,9 @@ interface AlbumItunes {
   trackCount?: number;
 }
 
-const VARIOS = /^(varios|various|va)$/i;
+const VARIOS = /^(varios|various|va|various artists)$/i;
 
-export async function buscarDisco(artista: string | undefined, album: string): Promise<Candidata[]> {
+async function buscarItunes(artista: string | undefined, album: string): Promise<Candidata[]> {
   const term = [artista && !VARIOS.test(artista) ? artista : '', album].join(' ').trim();
   const buscar = (country: string) =>
     api('https://itunes.apple.com/search', { term, entity: 'album', country, limit: '12' }).then(
@@ -197,9 +219,106 @@ export async function buscarDisco(artista: string | undefined, album: string): P
     }));
 }
 
+interface EdicionMB {
+  id: string;
+  title: string;
+  date?: string;
+  country?: string;
+  'artist-credit'?: { name: string; joinphrase?: string }[];
+  media?: { format?: string }[];
+}
+
+const FORMATOS_MB: Record<string, string> = { 'Vinyl': 'Vinilo', '12" Vinyl': 'Vinilo', '7" Vinyl': 'Vinilo', 'Cassette': 'Cassette' };
+
+/**
+ * MusicBrainz tiene las ediciones físicas, también las españolas y las
+ * descatalogadas que no están en iTunes. Las portadas son del Cover Art
+ * Archive; solo se devuelven las ediciones que la tienen.
+ */
+async function buscarMusicBrainz(artista: string | undefined, album: string): Promise<Candidata[]> {
+  const comillas = (t: string) => `"${t.replace(/["\\]/g, ' ')}"`;
+  const partes = [`release:${comillas(album)}`];
+  if (artista && !VARIOS.test(artista)) partes.push(`artist:${comillas(artista)}`);
+  const r: { releases?: EdicionMB[] } = await api('https://musicbrainz.org/ws/2/release/', {
+    query: partes.join(' AND '),
+    fmt: 'json',
+    limit: '25',
+  });
+  // Muchas ediciones del mismo disco: una por título, país y formato basta.
+  const vistas = new Set<string>();
+  const ediciones = (r.releases ?? []).filter((e) => {
+    const clave = [normalizar(e.title), e.country, e.media?.[0]?.format].join('|');
+    if (vistas.has(clave)) return false;
+    vistas.add(clave);
+    return true;
+  });
+  const conPortada = await Promise.all(
+    ediciones.slice(0, 8).map(async (e) => {
+      try {
+        const caa = await fetch(`https://coverartarchive.org/release/${e.id}`, { headers: cabeceras });
+        if (!caa.ok) return null;
+        const datos: { images: { front: boolean; image: string; thumbnails: Record<string, string> }[] } = await caa.json();
+        const frontal = datos.images.find((i) => i.front);
+        if (!frontal) return null;
+        const credito = (e['artist-credit'] ?? []).map((a) => a.name + (a.joinphrase ?? '')).join('');
+        const formato = e.media?.[0]?.format;
+        return {
+          url: (frontal.thumbnails['500'] ?? frontal.thumbnails.large ?? frontal.image).replace(/^http:/, 'https:'),
+          titulo: e.title,
+          artista: credito,
+          detalle: [credito, e.country, formato ? (FORMATOS_MB[formato] ?? formato) : ''].filter(Boolean).join(' · '),
+          anio: anioDe(e.date),
+          fuente: 'MusicBrainz' as const,
+        };
+      } catch {
+        return null;
+      }
+    }),
+  );
+  return conPortada.filter((c): c is NonNullable<typeof c> => c !== null);
+}
+
+/** Primero iTunes (portadas grandes y limpias); después las ediciones de MusicBrainz. */
+export async function buscarDisco(artista: string | undefined, album: string): Promise<Candidata[]> {
+  const [itunes, mb] = await Promise.all([
+    buscarItunes(artista, album).catch(() => []),
+    buscarMusicBrainz(artista, album).catch(() => []),
+  ]);
+  return [...itunes, ...mb];
+}
+
 /** Quita añadidos de las tiendas: «(Bonus Track Version)», «(Remastered)»… */
 function tituloBase(titulo: string) {
-  return normalizar(sinParentesis(titulo.replace(/\[.*?\]/g, ' '))).replace(/^(the|el|la|los|las) /, '');
+  return normalizar(sinParentesis(titulo.replace(/\[.*?\]/g, ' ')))
+    .replace(/^(the|el|la|los|las) /, '')
+    .replace(/\b(volume|volumen)\b/g, 'vol');
+}
+
+/** Palabras que las tiendas añaden al título sin que sea otro disco. */
+const RELLENO = new Set(
+  'mtv live en directo acoustic deluxe edition edicion expanded remastered remaster version special especial anniversary bonus track tracks album the original soundtrack ost banda sonora motion picture music from'.split(
+    ' ',
+  ),
+);
+
+/**
+ * «MTV Unplugged In New York» por «Unplugged in New York», o «Led Zeppelin II»
+ * por «II»: el título encontrado contiene el apuntado entero, y lo que sobra
+ * es el nombre del artista o relleno de tienda.
+ */
+function contieneDisco(encontrado: string, buscado: string, artista: string) {
+  const e = ` ${encontrado} `;
+  if (!e.includes(` ${buscado} `)) return false;
+  const delArtista = new Set(artista.split(' '));
+  const sobra = e.replace(` ${buscado} `, ' ').trim().split(' ').filter(Boolean);
+  return sobra.every((p) => RELLENO.has(p) || delArtista.has(p));
+}
+
+function mismoArtista(apuntado: string | undefined, encontrado: string | undefined) {
+  if (!apuntado || VARIOS.test(apuntado)) return true;
+  const a = normalizar(apuntado);
+  const e = normalizar(encontrado ?? '');
+  return !!e && (e.includes(a) || a.includes(e));
 }
 
 /**
@@ -212,24 +331,30 @@ export function candidataSegura(
 ): Candidata | null {
   const buscado = tituloBase(tituloParaBuscar(item.titulo));
   if (!buscado) return null;
-  for (const c of candidatas) {
-    const encontrado = tituloBase(c.titulo);
-    if (item.seccion === 'discoteca') {
-      const artista = normalizar(item.artista ?? '');
-      const artistaOk =
-        !artista || VARIOS.test(item.artista ?? '')
-          ? true
-          : normalizar(c.artista ?? '').includes(artista) || artista.includes(normalizar(c.artista ?? '') || '\u0000');
-      if (artistaOk && encontrado === buscado) return c;
-    } else if (encontrado === buscado) {
-      // Dos películas con el mismo título y distinto año (remakes, la de
-      // animación y la de imagen real…): no se puede saber cuál es.
-      // Los resultados de respaldo solo cuentan si la elegida también lo es.
-      const otra = candidatas.find(
-        (o) => o !== c && o.anio && (c.respaldo || !o.respaldo) && tituloBase(o.titulo) === buscado && o.anio !== c.anio,
-      );
-      return otra ? null : c;
-    }
+
+  if (item.seccion === 'discoteca') {
+    const artista = normalizar(item.artista ?? '');
+    const validas = candidatas.filter((c) => mismoArtista(item.artista, c.artista));
+    return (
+      validas.find((c) => tituloBase(c.titulo) === buscado) ??
+      validas.find((c) => contieneDisco(tituloBase(c.titulo), buscado, artista)) ??
+      null
+    );
   }
-  return null;
+
+  // Películas: por su título o por los otros con que se conoce (el de España,
+  // el original…).
+  // En los otros títulos tiene que venir seguido de «en España», «y…» o nada,
+  // para que «Hermano oso 2 en España» no valga por «Hermano oso».
+  const otro = new RegExp(`(^| )${buscado}( (en|y|o)( |$)|$)`);
+  const casa = (c: Candidata) =>
+    tituloBase(c.titulo) === buscado ||
+    (!!c.otrosTitulos && c.otrosTitulos.split(' · ').some((t) => otro.test(normalizar(t))));
+  const c = candidatas.find(casa);
+  if (!c) return null;
+  // Dos películas que casan con distinto año (remakes, la de animación y la de
+  // imagen real…): no se puede saber cuál es. Los resultados de respaldo solo
+  // cuentan si la elegida también lo es.
+  const otra = candidatas.find((o) => o !== c && o.anio && o.anio !== c.anio && (c.respaldo || !o.respaldo) && casa(o));
+  return otra ? null : c;
 }

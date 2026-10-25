@@ -28,11 +28,17 @@ bisagra, el vinilo que asoma de la funda…
 - **Portadas por URL**, con un buscador que propone candidatas:
   - **Películas:** Wikipedia. Se busca en la española y se coge el póster de la inglesa, porque
     la española no tiene carteles. Al elegir una, rellena el año y la dirección si faltaban.
-  - **Discos:** iTunes, a 600 px, con el año.
+  - **Discos:** iTunes, a 600 px, con el año; y detrás las ediciones físicas de MusicBrainz
+    (con país y formato), que tienen muchos recopilatorios españoles y descatalogados.
   - **Si no aparece:** clic derecho en cualquier imagen de Google → «Copiar dirección de imagen».
-- **Portadas automáticas:** `npm run portadas` pone portada a todo lo que no la tenga, pero solo
-  cuando el título (y el artista) coinciden exactamente. Quedan marcadas «por revisar»: en la ficha
-  se confirman con un clic o se cambian. Hay filtros de «Portadas por revisar» y «Sin portada».
+- **Portadas automáticas:** `npm run portadas` pone portada a todo lo que no la tenga, solo cuando
+  casa sin duda. Quedan marcadas «por revisar»: en la ficha se confirman con un clic o se cambian.
+  Hay filtros de «Portadas por revisar» y «Sin portada». Lo que acepta:
+  - **Películas:** el mismo título, o el que da Wikipedia como título en España («The Silence of
+    the Lambs (titulada El silencio de los corderos en España…)»). Si casan dos películas de años
+    distintos (Titanic, Dumbo, El Rey León…), no pone ninguna.
+  - **Discos:** el mismo artista y el mismo título, o un título que lo contiene entero con solo el
+    nombre del artista o relleno de tienda de más («MTV Unplugged In New York», «Led Zeppelin II»).
 
 ## Datos de cada título
 

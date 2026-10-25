@@ -182,7 +182,7 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                 <div className="mt-3 rounded-xl border border-[var(--borde)] bg-[var(--fondo)] p-3">
                   {candidatas.length === 0 ? (
                     <p className="text-sm text-[var(--suave)]">
-                      Sin resultados en {musica ? 'iTunes' : 'Wikipedia'}. Busca la imagen en Google, haz clic derecho → «Copiar
+                      Sin resultados en {musica ? 'iTunes ni MusicBrainz' : 'Wikipedia'}. Busca la imagen en Google, haz clic derecho → «Copiar
                       dirección de imagen» y pégala arriba.
                     </p>
                   ) : (
@@ -197,8 +197,9 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                           />
                           <span className="mt-1 line-clamp-2 block text-xs leading-tight">{c.titulo}</span>
                           <span className="block text-[11px] text-[var(--suave)]">
-                            {[c.anio, musica ? c.artista : null].filter(Boolean).join(' · ')}
+                            {[c.anio, c.fuente].filter(Boolean).join(' · ')}
                           </span>
+                          {musica && <span className="block truncate text-[11px] text-[var(--suave)]">{c.detalle}</span>}
                         </button>
                       ))}
                     </div>
