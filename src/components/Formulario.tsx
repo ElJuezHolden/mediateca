@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Disc3, Loader2, Search, X } from 'lucide-react';
-import { avisoDiscogs, buscarDisco, buscarPelicula, edicionDiscogs, type Candidata } from '../portadas';
+import { Disc3, ExternalLink, Link2, Link2Off, Loader2, RefreshCw, Search, X } from 'lucide-react';
+import {
+  avisoDiscogs,
+  buscarDisco,
+  buscarPelicula,
+  desvincularDiscogs,
+  edicionDiscogs,
+  vincularDiscogs,
+  type Candidata,
+  type EdicionDiscogs,
+} from '../portadas';
 import { FORMATOS, SECCIONES, type Item } from '../types';
 import { Portada } from './Portada';
 
@@ -20,6 +29,9 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
   const [error, setError] = useState('');
   const [enlaceDiscogs, setEnlaceDiscogs] = useState('');
   const [cargandoDiscogs, setCargandoDiscogs] = useState(false);
+  /** La última edición vinculada, para ofrecer sus datos si difieren de los tuyos. */
+  const [vinculada, setVinculada] = useState<EdicionDiscogs | null>(null);
+  const [cambiandoEdicion, setCambiandoEdicion] = useState(false);
   const musica = b.seccion === 'discoteca';
 
   useEffect(() => {
@@ -29,7 +41,7 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
   }, [onCancelar]);
 
   const cambiar = <K extends keyof Item>(k: K, v: Item[K]) => setB((x) => ({ ...x, [k]: v }));
-  const texto = (k: 'titulo' | 'artista' | 'director' | 'edicion' | 'notas' | 'portada') => ({
+  const texto = (k: 'titulo' | 'artista' | 'director' | 'edicion' | 'notas' | 'portada' | 'sello' | 'catalogo' | 'pais') => ({
     value: b[k] ?? '',
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       cambiar(k, e.target.value);
@@ -60,26 +72,42 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
       portadaAuto: undefined,
       anio: reemplazar ? (c.anio ?? x.anio) : (x.anio ?? c.anio),
       director: musica ? x.director : reemplazar ? (c.director ?? x.director) : (x.director ?? c.director),
-      // Una portada de Discogs dice qué edición es; las demás no lo cambian.
-      discogs: c.discogs ?? x.discogs,
     }));
     setCandidatas(null);
+    // Una portada de Discogs dice qué edición es: se vincula con todos sus datos.
+    if (c.discogs) vincular(String(c.discogs));
   }
 
-  async function cargarDiscogs() {
-    if (!enlaceDiscogs.trim()) return;
+  async function vincular(enlace: string) {
+    if (!enlace.trim()) return;
     setCargandoDiscogs(true);
     setError('');
     try {
-      const e = await edicionDiscogs(enlaceDiscogs);
-      setB((x) => ({ ...x, discogs: e.discogs, anio: e.anio ?? x.anio, ...(e.url ? { portada: e.url, portadaAuto: undefined } : {}) }));
+      const e = await edicionDiscogs(enlace);
+      // En un disco nuevo se trae todo; en uno que ya tenías, se respeta cómo
+      // lo apuntaste y se ofrece lo de Discogs aparte.
+      setB((x) => vincularDiscogs(x, e, nuevo && !x.titulo.trim()));
+      setVinculada(e);
       setEnlaceDiscogs('');
+      setCambiandoEdicion(false);
     } catch (e) {
       setError(`Discogs: ${e instanceof Error ? e.message : e}`);
     } finally {
       setCargandoDiscogs(false);
     }
   }
+
+  // Lo que Discogs dice distinto de lo apuntado, para poder usarlo con un clic.
+  const diferencias = vinculada
+    ? (
+        [
+          ['artista', 'Artista'],
+          ['titulo', 'Álbum'],
+          ['edicion', 'Edición'],
+          ['formato', 'Formato'],
+        ] as const
+      ).filter(([k]) => vinculada[k] && vinculada[k] !== b[k])
+    : [];
 
   function enviar(e: React.FormEvent) {
     e.preventDefault();
@@ -134,6 +162,117 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
             )}
 
             {musica && (
+              <div className="rounded-xl border border-[var(--borde)] bg-[var(--fondo)] p-3">
+                {b.discogs && !cambiandoEdicion ? (
+                  <div className="flex flex-wrap items-center gap-2 text-sm">
+                    <Link2 size={16} className="acento shrink-0" />
+                    <span className="min-w-0 flex-1">
+                      <span className="font-semibold">Vinculado a Discogs</span>
+                      <span className="block truncate text-xs text-[var(--suave)]">
+                        {[b.sello, b.catalogo, b.pais, b.pistas?.length ? canciones(b.pistas.filter((p) => !p.cabecera).length) : '']
+                          .filter(Boolean)
+                          .join(' · ') || `Edición ${b.discogs}`}
+                      </span>
+                    </span>
+                    <a
+                      className="boton py-1"
+                      href={`https://www.discogs.com/release/${b.discogs}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Ver en Discogs"
+                      aria-label="Ver en Discogs"
+                    >
+                      <ExternalLink size={14} />
+                    </a>
+                    <button
+                      type="button"
+                      className="boton py-1"
+                      onClick={() => vincular(String(b.discogs))}
+                      disabled={cargandoDiscogs}
+                      title="Volver a traer los datos"
+                      aria-label="Volver a traer los datos"
+                    >
+                      {cargandoDiscogs ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
+                    </button>
+                    <button type="button" className="boton py-1" onClick={() => setCambiandoEdicion(true)}>
+                      Cambiar
+                    </button>
+                    <button
+                      type="button"
+                      className="boton py-1"
+                      onClick={() => (setB((x) => desvincularDiscogs(x)), setVinculada(null))}
+                      title="Desvincular"
+                      aria-label="Desvincular"
+                    >
+                      <Link2Off size={14} />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex gap-2">
+                      <input
+                        className="campo"
+                        placeholder="Pega el enlace de tu edición en Discogs"
+                        value={enlaceDiscogs}
+                        autoFocus={cambiandoEdicion}
+                        onChange={(e) => setEnlaceDiscogs(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), vincular(enlaceDiscogs))}
+                        onPaste={(e) => {
+                          // Al pegar un enlace se vincula sin tener que pulsar nada.
+                          const pegado = e.clipboardData.getData('text');
+                          if (/discogs\.com\/.*(release|master)\/\d+/.test(pegado)) {
+                            e.preventDefault();
+                            setEnlaceDiscogs(pegado);
+                            vincular(pegado);
+                          }
+                        }}
+                      />
+                      <button
+                        type="button"
+                        className="boton shrink-0"
+                        onClick={() => vincular(enlaceDiscogs)}
+                        disabled={cargandoDiscogs || !enlaceDiscogs.trim()}
+                      >
+                        {cargandoDiscogs ? <Loader2 size={15} className="animate-spin" /> : <Disc3 size={15} />} Vincular
+                      </button>
+                      {cambiandoEdicion && (
+                        <button type="button" className="boton shrink-0" onClick={() => setCambiandoEdicion(false)} aria-label="Cancelar">
+                          <X size={15} />
+                        </button>
+                      )}
+                    </div>
+                    <p className="mt-1.5 text-xs text-[var(--suave)]">
+                      {nuevo ? 'Se rellena todo: ' : 'Trae '}portada, año, sello, nº de catálogo, país, géneros y canciones.
+                    </p>
+                  </>
+                )}
+                {diferencias.length > 0 && (
+                  <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-[var(--borde)] pt-3 text-xs">
+                    <span className="min-w-0 flex-1 text-[var(--suave)]">
+                      En Discogs:{' '}
+                      {diferencias.map(([k, nombre]) => (
+                        <span key={k} className="mr-2 text-[var(--texto)]">
+                          {nombre} «{vinculada![k]}»
+                        </span>
+                      ))}
+                    </span>
+                    <button
+                      type="button"
+                      className="boton py-1"
+                      onClick={() => (setB((x) => vincularDiscogs(x, vinculada!, true)), setVinculada(null))}
+                    >
+                      Usar estos
+                    </button>
+                    <button type="button" className="boton py-1" onClick={() => setVinculada(null)}>
+                      Dejar los míos
+                    </button>
+                  </div>
+                )}
+                {error.startsWith('Discogs') && <p className="mt-2 text-sm text-red-400">{error}</p>}
+              </div>
+            )}
+
+            {musica && (
               <label>
                 <span className={etiqueta}>Artista</span>
                 <input className="campo" list="artistas" {...texto('artista')} />
@@ -181,6 +320,23 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
               </label>
             </div>
 
+            {musica && (
+              <div className="grid gap-4 sm:grid-cols-3">
+                <label>
+                  <span className={etiqueta}>Sello</span>
+                  <input className="campo" {...texto('sello')} />
+                </label>
+                <label>
+                  <span className={etiqueta}>Nº de catálogo</span>
+                  <input className="campo" {...texto('catalogo')} />
+                </label>
+                <label>
+                  <span className={etiqueta}>País</span>
+                  <input className="campo" {...texto('pais')} />
+                </label>
+              </div>
+            )}
+
             {!musica && (
               <label>
                 <span className={etiqueta}>Dirección</span>
@@ -196,21 +352,7 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                   {buscando ? <Loader2 size={15} className="animate-spin" /> : <Search size={15} />} Buscar
                 </button>
               </div>
-              {musica && (
-                <div className="mt-2 flex gap-2">
-                  <input
-                    className="campo"
-                    placeholder={b.discogs ? `Edición de Discogs: ${b.discogs}. Pega otro enlace para cambiarla` : 'O pega el enlace de tu edición en Discogs'}
-                    value={enlaceDiscogs}
-                    onChange={(e) => setEnlaceDiscogs(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), cargarDiscogs())}
-                  />
-                  <button type="button" className="boton shrink-0" onClick={cargarDiscogs} disabled={cargandoDiscogs || !enlaceDiscogs.trim()}>
-                    {cargandoDiscogs ? <Loader2 size={15} className="animate-spin" /> : <Disc3 size={15} />} Cargar
-                  </button>
-                </div>
-              )}
-              {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+              {error && !error.startsWith('Discogs') && <p className="mt-2 text-sm text-red-400">{error}</p>}
               {candidatas && (
                 <div className="mt-3 rounded-xl border border-[var(--borde)] bg-[var(--fondo)] p-3">
                   {musica && avisoDiscogs() && (
@@ -265,3 +407,5 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
     </div>
   );
 }
+
+const canciones = (n: number) => `${n} ${n === 1 ? 'canción' : 'canciones'}`;

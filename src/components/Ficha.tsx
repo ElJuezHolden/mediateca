@@ -46,7 +46,11 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
     ['Edición', item.edicion],
     ['Año', item.anio],
     ['Dirección', musica ? undefined : item.director],
+    ['Sello', [item.sello, item.catalogo].filter(Boolean).join(' · ')],
+    ['País', item.pais],
   ];
+  const canciones = item.pistas?.filter((p) => !p.cabecera) ?? [];
+  const minutos = Math.round(canciones.reduce((total, p) => total + segundos(p.duracion), 0) / 60);
 
   return (
     <div className="velo" onClick={onCerrar}>
@@ -67,7 +71,7 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
 
       <div
         key={item.id}
-        className="ventana relative grid max-h-full w-full max-w-3xl gap-6 overflow-y-auto rounded-2xl border border-[var(--borde)] bg-[var(--panel)] p-5 sm:grid-cols-[minmax(0,17rem)_1fr] sm:p-7"
+        className="ventana relative grid max-h-full w-full max-w-3xl gap-6 overflow-y-auto overflow-x-hidden rounded-2xl border border-[var(--borde)] bg-[var(--panel)] p-5 sm:grid-cols-[minmax(0,17rem)_1fr] sm:p-7"
         onClick={(e) => e.stopPropagation()}
       >
         <button className="absolute right-3 top-3 z-10 rounded-full p-1.5 text-[var(--suave)] hover:text-white" onClick={onCerrar} aria-label="Cerrar">
@@ -94,6 +98,16 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
                 </div>
               ))}
           </dl>
+
+          {item.generos?.length ? (
+            <div className="flex flex-wrap gap-1.5">
+              {item.generos.map((g) => (
+                <span key={g} className="rounded-full bg-[var(--fondo)] px-2.5 py-0.5 text-xs text-[var(--suave)]">
+                  {g}
+                </span>
+              ))}
+            </div>
+          ) : null}
 
           {item.notas && <p className="whitespace-pre-line rounded-xl bg-[var(--fondo)] p-3 text-sm text-[var(--suave)]">{item.notas}</p>}
 
@@ -128,7 +142,42 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
             )}
           </div>
         </div>
+
+        {canciones.length > 0 && (
+          <section className="border-t border-[var(--borde)] pt-5 sm:col-span-2">
+            <h3 className="mb-3 flex items-baseline gap-3 font-display text-2xl tracking-wide">
+              Canciones
+              <span className="font-sans text-xs tracking-normal text-[var(--suave)]">
+                {canciones.length}
+                {minutos > 0 && ` · ${minutos} min`}
+              </span>
+            </h3>
+            <ol className="gap-8 text-sm sm:columns-2">
+              {item.pistas!.map((p, n) =>
+                p.cabecera ? (
+                  <li key={n} className="acento break-after-avoid pb-1 pt-3 text-xs font-semibold uppercase tracking-wider first:pt-0">
+                    {p.titulo}
+                  </li>
+                ) : (
+                  <li key={n} className="flex break-inside-avoid gap-3 py-1">
+                    <span className="w-7 shrink-0 text-right tabular-nums text-[var(--suave)]">{p.pos}</span>
+                    <span className="min-w-0 flex-1">
+                      {p.titulo}
+                      {p.artista && <span className="block text-xs text-[var(--suave)]">{p.artista}</span>}
+                    </span>
+                    {p.duracion && <span className="tabular-nums text-[var(--suave)]">{p.duracion}</span>}
+                  </li>
+                ),
+              )}
+            </ol>
+          </section>
+        )}
       </div>
     </div>
   );
+}
+
+/** «4:26» o «1:02:15» en segundos. */
+function segundos(duracion?: string) {
+  return (duracion ?? '').split(':').reduce((total, parte) => total * 60 + (Number(parte) || 0), 0);
 }

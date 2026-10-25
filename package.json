@@ -9,7 +9,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "portadas": "node scripts/buscar-portadas.ts"
+    "portadas": "node scripts/buscar-portadas.ts",
+    "discogs": "node scripts/completar-discogs.ts"
   },
   "dependencies": {
     "lucide-react": "^1.61.0",

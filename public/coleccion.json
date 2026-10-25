@@ -1015,7 +1015,57 @@
    "portada": "https://i.discogs.com/r5lHSA3OTtqGJR-aZkxTumqOGErah_89dV8Q17XvjW8/rs:fit/g:sm/q:90/h:528/w:527/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMyNDUw/NjEwLTE3MzMwODQz/MjEtNjE5MC5wbmc.jpeg",
    "portadaAuto": true,
    "discogs": 32450610,
-   "anio": 1983
+   "anio": 1983,
+   "sello": "Olympo",
+   "catalogo": "SC-2510",
+   "pais": "España",
+   "generos": [
+    "Rock",
+    "Pop",
+    "Pop Rock"
+   ],
+   "pistas": [
+    {
+     "pos": "A1",
+     "titulo": "Born A Man"
+    },
+    {
+     "pos": "A2",
+     "titulo": "Spicks And Specks"
+    },
+    {
+     "pos": "A3",
+     "titulo": "Jingle Jangle"
+    },
+    {
+     "pos": "A4",
+     "titulo": "Claustrophobia"
+    },
+    {
+     "pos": "A5",
+     "titulo": "All My Life"
+    },
+    {
+     "pos": "B1",
+     "titulo": "Don't Say Goodbye"
+    },
+    {
+     "pos": "B2",
+     "titulo": "To Be Or Not To Be"
+    },
+    {
+     "pos": "B3",
+     "titulo": "I Was A Lover A Leader Of Man"
+    },
+    {
+     "pos": "B4",
+     "titulo": "Follow The Wind"
+    },
+    {
+     "pos": "B5",
+     "titulo": "Wine And Women"
+    }
+   ]
   },
   {
    "id": "cdbf6a8283",
@@ -1190,7 +1240,68 @@
    "portada": "https://i.discogs.com/gV-CrFAbedzUbJGbo36aT85v6aQKf3U4eXK5-GdlZyw/rs:fit/g:sm/q:90/h:411/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5MDYz/OTkyLTE3MDEzMDIz/NTUtMzU2My5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 29063992,
-   "anio": 2005
+   "anio": 2005,
+   "sello": "Fonomúsica",
+   "catalogo": "8792",
+   "pais": "Colombia",
+   "generos": [
+    "Latin",
+    "Son"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "En el ingenio laborando - Dame la mano"
+    },
+    {
+     "pos": "2",
+     "titulo": "El Muñequito"
+    },
+    {
+     "pos": "3",
+     "titulo": "María Cristina - Que manera de quererte"
+    },
+    {
+     "pos": "4",
+     "titulo": "Pasito de la bibijagua - El pasito tun tun"
+    },
+    {
+     "pos": "5",
+     "titulo": "Boleros Cuba son: Errante de amor, Acuérdate de mi, Lagrimas negras"
+    },
+    {
+     "pos": "6",
+     "titulo": "Viejito cañandonga"
+    },
+    {
+     "pos": "7",
+     "titulo": "Mosaico Cuba son: Huérfano soy, La fiesta de los ratones, Zancudo patilargo"
+    },
+    {
+     "pos": "8",
+     "titulo": "Adiós compay gato"
+    },
+    {
+     "pos": "9",
+     "titulo": "Oye mi son, Pare cochero"
+    },
+    {
+     "pos": "10",
+     "titulo": "El carretero, Al vaivén de mi carreta"
+    },
+    {
+     "pos": "11",
+     "titulo": "Oye mi conga, Carnaval de oriente"
+    },
+    {
+     "pos": "12",
+     "titulo": "Mosaico Cubano: Suavecito, Tumba la caña, La mujer de Antonio, Veneración, Son de la loma, Buche y plumas, Hueso na ma, Échale salsita"
+    },
+    {
+     "pos": "13",
+     "titulo": "Caribe"
+    }
+   ]
   },
   {
    "id": "d392cc266a",
@@ -1267,7 +1378,57 @@
    "portada": "https://i.discogs.com/8v1q27mblIaJLlWHQTxYdldJoa0058GXwljyjUpC_n8/rs:fit/g:sm/q:90/h:482/w:546/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk3OTgy/MTYtMTQ4NjQ4MzIw/Ni01Mzg2LmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 9798216,
-   "anio": 1995
+   "anio": 1995,
+   "sello": "CEMA Special Markets",
+   "catalogo": "S21-18294",
+   "pais": "EE. UU.",
+   "generos": [
+    "Latin",
+    "Salsa",
+    "Ballad"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Me Faltas Tu"
+    },
+    {
+     "pos": "2",
+     "titulo": "Que Vamos A Hacer"
+    },
+    {
+     "pos": "3",
+     "titulo": "A Escondidas De Todos"
+    },
+    {
+     "pos": "4",
+     "titulo": "Te Amo, Te Amo"
+    },
+    {
+     "pos": "5",
+     "titulo": "Me Faltas Tu"
+    },
+    {
+     "pos": "6",
+     "titulo": "Deseos"
+    },
+    {
+     "pos": "7",
+     "titulo": "Soy El Mismo"
+    },
+    {
+     "pos": "8",
+     "titulo": "Intensamente"
+    },
+    {
+     "pos": "9",
+     "titulo": "Yo Queria Ser Fiel"
+    },
+    {
+     "pos": "10",
+     "titulo": "Echo De Menos Tu Presencia"
+    }
+   ]
   },
   {
    "id": "477bc09b7d",
@@ -1319,7 +1480,327 @@
    "portada": "https://i.discogs.com/YmKcU7VTTCPpfL0r1ECHDP-_50S-2hncj7D9Fe1y1O0/rs:fit/g:sm/q:90/h:224/w:224/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYwNjE4/NTQtMTQxMDA4NTY0/OC01MDY0LmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 6061854,
-   "anio": 2006
+   "anio": 2006,
+   "sello": "Sony BMG Music Entertainment",
+   "catalogo": "82876863762",
+   "pais": "España",
+   "generos": [
+    "Rock",
+    "Pop",
+    "Pop Rock"
+   ],
+   "pistas": [
+    {
+     "pos": "",
+     "titulo": "En Directo Sala Caracol 22-11-02",
+     "cabecera": true
+    },
+    {
+     "pos": "CD1-1",
+     "titulo": "Una Salida"
+    },
+    {
+     "pos": "CD1-2",
+     "titulo": "Preguntas"
+    },
+    {
+     "pos": "CD1-3",
+     "titulo": "No Quiero Nada"
+    },
+    {
+     "pos": "CD1-4",
+     "titulo": "A Contracorriente"
+    },
+    {
+     "pos": "CD1-5",
+     "titulo": "Son Sueños"
+    },
+    {
+     "pos": "CD1-6",
+     "titulo": "Super Héroe"
+    },
+    {
+     "pos": "CD1-7",
+     "titulo": "Y Si El Miedo"
+    },
+    {
+     "pos": "CD1-8",
+     "titulo": "Crash"
+    },
+    {
+     "pos": "CD1-9",
+     "titulo": "Llueve En Mí"
+    },
+    {
+     "pos": "CD1-10",
+     "titulo": "Pequeñita"
+    },
+    {
+     "pos": "CD1-11",
+     "titulo": "Eres Un Canalla"
+    },
+    {
+     "pos": "",
+     "titulo": "En Directo Sala Bikini 30-12-03",
+     "cabecera": true
+    },
+    {
+     "pos": "CD2-1",
+     "titulo": "Eres Un Caralla"
+    },
+    {
+     "pos": "CD2-2",
+     "titulo": "No Quiero Nada"
+    },
+    {
+     "pos": "CD2-3",
+     "titulo": "Insoportable"
+    },
+    {
+     "pos": "CD2-4",
+     "titulo": "Y Nada Volvera A Ser Como Antes"
+    },
+    {
+     "pos": "CD2-5",
+     "titulo": "Puede Ser"
+    },
+    {
+     "pos": "CD2-6",
+     "titulo": "Contigo"
+    },
+    {
+     "pos": "CD2-7",
+     "titulo": "Otra Vez"
+    },
+    {
+     "pos": "CD2-8",
+     "titulo": "Una Foto En Blanco Y Negro"
+    },
+    {
+     "pos": "CD2-9",
+     "titulo": "Volver A Disfrutar"
+    },
+    {
+     "pos": "CD2-10",
+     "titulo": "A Contracorriente"
+    },
+    {
+     "pos": "CD2-11",
+     "titulo": "La Madre De José"
+    },
+    {
+     "pos": "",
+     "titulo": "En Directo Sala Oasis 15-10-05",
+     "cabecera": true
+    },
+    {
+     "pos": "CD3-1",
+     "titulo": "Volverá"
+    },
+    {
+     "pos": "CD3-2",
+     "titulo": "Insoportable"
+    },
+    {
+     "pos": "CD3-3",
+     "titulo": "Será"
+    },
+    {
+     "pos": "CD3-4",
+     "titulo": "Y Si El Miedo"
+    },
+    {
+     "pos": "CD3-5",
+     "titulo": "Úsanos"
+    },
+    {
+     "pos": "CD3-6",
+     "titulo": "Tal Como Eres"
+    },
+    {
+     "pos": "CD3-7",
+     "titulo": "El Pescao"
+    },
+    {
+     "pos": "CD3-8",
+     "titulo": "Desaparece / Vuelve"
+    },
+    {
+     "pos": "CD3-9",
+     "titulo": "Despiértame"
+    },
+    {
+     "pos": "CD3-10",
+     "titulo": "Son Sueños"
+    },
+    {
+     "pos": "CD3-11",
+     "titulo": "Cruce De Caminos (Inedito)"
+    },
+    {
+     "pos": "CD3-12",
+     "titulo": "Besos"
+    },
+    {
+     "pos": "CD3-13",
+     "titulo": "Zapatillas"
+    },
+    {
+     "pos": "",
+     "titulo": "En Directo Sala Caracol 22-11-02",
+     "cabecera": true
+    },
+    {
+     "pos": "DVD1-1",
+     "titulo": "Una Salida"
+    },
+    {
+     "pos": "DVD1-2",
+     "titulo": "Preguntas"
+    },
+    {
+     "pos": "DVD1-3",
+     "titulo": "No Quiero Nada"
+    },
+    {
+     "pos": "DVD1-4",
+     "titulo": "A Contracorriente"
+    },
+    {
+     "pos": "DVD1-5",
+     "titulo": "Son Sueños"
+    },
+    {
+     "pos": "DVD1-6",
+     "titulo": "Super Héroe"
+    },
+    {
+     "pos": "DVD1-7",
+     "titulo": "Y Si El Miedo"
+    },
+    {
+     "pos": "DVD1-8",
+     "titulo": "Crash"
+    },
+    {
+     "pos": "DVD1-9",
+     "titulo": "Llueve En Mí"
+    },
+    {
+     "pos": "DVD1-10",
+     "titulo": "Pequeñita"
+    },
+    {
+     "pos": "DVD1-11",
+     "titulo": "Eres Un Canalla"
+    },
+    {
+     "pos": "",
+     "titulo": "En Directo Sala Bikini 30-12-03",
+     "cabecera": true
+    },
+    {
+     "pos": "DVD2-1",
+     "titulo": "Eres Un Caralla"
+    },
+    {
+     "pos": "DVD2-2",
+     "titulo": "No Quiero Nada"
+    },
+    {
+     "pos": "DVD2-3",
+     "titulo": "Insoportable"
+    },
+    {
+     "pos": "DVD2-4",
+     "titulo": "Y Nada Volvera A Ser Como Antes"
+    },
+    {
+     "pos": "DVD2-5",
+     "titulo": "Puede Ser"
+    },
+    {
+     "pos": "DVD2-6",
+     "titulo": "Contigo"
+    },
+    {
+     "pos": "DVD2-7",
+     "titulo": "Otra Vez"
+    },
+    {
+     "pos": "DVD2-8",
+     "titulo": "Una Foto En Blanco Y Negro"
+    },
+    {
+     "pos": "DVD2-9",
+     "titulo": "Volver A Disfrutar"
+    },
+    {
+     "pos": "DVD2-10",
+     "titulo": "A Contracorriente"
+    },
+    {
+     "pos": "DVD2-11",
+     "titulo": "La Madre De José"
+    },
+    {
+     "pos": "",
+     "titulo": "En Directo Sala Oasis 15-10-05",
+     "cabecera": true
+    },
+    {
+     "pos": "DVD3-1",
+     "titulo": "Volverá"
+    },
+    {
+     "pos": "DVD3-2",
+     "titulo": "Insoportable"
+    },
+    {
+     "pos": "DVD3-3",
+     "titulo": "Será"
+    },
+    {
+     "pos": "DVD3-4",
+     "titulo": "Y Si El Miedo"
+    },
+    {
+     "pos": "DVD3-5",
+     "titulo": "Ùsanos"
+    },
+    {
+     "pos": "DVD3-6",
+     "titulo": "Tal Como Eres"
+    },
+    {
+     "pos": "DVD3-7",
+     "titulo": "El Pescao"
+    },
+    {
+     "pos": "DVD3-8",
+     "titulo": "Desaparece / Vuelve"
+    },
+    {
+     "pos": "DVD3-9",
+     "titulo": "Despiértame"
+    },
+    {
+     "pos": "DVD3-10",
+     "titulo": "Son Sueños"
+    },
+    {
+     "pos": "DVD3-11",
+     "titulo": "Cruce De Caminos (Inedito)"
+    },
+    {
+     "pos": "DVD3-12",
+     "titulo": "Besos"
+    },
+    {
+     "pos": "DVD3-13",
+     "titulo": "Zapatillas"
+    }
+   ]
   },
   {
    "id": "4f1575735e",
@@ -1424,7 +1905,33 @@
    "portada": "https://i.discogs.com/mEpmeQdyn1nxGM18FiLsDht_cBEBszzgfnnTT8ja5l0/rs:fit/g:sm/q:90/h:463/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYwODcy/MjYtMTQxMDcyNDY1/My0yNzY2LmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 6087226,
-   "anio": 1996
+   "anio": 1996,
+   "sello": "EMI",
+   "catalogo": "8601722",
+   "pais": "España",
+   "generos": [
+    "Pop"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Las Hojas Que Ríen",
+     "duracion": "5:13"
+    },
+    {
+     "pos": "2",
+     "titulo": "Las Hojas Que Ríen (Versión En Directo)",
+     "duracion": "4:56"
+    },
+    {
+     "pos": "",
+     "titulo": ""
+    },
+    {
+     "pos": "",
+     "titulo": ""
+    }
+   ]
   },
   {
    "id": "934d684733",
@@ -1493,7 +2000,89 @@
    "portada": "https://i.discogs.com/SeWyXDrEEgPICkfyrH4BFmVY6FBzCYgRW1P6BZaJsug/rs:fit/g:sm/q:90/h:1054/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMjQ3/NTgyLTE1MTI2Nzkw/MzktNTE2NS5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 11247582,
-   "anio": 1989
+   "anio": 1989,
+   "sello": "Can",
+   "pais": "España",
+   "generos": [
+    "Rock",
+    "Pop Rock"
+   ],
+   "pistas": [
+    {
+     "pos": "",
+     "titulo": "En Directo:",
+     "cabecera": true
+    },
+    {
+     "pos": "1",
+     "titulo": "El Loco De La Calle"
+    },
+    {
+     "pos": "2",
+     "titulo": "La Piedra Redonda"
+    },
+    {
+     "pos": "3",
+     "titulo": "Los Ángeles No Tienen Hélices"
+    },
+    {
+     "pos": "4",
+     "titulo": "Ya No Danzo Al Son De Los Tambores"
+    },
+    {
+     "pos": "5",
+     "titulo": "Dulces Sueños"
+    },
+    {
+     "pos": "6",
+     "titulo": "Insurrección"
+    },
+    {
+     "pos": "7",
+     "titulo": "Son Cuatro Días"
+    },
+    {
+     "pos": "8",
+     "titulo": "Aviones Plateados"
+    },
+    {
+     "pos": "9",
+     "titulo": "A Veces Se Enciende"
+    },
+    {
+     "pos": "10",
+     "titulo": "Como La Cabeza Al Sombrero"
+    },
+    {
+     "pos": "",
+     "titulo": "Videos:",
+     "cabecera": true
+    },
+    {
+     "pos": "11",
+     "titulo": "No Puedo Más"
+    },
+    {
+     "pos": "12",
+     "titulo": "Medley Rebuznos De Amor"
+    },
+    {
+     "pos": "13",
+     "titulo": "Medley Cuando La Pobreza Entra Por La Puerta, El Amor Salta Por La Ventana"
+    },
+    {
+     "pos": "14",
+     "titulo": "Aviones Plateados"
+    },
+    {
+     "pos": "15",
+     "titulo": "Sara"
+    },
+    {
+     "pos": "16",
+     "titulo": "Llanto De Pasión"
+    }
+   ]
   },
   {
    "id": "82ebe99399",
@@ -1506,7 +2095,74 @@
    "portada": "https://i.discogs.com/SqHFU0jqoGAX4jy3ykclYBzSsKRWHgubeZOeBhKOO60/rs:fit/g:sm/q:90/h:802/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MDg4/MDkzLTE2MTUxMDE1/NjItNDI0My5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 16088093,
-   "anio": 1991
+   "anio": 1991,
+   "sello": "EMI-Odeon, S.A.",
+   "catalogo": "9500903",
+   "pais": "España",
+   "generos": [
+    "Rock",
+    "Pop"
+   ],
+   "pistas": [
+    {
+     "pos": "",
+     "titulo": "Videos",
+     "cabecera": true
+    },
+    {
+     "pos": "1",
+     "titulo": "Músico Loco"
+    },
+    {
+     "pos": "2",
+     "titulo": "Cuando El Mar Te Tenga"
+    },
+    {
+     "pos": "",
+     "titulo": "En Directo",
+     "cabecera": true
+    },
+    {
+     "pos": "3.1",
+     "titulo": "Barrio Triste"
+    },
+    {
+     "pos": "3.2",
+     "titulo": "A Veces Se Enciende"
+    },
+    {
+     "pos": "3.3",
+     "titulo": "Andar Hacia Los Pozos No Quita La Sed"
+    },
+    {
+     "pos": "3.4",
+     "titulo": "Del Templo A La Taberna"
+    },
+    {
+     "pos": "3.5",
+     "titulo": "A Jazmín"
+    },
+    {
+     "pos": "3.6",
+     "titulo": "Músico Loco"
+    },
+    {
+     "pos": "3.7",
+     "titulo": "En Mi Pecho"
+    },
+    {
+     "pos": "3.8",
+     "titulo": "Canta Por Mí"
+    },
+    {
+     "pos": "3.9",
+     "titulo": "Cuando El Amor Te Tenga"
+    },
+    {
+     "pos": "3.10",
+     "titulo": "Huesos"
+    }
+   ]
   },
   {
    "id": "0349d757e1",
@@ -2017,7 +2673,216 @@
    "portada": "https://i.discogs.com/u7Uwsvr70527_V2c71GhUi4_lAinWpNTqfmsgFfg_Xo/rs:fit/g:sm/q:90/h:528/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwMDY2/NTk5LTE2MzA0MzU5/NTEtNDExMC5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 20066599,
-   "anio": 1998
+   "anio": 1998,
+   "sello": "Columbia",
+   "catalogo": "CDMI2 491091",
+   "pais": "México",
+   "generos": [
+    "Latin",
+    "Pop",
+    "Chanson",
+    "Ballad"
+   ],
+   "pistas": [
+    {
+     "pos": "1-1",
+     "titulo": "La Gota Fria",
+     "duracion": "3:33"
+    },
+    {
+     "pos": "1-2",
+     "titulo": "Soy Un Truhan, Soy Un Señor",
+     "duracion": "3:01"
+    },
+    {
+     "pos": "1-3",
+     "titulo": "Me Olvide De Vivir",
+     "duracion": "4:50"
+    },
+    {
+     "pos": "1-4",
+     "titulo": "Quijote",
+     "duracion": "4:01"
+    },
+    {
+     "pos": "1-5",
+     "titulo": "Momentos",
+     "duracion": "3:32"
+    },
+    {
+     "pos": "1-6",
+     "titulo": "La Nave Del Olvido",
+     "duracion": "4:11"
+    },
+    {
+     "pos": "1-7",
+     "titulo": "Que Nadie Sepa Mi Sufrir",
+     "duracion": "3:20"
+    },
+    {
+     "pos": "1-8",
+     "titulo": "Nathalie",
+     "duracion": "3:53"
+    },
+    {
+     "pos": "1-9",
+     "titulo": "De Niña A Mujer",
+     "duracion": "3:14"
+    },
+    {
+     "pos": "1-10",
+     "titulo": "Ni Te Tengo Ni Te Olvido",
+     "duracion": "4:00"
+    },
+    {
+     "pos": "1-11",
+     "titulo": "Felicidades",
+     "duracion": "3:46"
+    },
+    {
+     "pos": "1-12",
+     "titulo": "Que No Se Rompa La Noche",
+     "duracion": "4:25"
+    },
+    {
+     "pos": "1-13",
+     "titulo": "Lo Mejor De Tu Vida",
+     "duracion": "4:16"
+    },
+    {
+     "pos": "1-14",
+     "titulo": "Milonga (Medley)",
+     "duracion": "4:02"
+    },
+    {
+     "pos": "1-14a",
+     "titulo": "Milonga Sentimental"
+    },
+    {
+     "pos": "1-14b",
+     "titulo": "Vivo"
+    },
+    {
+     "pos": "1-15",
+     "titulo": "Agua Dulce, Agua Sala",
+     "duracion": "4:24"
+    },
+    {
+     "pos": "1-16",
+     "titulo": "Vuela Alto",
+     "duracion": "3:09"
+    },
+    {
+     "pos": "1-17",
+     "titulo": "Baila Morena",
+     "duracion": "3:49"
+    },
+    {
+     "pos": "1-18",
+     "titulo": "La Cumparsita",
+     "duracion": "2:34"
+    },
+    {
+     "pos": "1-19",
+     "titulo": "Bamboleo",
+     "duracion": "4:39"
+    },
+    {
+     "pos": "2-1",
+     "titulo": "Un Canto A Galicia",
+     "duracion": "4:30"
+    },
+    {
+     "pos": "2-2",
+     "titulo": "Hey",
+     "duracion": "4:58"
+    },
+    {
+     "pos": "2-3",
+     "titulo": "La Vida Sigue Igual",
+     "duracion": "2:16"
+    },
+    {
+     "pos": "2-4",
+     "titulo": "Abrazame",
+     "duracion": "3:16"
+    },
+    {
+     "pos": "2-5",
+     "titulo": "To All The Girls I've Loved Before",
+     "duracion": "3:32"
+    },
+    {
+     "pos": "2-6",
+     "titulo": "33 Años",
+     "duracion": "3:33"
+    },
+    {
+     "pos": "2-7",
+     "titulo": "Manuela",
+     "duracion": "3:37"
+    },
+    {
+     "pos": "2-8",
+     "titulo": "All Of You",
+     "duracion": "3:58"
+    },
+    {
+     "pos": "2-9",
+     "titulo": "Ae, Ao",
+     "duracion": "3:17"
+    },
+    {
+     "pos": "2-10",
+     "titulo": "Caruso",
+     "duracion": "5:49"
+    },
+    {
+     "pos": "2-11",
+     "titulo": "A Media Luz",
+     "duracion": "2:41"
+    },
+    {
+     "pos": "2-12",
+     "titulo": "La Carretera",
+     "duracion": "5:04"
+    },
+    {
+     "pos": "2-13",
+     "titulo": "Can't Help Falling In Love",
+     "duracion": "3:19"
+    },
+    {
+     "pos": "2-14",
+     "titulo": "Crazy",
+     "duracion": "3:15"
+    },
+    {
+     "pos": "2-15",
+     "titulo": "When You Tell Me That You Love Me",
+     "duracion": "3:59"
+    },
+    {
+     "pos": "2-16",
+     "titulo": "Por El Amor De Una Mujer",
+     "duracion": "3:51"
+    },
+    {
+     "pos": "2-17",
+     "titulo": "Smoke Gets In Your Eyes",
+     "duracion": "3:35"
+    },
+    {
+     "pos": "2-18",
+     "titulo": "My Way (A Mi Manera)",
+     "duracion": "4:24"
+    },
+    {
+     "pos": "2-19",
+     "titulo": "Me Va, Me Va",
+     "duracion": "5:59"
+    }
+   ]
   },
   {
    "id": "3432d7e78b",
@@ -2180,7 +3045,27 @@
    "portada": "https://i.discogs.com/SWA1nP3C_Wt-ONWeGtrHpBB6VHYm1byz-lllm0nFCZk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ1OTU2/MjgtMTM2OTQ0Mjkw/MC0yNTE4LmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 4595628,
-   "anio": 1991
+   "anio": 1991,
+   "sello": "EMI",
+   "catalogo": "12 2461 7",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Pop",
+    "Rumba"
+   ],
+   "pistas": [
+    {
+     "pos": "A",
+     "titulo": "Por El Aire Va",
+     "duracion": "3:57"
+    },
+    {
+     "pos": "B",
+     "titulo": "Por El Aire Va",
+     "duracion": "3:57"
+    }
+   ]
   },
   {
    "id": "12e92e00ad",
@@ -2203,7 +3088,110 @@
    "portada": "https://i.discogs.com/PsAoqWq4GHCYsb5UG-dl3Sd-JVV8tJwk4zGZCvgcbYQ/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4MDU2/OTctMTMwMTg1Mzc5/NS5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 2805697,
-   "anio": 1998
+   "anio": 1998,
+   "sello": "Arcade",
+   "catalogo": "3201592",
+   "pais": "España",
+   "generos": [
+    "Pop"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Felíz Cumpleaños Pitufo (Everybody)",
+     "duracion": "3:47"
+    },
+    {
+     "pos": "2",
+     "titulo": "Pitúfame (Desátame)",
+     "duracion": "4:45"
+    },
+    {
+     "pos": "3",
+     "titulo": "Pitufina (Barbie Girl)",
+     "duracion": "3:14"
+    },
+    {
+     "pos": "4",
+     "titulo": "El Truco Pitufo (Happy World)",
+     "duracion": "3:25"
+    },
+    {
+     "pos": "5",
+     "titulo": "Una Copa, Un Pitufo (La Copa De La Vida)",
+     "duracion": "4:27"
+    },
+    {
+     "pos": "6",
+     "titulo": "Corazón Pitufo (Corazón Salvaje)",
+     "duracion": "4:24"
+    },
+    {
+     "pos": "7",
+     "titulo": "Viva La Vida (Diva)",
+     "duracion": "2:58"
+    },
+    {
+     "pos": "8",
+     "titulo": "Las Noticias Más Pitufas (You're My Heart, You're My Soul)",
+     "duracion": "3:17"
+    },
+    {
+     "pos": "9",
+     "titulo": "Pitufar Es Mejor (Entender El Amor)",
+     "duracion": "5:15"
+    },
+    {
+     "pos": "10",
+     "titulo": "Pitufos, Vamonos De Marcha (Horny '98)",
+     "duracion": "3:52"
+    },
+    {
+     "pos": "11",
+     "titulo": "Quiero Dormir Más (Come Into My Life)",
+     "duracion": "3:21"
+    },
+    {
+     "pos": "12",
+     "titulo": "Historias Pitufas (Historias De Amor)",
+     "duracion": "4:27"
+    },
+    {
+     "pos": "13",
+     "titulo": "Tu Tranquilo, Todo Esta Bien, Pitufo (Everything's Gonna Be Alright)",
+     "duracion": "3:10"
+    },
+    {
+     "pos": "14",
+     "titulo": "Pitufina, Me Gustó (Mami, Me Gustó)",
+     "duracion": "3:35"
+    },
+    {
+     "pos": "15",
+     "titulo": "Vivan Los Pitufos (Viva Las Rebajas)",
+     "duracion": "3:20"
+    },
+    {
+     "pos": "16",
+     "titulo": "Una Canción Tonta (A Silly Song)",
+     "duracion": "2:34"
+    },
+    {
+     "pos": "17",
+     "titulo": "40 Años Pitufos (Forty Years Of Smurfing Fun)",
+     "duracion": "3:28"
+    },
+    {
+     "pos": "18",
+     "titulo": "Soy Un Pitufo Felíz (This Smurfing Life)",
+     "duracion": "2:58"
+    },
+    {
+     "pos": "19",
+     "titulo": "Pitu-Pitufando (Smurfing Throughout The Years)",
+     "duracion": "4:07"
+    }
+   ]
   },
   {
    "id": "1c37752564",
@@ -2328,7 +3316,97 @@
    "portada": "https://i.discogs.com/_XJoN-ziKoFKQaZmUaUoFDwT7LgZ4loTCIERBjVxLu0/rs:fit/g:sm/q:90/h:450/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MDAx/NTg2LTE2MDE2NjYx/NjUtMzg4Ni5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 16001586,
-   "anio": 2011
+   "anio": 2011,
+   "sello": "WEA",
+   "catalogo": "6104529",
+   "pais": "Chile",
+   "generos": [
+    "Rock",
+    "Latin",
+    "Soft Rock",
+    "Pop Rock"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Rayando El Sol",
+     "duracion": "4:11"
+    },
+    {
+     "pos": "2",
+     "titulo": "Cachito",
+     "duracion": "4:47"
+    },
+    {
+     "pos": "3",
+     "titulo": "Vivir Sin Aire",
+     "duracion": "4:52"
+    },
+    {
+     "pos": "4",
+     "titulo": "Te Lloré Un Río",
+     "duracion": "4:54"
+    },
+    {
+     "pos": "5",
+     "titulo": "Huele A Tristeza",
+     "duracion": "4:45"
+    },
+    {
+     "pos": "6",
+     "titulo": "No Ha Parado De Llover",
+     "duracion": "5:23"
+    },
+    {
+     "pos": "7",
+     "titulo": "El Reloj Cucú",
+     "duracion": "5:02"
+    },
+    {
+     "pos": "8",
+     "titulo": "Hundido En Un Rincón",
+     "duracion": "5:59"
+    },
+    {
+     "pos": "9",
+     "titulo": "Mis Ojos",
+     "duracion": "4:55"
+    },
+    {
+     "pos": "10",
+     "titulo": "Celoso (Tema De Los Panchos)",
+     "duracion": "2:53"
+    },
+    {
+     "pos": "11",
+     "titulo": "En El Muelle De San Blas",
+     "duracion": "5:53"
+    },
+    {
+     "pos": "12",
+     "titulo": "Cómo Dueles En Los Labios",
+     "duracion": "4:08"
+    },
+    {
+     "pos": "13",
+     "titulo": "Cómo Te Extraño Corazón",
+     "duracion": "5:11"
+    },
+    {
+     "pos": "14",
+     "titulo": "Te Llevaré Al Cielo",
+     "duracion": "4:48"
+    },
+    {
+     "pos": "Video.1",
+     "titulo": "Vivir Sin Aire"
+    },
+    {
+     "pos": "Video.2",
+     "titulo": "En El Muelle De San Blas"
+    }
+   ],
+   "edicion": "Compilation, Enhanced, Remastered, Digipak"
   },
   {
    "id": "05ec816c89",
@@ -2851,7 +3929,103 @@
    "portada": "https://i.discogs.com/TUlfyyj30efjPqI5FxSah4-IzXfdZseZP2OHb_ni2x4/rs:fit/g:sm/q:90/h:608/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExODMx/MTcyLTE1MjMxMTk3/NTQtNTY1MC5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 11831172,
-   "anio": 1992
+   "anio": 1992,
+   "sello": "Arcade",
+   "catalogo": "02 4880.61",
+   "pais": "España",
+   "generos": [
+    "Funk / Soul"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "I Can't Stop Loving You"
+    },
+    {
+     "pos": "2",
+     "titulo": "Georgia On My Mind"
+    },
+    {
+     "pos": "3",
+     "titulo": "Ruby"
+    },
+    {
+     "pos": "4",
+     "titulo": "Cry"
+    },
+    {
+     "pos": "5",
+     "titulo": "Eleanor Rigby"
+    },
+    {
+     "pos": "6",
+     "titulo": "Take These Chains From My Heart"
+    },
+    {
+     "pos": "7",
+     "titulo": "Hey, Good Lookin'"
+    },
+    {
+     "pos": "8",
+     "titulo": "Hit The Roat Jack"
+    },
+    {
+     "pos": "9",
+     "titulo": "Unchain My Heart"
+    },
+    {
+     "pos": "10",
+     "titulo": "You Are My Sunshine (Live)"
+    },
+    {
+     "pos": "11",
+     "titulo": "What'd I Say (Live)"
+    },
+    {
+     "pos": "12",
+     "titulo": "Here We Go Again"
+    },
+    {
+     "pos": "13",
+     "titulo": "Born To Lose"
+    },
+    {
+     "pos": "14",
+     "titulo": "Careless Love"
+    },
+    {
+     "pos": "15",
+     "titulo": "Crying Time"
+    },
+    {
+     "pos": "16",
+     "titulo": "Yesterday"
+    },
+    {
+     "pos": "17",
+     "titulo": "You Win Again"
+    },
+    {
+     "pos": "18",
+     "titulo": "Makin' Believe"
+    },
+    {
+     "pos": "19",
+     "titulo": "Your Cheatin' Heart"
+    },
+    {
+     "pos": "19",
+     "titulo": "Together Again"
+    },
+    {
+     "pos": "21",
+     "titulo": "Bye Bye Love"
+    },
+    {
+     "pos": "20",
+     "titulo": "I Got A Woman (Live)"
+    }
+   ]
   },
   {
    "id": "8610cc6815",
@@ -2883,7 +4057,48 @@
    "portada": "https://i.discogs.com/mkOE18FnBia6yR0ZiOgu3WWgs31Rd35sOqjyd9AG64U/rs:fit/g:sm/q:90/h:918/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMzE5/OTQxLTE2NDU5Mzk5/NTEtODM1Ny5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 22319941,
-   "anio": 1997
+   "anio": 1997,
+   "sello": "Musical Productions",
+   "catalogo": "MPCPK-6211",
+   "pais": "EE. UU.",
+   "generos": [
+    "Latin",
+    "Salsa"
+   ],
+   "pistas": [
+    {
+     "pos": "A1",
+     "titulo": "Baila Y Goza"
+    },
+    {
+     "pos": "A2",
+     "titulo": "Y Tu Veras"
+    },
+    {
+     "pos": "A3",
+     "titulo": "El Valor Que No Se Ve"
+    },
+    {
+     "pos": "A4",
+     "titulo": "Como Te Hago Entender"
+    },
+    {
+     "pos": "B1",
+     "titulo": "Mi Mambo Pide Campana"
+    },
+    {
+     "pos": "B2",
+     "titulo": "Siempre Seremos"
+    },
+    {
+     "pos": "B3",
+     "titulo": "R+R=Apollo"
+    },
+    {
+     "pos": "B4",
+     "titulo": "Si Yo Pudiera"
+    }
+   ]
   },
   {
    "id": "b7d1b85bc6",
@@ -3133,7 +4348,78 @@
    "portada": "https://i.discogs.com/o41c_YpgN8wRCGZ0-yfxrIwxXZapXPsI1TsPrC7ABZk/rs:fit/g:sm/q:90/h:509/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyMTA0/NzktMTczNzc0MTk3/Ny03NjE2LmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 8210479,
-   "anio": 1991
+   "anio": 1991,
+   "sello": "Fonomusic",
+   "catalogo": "CD-1122 y 1123",
+   "pais": "España",
+   "generos": [
+    "Rock",
+    "Latin",
+    "Flamenco",
+    "Prog Rock"
+   ],
+   "pistas": [
+    {
+     "pos": "1-1",
+     "titulo": "Abre La Puerta",
+     "duracion": "9:49"
+    },
+    {
+     "pos": "1-2",
+     "titulo": "Se De Un Lugar",
+     "duracion": "7:07"
+    },
+    {
+     "pos": "1-3",
+     "titulo": "Sentimientos De Amor",
+     "duracion": "5:32"
+    },
+    {
+     "pos": "1-4",
+     "titulo": "En El Lago",
+     "duracion": "6:34"
+    },
+    {
+     "pos": "1-5",
+     "titulo": "Hasta Volver",
+     "duracion": "10:40"
+    },
+    {
+     "pos": "1-6",
+     "titulo": "Hijos Del Agobio",
+     "duracion": "5:18"
+    },
+    {
+     "pos": "2-1",
+     "titulo": "Llego El Día",
+     "duracion": "13:05"
+    },
+    {
+     "pos": "2-2",
+     "titulo": "Quiero Contarte",
+     "duracion": "5:00"
+    },
+    {
+     "pos": "2-3",
+     "titulo": "Tu Frialdad",
+     "duracion": "4:22"
+    },
+    {
+     "pos": "2-4",
+     "titulo": "Sobra Y Luz",
+     "duracion": "7:40"
+    },
+    {
+     "pos": "2-5",
+     "titulo": "Por El Camino",
+     "duracion": "6:49"
+    },
+    {
+     "pos": "2-6",
+     "titulo": "De Una Nana Siendo Niño",
+     "duracion": "7:51"
+    }
+   ]
   },
   {
    "id": "87c8bb8772",
@@ -3179,7 +4465,82 @@
    "portada": "https://i.discogs.com/ta9k4lnxr8AyiatYfOn98TdmeDWVdfRYQx6jOPG8JCw/rs:fit/g:sm/q:90/h:491/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1Mzc4/NDUxLTE1OTA1NzI1/OTAtMTU5Ni5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 15378451,
-   "anio": 2004
+   "anio": 2004,
+   "sello": "Vale Music",
+   "catalogo": "VLCD 300-1",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Rumba"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Miami",
+     "duracion": "3:15",
+     "artista": "David Bisbal"
+    },
+    {
+     "pos": "2",
+     "titulo": "Perros De La Noche",
+     "duracion": "4:14",
+     "artista": "Andy & Lucas"
+    },
+    {
+     "pos": "3",
+     "titulo": "jAy! Que Dolor!",
+     "duracion": "3:48",
+     "artista": "Manu Tenorio"
+    },
+    {
+     "pos": "4",
+     "titulo": "La Historia De Juan Castillo",
+     "duracion": "3:08",
+     "artista": "Pedro Javier Hermosilla"
+    },
+    {
+     "pos": "5",
+     "titulo": "Paloma Que Pierde El Vuelo",
+     "duracion": "4:30",
+     "artista": "David DeMaría"
+    },
+    {
+     "pos": "6",
+     "titulo": "Me Quedo Contigo",
+     "duracion": "3:59",
+     "artista": "Victor Hugo"
+    },
+    {
+     "pos": "7",
+     "titulo": "Carmen",
+     "duracion": "3:09",
+     "artista": "El Arrebato"
+    },
+    {
+     "pos": "8",
+     "titulo": "Verde Que Te Quiero Verde",
+     "duracion": "3:37",
+     "artista": "Manuel Carrasco"
+    },
+    {
+     "pos": "9",
+     "titulo": "Que Cara Mas Bonita",
+     "duracion": "3:14",
+     "artista": "Miguel Nández"
+    },
+    {
+     "pos": "10",
+     "titulo": "Una Paloma Blanca",
+     "duracion": "3:36",
+     "artista": "Los Manolos"
+    },
+    {
+     "pos": "11",
+     "titulo": "Amor Pecador",
+     "duracion": "3:07",
+     "artista": "Miguel Cadenas"
+    }
+   ]
   },
   {
    "id": "6f52414618",
@@ -3204,7 +4565,76 @@
    "portada": "https://i.discogs.com/VDHQEGEe0jrLB41L_VGqRoePRzFioWG-aUuF_46cL54/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMyNTQ2/NzQ4LTE3MzQwMjEy/NTQtMzEzNy5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 32546748,
-   "anio": 1990
+   "anio": 1990,
+   "sello": "Bat Discos",
+   "catalogo": "BT002-CD",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Salsa"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Voy A Escarbar Tu Cuerpo",
+     "duracion": "3:54",
+     "artista": "Lalo Rodriguez"
+    },
+    {
+     "pos": "2",
+     "titulo": "Insaciable",
+     "duracion": "4:28",
+     "artista": "Eddie Santiago"
+    },
+    {
+     "pos": "3",
+     "titulo": "Feliz Como Una Lombriz",
+     "duracion": "4:14",
+     "artista": "Orquesta La Solucion"
+    },
+    {
+     "pos": "4",
+     "titulo": "A Romper Cadenas",
+     "duracion": "4:32",
+     "artista": "Tito Nieves"
+    },
+    {
+     "pos": "5",
+     "titulo": "Sueño Contigo",
+     "duracion": "4:11",
+     "artista": "José Alberto 'El Canario'"
+    },
+    {
+     "pos": "6",
+     "titulo": "Juana La Cubana",
+     "duracion": "4:33",
+     "artista": "Las Chicas Del Can"
+    },
+    {
+     "pos": "7",
+     "titulo": "Una Noche Cualquiera",
+     "duracion": "3:29",
+     "artista": "Guaco"
+    },
+    {
+     "pos": "8",
+     "titulo": "El Muñeco",
+     "duracion": "5:37",
+     "artista": "Alex Leon"
+    },
+    {
+     "pos": "9",
+     "titulo": "Tratame Con Cariño",
+     "duracion": "4:00",
+     "artista": "Carlos Oliva Y Los Sobrinos"
+    },
+    {
+     "pos": "10",
+     "titulo": "Me Enamore De ti",
+     "duracion": "4:51",
+     "artista": "Oscar D' León"
+    }
+   ]
   },
   {
    "id": "94d21ace36",
@@ -3217,7 +4647,80 @@
    "portada": "https://i.discogs.com/hXR150L0pZa8EPj0x6Vb_7eV5dDq9A1cI8ieHdZwK6I/rs:fit/g:sm/q:90/h:466/w:465/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQxMjE2/ODItMTM1NjAwNTY5/Ni05Njg2LmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 4121682,
-   "anio": 1993
+   "anio": 1993,
+   "sello": "Manzana",
+   "catalogo": "MZCD-1",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Salsa",
+    "Merengue",
+    "Cumbia",
+    "Mambo",
+    "Cha-Cha"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Pedro Navaja",
+     "duracion": "7:21",
+     "artista": "Ruben Blades"
+    },
+    {
+     "pos": "2",
+     "titulo": "Químbara",
+     "duracion": "4:55",
+     "artista": "Celia Cruz"
+    },
+    {
+     "pos": "3",
+     "titulo": "Oye Como Va",
+     "duracion": "4:26",
+     "artista": "Tito Puente"
+    },
+    {
+     "pos": "4",
+     "titulo": "El Arco Iris",
+     "duracion": "2:54",
+     "artista": "Orquesta Black Power"
+    },
+    {
+     "pos": "5",
+     "titulo": "Me Gusta También",
+     "duracion": "4:27",
+     "artista": "Jossie Esteban Y La Patrulla 15"
+    },
+    {
+     "pos": "6",
+     "titulo": "Páginas De Mujer",
+     "duracion": "6:50",
+     "artista": "Eddie Palmieri"
+    },
+    {
+     "pos": "7",
+     "titulo": "El Todopoderoso",
+     "duracion": "4:19",
+     "artista": "Hector Lavoe, Willie Colón"
+    },
+    {
+     "pos": "8",
+     "titulo": "Salsaludando",
+     "duracion": "5:07",
+     "artista": "Cheo Feliciano"
+    },
+    {
+     "pos": "9",
+     "titulo": "Y No Hago Más Ná",
+     "duracion": "5:02",
+     "artista": "El Gran Combo"
+    },
+    {
+     "pos": "10",
+     "titulo": "Por Eso Yo Canto Salsa",
+     "duracion": "8:21",
+     "artista": "Fania All Stars"
+    }
+   ]
   },
   {
    "id": "cab0e7534a",
@@ -3230,7 +4733,76 @@
    "portada": "https://i.discogs.com/EA7OfLvjNrZYjPT2EXPp2oXBtZXKbKD1emMu0Y0RV2E/rs:fit/g:sm/q:90/h:587/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyOTM1/NTMtMTY5MzEzMTY1/Mi0yMzgyLmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 4293553,
-   "anio": 1993
+   "anio": 1993,
+   "sello": "Manzana",
+   "catalogo": "MZCD-2",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Salsa"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Bemba Colorá",
+     "duracion": "3:30",
+     "artista": "Celia Cruz, La Sonora Matancera"
+    },
+    {
+     "pos": "2",
+     "titulo": "Goyito Sabater",
+     "duracion": "4:47",
+     "artista": "El Gran Combo"
+    },
+    {
+     "pos": "3",
+     "titulo": "Ponte Duro",
+     "duracion": "2:20",
+     "artista": "Fania All Stars"
+    },
+    {
+     "pos": "4",
+     "titulo": "Las Caras Lindas",
+     "duracion": "7:10",
+     "artista": "Ismael Rivera"
+    },
+    {
+     "pos": "5",
+     "titulo": "La Lloradora",
+     "duracion": "4:40",
+     "artista": "Tito Puente, La Lupe"
+    },
+    {
+     "pos": "6",
+     "titulo": "Tengo Una Muñeca",
+     "duracion": "4:45",
+     "artista": "Gilberto Santa Rosa"
+    },
+    {
+     "pos": "7",
+     "titulo": "Tu Música Popular",
+     "duracion": "4:45",
+     "artista": "La Puertorriqueña"
+    },
+    {
+     "pos": "8",
+     "titulo": "Amada Mía",
+     "duracion": "4:42",
+     "artista": "Cheo Feliciano"
+    },
+    {
+     "pos": "9",
+     "titulo": "Ay, José",
+     "duracion": "3:14",
+     "artista": "Graciela, Machito And His Orchestra"
+    },
+    {
+     "pos": "10",
+     "titulo": "Ritmo En El Corazón",
+     "duracion": "4:40",
+     "artista": "Ray Barretto, Celia Cruz"
+    }
+   ]
   },
   {
    "id": "03c7cb62a4",
@@ -3243,7 +4815,76 @@
    "portada": "https://i.discogs.com/YSx1Cv6Lw4Oj-82ri3ebg35z9eNs0Likuj7bRmsulSI/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQzNjk0/ODctMTY5MzEzMjA5/OC0zNTMxLmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 4369487,
-   "anio": 1993
+   "anio": 1993,
+   "sello": "Manzana",
+   "catalogo": "MZCD-3",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Salsa"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Ligia Elena",
+     "duracion": "5:55",
+     "artista": "Ruben Blades, Willie Colón"
+    },
+    {
+     "pos": "2",
+     "titulo": "No Hay Cama Pa' Tanta Gente",
+     "duracion": "4:32",
+     "artista": "El Gran Combo"
+    },
+    {
+     "pos": "3",
+     "titulo": "Bambarakatunga",
+     "duracion": "4:33",
+     "artista": "Celia Cruz, Ray Barretto"
+    },
+    {
+     "pos": "4",
+     "titulo": "Amor Verdadero",
+     "duracion": "5:07",
+     "artista": "Tito Puente, La Lupe"
+    },
+    {
+     "pos": "5",
+     "titulo": "Después De Tanto Tiempo",
+     "duracion": "4:18",
+     "artista": "Guayaba"
+    },
+    {
+     "pos": "6",
+     "titulo": "Quítate Tú",
+     "duracion": "7:25",
+     "artista": "Fania All Stars"
+    },
+    {
+     "pos": "7",
+     "titulo": "No Puedo Parar",
+     "duracion": "4:26",
+     "artista": "Orquesta Maracaibo"
+    },
+    {
+     "pos": "8",
+     "titulo": "Guajira Sentimental",
+     "duracion": "4:26",
+     "artista": "Justo Betancourt"
+    },
+    {
+     "pos": "9",
+     "titulo": "La Calle Está Durísima",
+     "duracion": "4:31",
+     "artista": "Ricardo Ray & Bobby Cruz"
+    },
+    {
+     "pos": "10",
+     "titulo": "La Maleta",
+     "duracion": "3:28",
+     "artista": "La Sonora Ponceña"
+    }
+   ]
   },
   {
    "id": "b9d08fe107",
@@ -3256,7 +4897,76 @@
    "portada": "https://i.discogs.com/_cKMqTcvcYeK03B237QBnvfX5Jk-_Qv8jX85KJOyhRk/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQxMjE2/NjEtMTY5MzEzMjQw/Ni05NzkxLmpwZWc.jpeg",
    "portadaAuto": true,
    "discogs": 4121661,
-   "anio": 1993
+   "anio": 1993,
+   "sello": "Manzana",
+   "catalogo": "MZCD-4",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Salsa"
+   ],
+   "pistas": [
+    {
+     "pos": "1",
+     "titulo": "Bamboleo",
+     "duracion": "5:15",
+     "artista": "Celia Cruz, Fania All Stars"
+    },
+    {
+     "pos": "2",
+     "titulo": "La Fiesta De Pilito",
+     "duracion": "3:55",
+     "artista": "El Gran Combo"
+    },
+    {
+     "pos": "3",
+     "titulo": "El Casco",
+     "duracion": "4:31",
+     "artista": "Roberto Blades"
+    },
+    {
+     "pos": "4",
+     "titulo": "A La Yumbae",
+     "duracion": "3:01",
+     "artista": "Tommy Olivencia"
+    },
+    {
+     "pos": "5",
+     "titulo": "Coro Miyaré",
+     "duracion": "6:10",
+     "artista": "Fania All Stars"
+    },
+    {
+     "pos": "6",
+     "titulo": "Majestad Antillana.",
+     "duracion": "4:42",
+     "artista": "José Alberto 'El Canario', Tipica 73"
+    },
+    {
+     "pos": "7",
+     "titulo": "Puro Teatro",
+     "duracion": "2:55",
+     "artista": "La Lupe"
+    },
+    {
+     "pos": "8",
+     "titulo": "Préstame Los Guantes.",
+     "duracion": "3:55",
+     "artista": "Johnny Pacheco, Héctor Casanova"
+    },
+    {
+     "pos": "9",
+     "titulo": "Irresistible.",
+     "duracion": "4:44",
+     "artista": "Ray Barretto"
+    },
+    {
+     "pos": "10",
+     "titulo": "Ban-Con-Tin",
+     "duracion": "3:50",
+     "artista": "Tito Puente"
+    }
+   ]
   },
   {
    "id": "6e43c2ca9c",
@@ -3314,7 +5024,144 @@
    "portada": "https://i.discogs.com/QUhzP-OCKQQ1E5yu8QVB2Lz493hWLXSTQGR8a8q7s6o/rs:fit/g:sm/q:90/h:528/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2NDA0/MDU2LTE3NzAyMTQ3/OTMtMzM0Ni5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 36404056,
-   "anio": 1991
+   "anio": 1991,
+   "sello": "Ariola",
+   "catalogo": "354213 (9Z)",
+   "pais": "España",
+   "generos": [
+    "Latin",
+    "Salsa",
+    "Afro-Cuban",
+    "Bachata",
+    "Bolero",
+    "Cubano",
+    "Descarga",
+    "Lambada",
+    "Son",
+    "Mambo"
+   ],
+   "pistas": [
+    {
+     "pos": "1-1",
+     "titulo": "Ojalá Que Llueva Café",
+     "duracion": "4:12",
+     "artista": "Juan Luis Guerra 4.40"
+    },
+    {
+     "pos": "1-2",
+     "titulo": "El Africano",
+     "duracion": "4:29",
+     "artista": "Wilfrido Vargas"
+    },
+    {
+     "pos": "1-3",
+     "titulo": "Casco",
+     "duracion": "4:31",
+     "artista": "Roberto Blades"
+    },
+    {
+     "pos": "1-4",
+     "titulo": "El Jardín Prohibido",
+     "duracion": "5:23",
+     "artista": "Alex Bueno"
+    },
+    {
+     "pos": "1-5",
+     "titulo": "Se Va, Se Va",
+     "duracion": "3:11",
+     "artista": "Bronco"
+    },
+    {
+     "pos": "1-6",
+     "titulo": "Bemba Colora",
+     "duracion": "3:30",
+     "artista": "Celia Cruz"
+    },
+    {
+     "pos": "1-7",
+     "titulo": "Bamboleo",
+     "duracion": "3:29",
+     "artista": "Los Reyes"
+    },
+    {
+     "pos": "1-8",
+     "titulo": "Bonito Y Sabroso",
+     "duracion": "3:40",
+     "artista": "Tito Puente And His Orchestra"
+    },
+    {
+     "pos": "1-9",
+     "titulo": "La Negra Tomasa",
+     "duracion": "3:22",
+     "artista": "Caifanes"
+    },
+    {
+     "pos": "1-10",
+     "titulo": "Color Americano",
+     "duracion": "4:48",
+     "artista": "Willie Colón"
+    },
+    {
+     "pos": "2-1",
+     "titulo": "Ven, Devorame Otra Vez",
+     "duracion": "5:08",
+     "artista": "Lalo Rodriguez"
+    },
+    {
+     "pos": "2-2",
+     "titulo": "No Hay Cama Pa' Tanta Gente",
+     "duracion": "4:32",
+     "artista": "El Gran Combo"
+    },
+    {
+     "pos": "2-3",
+     "titulo": "Juana La Cubana",
+     "duracion": "4:36",
+     "artista": "Las Chicas Del Can"
+    },
+    {
+     "pos": "2-4",
+     "titulo": "Los Diseñadores",
+     "duracion": "3:55",
+     "artista": "Willy Chirino"
+    },
+    {
+     "pos": "2-5",
+     "titulo": "Provocame",
+     "duracion": "4:33",
+     "artista": "Raphy Leavitt Y Su Orquesta La Selecta"
+    },
+    {
+     "pos": "2-6",
+     "titulo": "Pedro Navaja",
+     "duracion": "5:03",
+     "artista": "Orquestra Plateria"
+    },
+    {
+     "pos": "2-7",
+     "titulo": "Buscando Guayaba",
+     "duracion": "5:43",
+     "artista": "Ruben Blades, Willie Colón"
+    },
+    {
+     "pos": "2-8",
+     "titulo": "Feo, Pero Sabroso",
+     "duracion": "5:08",
+     "artista": "Louie Ramirez Y La Superbanda"
+    },
+    {
+     "pos": "2-9",
+     "titulo": "Tu",
+     "duracion": "4:34",
+     "artista": "The New York Band"
+    },
+    {
+     "pos": "2-10",
+     "titulo": "Me Enamoro De Ella",
+     "duracion": "4:06",
+     "artista": "Juan Luis Guerra 4.40"
+    }
+   ]
   },
   {
    "id": "a3a7644971",
@@ -3432,7 +5279,472 @@
    "portada": "https://i.discogs.com/JssctNTPTwwUYegk6KeotS54Vdcd79AgcMB2gP_r3YA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMzg3/MjIyLTE0OTY0NjQ2/MzUtNTQwMy5qcGVn.jpeg",
    "portadaAuto": true,
    "discogs": 10387222,
-   "anio": 2010
+   "anio": 2010,
+   "sello": "Dog Ear Records",
+   "catalogo": "DERP-10008~11",
+   "pais": "Japón",
+   "generos": [
+    "Stage & Screen",
+    "Soundtrack",
+    "Video Game Music"
+   ],
+   "pistas": [
+    {
+     "pos": "1-1",
+     "titulo": "メインテーマ",
+     "duracion": "3:42"
+    },
+    {
+     "pos": "1-2",
+     "titulo": "プロローグA",
+     "duracion": "3:17"
+    },
+    {
+     "pos": "1-3",
+     "titulo": "プロローグB",
+     "duracion": "3:18"
+    },
+    {
+     "pos": "1-4",
+     "titulo": "日常",
+     "duracion": "2:35"
+    },
+    {
+     "pos": "1-5",
+     "titulo": "思い出",
+     "duracion": "3:04"
+    },
+    {
+     "pos": "1-6",
+     "titulo": "親しき人への想い",
+     "duracion": "4:28"
+    },
+    {
+     "pos": "1-7",
+     "titulo": "モナド発動",
+     "duracion": "0:38"
+    },
+    {
+     "pos": "1-8",
+     "titulo": "危機",
+     "duracion": "3:43"
+    },
+    {
+     "pos": "1-9",
+     "titulo": "敵との対峙",
+     "duracion": "3:50"
+    },
+    {
+     "pos": "1-10",
+     "titulo": "悲しみ",
+     "duracion": "3:11"
+    },
+    {
+     "pos": "1-11",
+     "titulo": "神秘",
+     "duracion": "2:19"
+    },
+    {
+     "pos": "1-12",
+     "titulo": "回想",
+     "duracion": "3:31"
+    },
+    {
+     "pos": "1-13",
+     "titulo": "焦り",
+     "duracion": "1:31"
+    },
+    {
+     "pos": "1-14",
+     "titulo": "陰謀",
+     "duracion": "3:17"
+    },
+    {
+     "pos": "1-15",
+     "titulo": "悔恨",
+     "duracion": "2:36"
+    },
+    {
+     "pos": "1-16",
+     "titulo": "顔つき",
+     "duracion": "3:31"
+    },
+    {
+     "pos": "1-17",
+     "titulo": "不安",
+     "duracion": "3:19"
+    },
+    {
+     "pos": "1-18",
+     "titulo": "引けない戦い",
+     "duracion": "3:06"
+    },
+    {
+     "pos": "1-19",
+     "titulo": "予感",
+     "duracion": "2:43"
+    },
+    {
+     "pos": "1-20",
+     "titulo": "回想／オルゴール",
+     "duracion": "3:27"
+    },
+    {
+     "pos": "1-21",
+     "titulo": "伝説の勇者リキ",
+     "duracion": "3:01"
+    },
+    {
+     "pos": "2-1",
+     "titulo": "エギル",
+     "duracion": "2:57"
+    },
+    {
+     "pos": "2-2",
+     "titulo": "巨大な影",
+     "duracion": "3:38"
+    },
+    {
+     "pos": "2-3",
+     "titulo": "悲壮な決意",
+     "duracion": "2:30"
+    },
+    {
+     "pos": "2-4",
+     "titulo": "シュルクとフィオルン",
+     "duracion": "3:12"
+    },
+    {
+     "pos": "2-5",
+     "titulo": "リキの優しさ",
+     "duracion": "2:23"
+    },
+    {
+     "pos": "2-6",
+     "titulo": "希望",
+     "duracion": "3:23"
+    },
+    {
+     "pos": "2-7",
+     "titulo": "忍び寄る影",
+     "duracion": "3:04"
+    },
+    {
+     "pos": "2-8",
+     "titulo": "緊張",
+     "duracion": "2:52"
+    },
+    {
+     "pos": "2-9",
+     "titulo": "決戦前夜",
+     "duracion": "3:39"
+    },
+    {
+     "pos": "2-10",
+     "titulo": "想いは内に…",
+     "duracion": "3:23"
+    },
+    {
+     "pos": "2-11",
+     "titulo": "怒り、心の闇",
+     "duracion": "3:53"
+    },
+    {
+     "pos": "2-12",
+     "titulo": "巨神の目覚め",
+     "duracion": "3:54"
+    },
+    {
+     "pos": "2-13",
+     "titulo": "精神世界",
+     "duracion": "2:43"
+    },
+    {
+     "pos": "2-14",
+     "titulo": "ザンザ",
+     "duracion": "3:10"
+    },
+    {
+     "pos": "2-15",
+     "titulo": "神を絶ちし剣",
+     "duracion": "4:47"
+    },
+    {
+     "pos": "2-16",
+     "titulo": "雄大",
+     "duracion": "3:40"
+    },
+    {
+     "pos": "2-17",
+     "titulo": "別れ、そして…",
+     "duracion": "3:26"
+    },
+    {
+     "pos": "2-18",
+     "titulo": "それぞれの未来へ",
+     "duracion": "4:15"
+    },
+    {
+     "pos": "2-19",
+     "titulo": "Beyond The Sky",
+     "duracion": "4:30"
+    },
+    {
+     "pos": "2-20",
+     "titulo": "エピローグ",
+     "duracion": "4:12"
+    },
+    {
+     "pos": "3-1",
+     "titulo": "故郷",
+     "duracion": "3:42"
+    },
+    {
+     "pos": "3-2",
+     "titulo": "故郷／夜",
+     "duracion": "3:23"
+    },
+    {
+     "pos": "3-3",
+     "titulo": "コロニー9",
+     "duracion": "2:43"
+    },
+    {
+     "pos": "3-4",
+     "titulo": "コロニー9／夜",
+     "duracion": "3:28"
+    },
+    {
+     "pos": "3-5",
+     "titulo": "戦闘！",
+     "duracion": "2:41"
+    },
+    {
+     "pos": "3-6",
+     "titulo": "テフラ洞窟",
+     "duracion": "3:08"
+    },
+    {
+     "pos": "3-7",
+     "titulo": "ガウル平原",
+     "duracion": "4:18"
+    },
+    {
+     "pos": "3-8",
+     "titulo": "ガウル平原／夜",
+     "duracion": "3:18"
+    },
+    {
+     "pos": "3-9",
+     "titulo": "脱出艇キャンプ",
+     "duracion": "3:02"
+    },
+    {
+     "pos": "3-10",
+     "titulo": "コロニー6 ～中央採掘場～",
+     "duracion": "2:35"
+    },
+    {
+     "pos": "3-11",
+     "titulo": "行く手を阻む者",
+     "duracion": "3:20"
+    },
+    {
+     "pos": "3-12",
+     "titulo": "燐光の地ザトール",
+     "duracion": "2:35"
+    },
+    {
+     "pos": "3-13",
+     "titulo": "燐光の地ザトール／夜",
+     "duracion": "3:21"
+    },
+    {
+     "pos": "3-14",
+     "titulo": "纏わり付く視線",
+     "duracion": "2:39"
+    },
+    {
+     "pos": "3-15",
+     "titulo": "コロニー6 ～静寂～",
+     "duracion": "2:35"
+    },
+    {
+     "pos": "3-16",
+     "titulo": "マクナ原生林",
+     "duracion": "2:30"
+    },
+    {
+     "pos": "3-17",
+     "titulo": "マクナ原生林／夜",
+     "duracion": "3:37"
+    },
+    {
+     "pos": "3-18",
+     "titulo": "サイハテ村",
+     "duracion": "3:04"
+    },
+    {
+     "pos": "3-19",
+     "titulo": "サイハテ村／夜",
+     "duracion": "3:23"
+    },
+    {
+     "pos": "3-20",
+     "titulo": "エルト海",
+     "duracion": "3:12"
+    },
+    {
+     "pos": "3-21",
+     "titulo": "エルト海／夜",
+     "duracion": "3:11"
+    },
+    {
+     "pos": "3-22",
+     "titulo": "皇都アカモート",
+     "duracion": "2:53"
+    },
+    {
+     "pos": "3-23",
+     "titulo": "皇都アカモート／夜",
+     "duracion": "2:57"
+    },
+    {
+     "pos": "3-24",
+     "titulo": "祖霊の眠る地",
+     "duracion": "3:05"
+    },
+    {
+     "pos": "3-25",
+     "titulo": "コロニー6 ～再興～",
+     "duracion": "2:24"
+    },
+    {
+     "pos": "4-1",
+     "titulo": "監獄島",
+     "duracion": "3:10"
+    },
+    {
+     "pos": "4-2",
+     "titulo": "敵の猛追",
+     "duracion": "2:32"
+    },
+    {
+     "pos": "4-3",
+     "titulo": "未来視発動",
+     "duracion": "2:37"
+    },
+    {
+     "pos": "4-4",
+     "titulo": "ヴァラク雪山",
+     "duracion": "3:57"
+    },
+    {
+     "pos": "4-5",
+     "titulo": "ヴァラク雪山／夜",
+     "duracion": "3:11"
+    },
+    {
+     "pos": "4-6",
+     "titulo": "大剣の渓谷",
+     "duracion": "2:22"
+    },
+    {
+     "pos": "4-7",
+     "titulo": "大剣の渓谷／夜",
+     "duracion": "2:48"
+    },
+    {
+     "pos": "4-8",
+     "titulo": "ガラハド要塞",
+     "duracion": "2:43"
+    },
+    {
+     "pos": "4-9",
+     "titulo": "名を冠する者たち",
+     "duracion": "2:22"
+    },
+    {
+     "pos": "4-10",
+     "titulo": "堕ちた地で…",
+     "duracion": "3:09"
+    },
+    {
+     "pos": "4-11",
+     "titulo": "堕ちた地で…／夜",
+     "duracion": "3:27"
+    },
+    {
+     "pos": "4-12",
+     "titulo": "コロニー6 ～希望～",
+     "duracion": "2:28"
+    },
+    {
+     "pos": "4-13",
+     "titulo": "マシーナの隠れ里",
+     "duracion": "2:36"
+    },
+    {
+     "pos": "4-14",
+     "titulo": "機神界フィールド",
+     "duracion": "3:49"
+    },
+    {
+     "pos": "4-15",
+     "titulo": "機の律動",
+     "duracion": "3:05"
+    },
+    {
+     "pos": "4-16",
+     "titulo": "帝都アグニラータ",
+     "duracion": "3:55"
+    },
+    {
+     "pos": "4-17",
+     "titulo": "帝都アグニラータ／夜",
+     "duracion": "2:55"
+    },
+    {
+     "pos": "4-18",
+     "titulo": "中央工廠",
+     "duracion": "4:30"
+    },
+    {
+     "pos": "4-19",
+     "titulo": "イレギュラーバウンド",
+     "duracion": "2:22"
+    },
+    {
+     "pos": "4-20",
+     "titulo": "巨神胎内／骸",
+     "duracion": "3:18"
+    },
+    {
+     "pos": "4-21",
+     "titulo": "巨神胎内／鼓動",
+     "duracion": "2:51"
+    },
+    {
+     "pos": "4-22",
+     "titulo": "最後の戦いへ",
+     "duracion": "3:39"
+    },
+    {
+     "pos": "4-23",
+     "titulo": "記憶の果て…",
+     "duracion": "2:55"
+    },
+    {
+     "pos": "4-24",
+     "titulo": "ザンザの世界で",
+     "duracion": "2:35"
+    },
+    {
+     "pos": "4-25",
+     "titulo": "コロニー6 ～未来～",
+     "duracion": "2:11"
+    }
+   ]
   },
   {
    "id": "acb7f76b50",
@@ -3444,5 +5756,5 @@
    "anadido": "2026-10-25"
   }
  ],
- "actualizado": "2026-10-25T07:38:00.287Z"
+ "actualizado": "2026-10-25T07:45:21.144Z"
 }

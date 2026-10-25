@@ -19,9 +19,26 @@ export interface Item {
   portadaAuto?: boolean;
   /** Id de la edición en Discogs (solo discoteca). */
   discogs?: number;
+  /** Datos de la edición, normalmente traídos de Discogs. */
+  sello?: string;
+  catalogo?: string;
+  pais?: string;
+  generos?: string[];
+  pistas?: Pista[];
   notas?: string;
   /** Fecha ISO (AAAA-MM-DD) en que se añadió. */
   anadido: string;
+}
+
+export interface Pista {
+  /** «1», «A2», «2-05»… tal cual viene en el disco. */
+  pos: string;
+  titulo: string;
+  duracion?: string;
+  /** Solo si no es el artista del disco (recopilatorios). */
+  artista?: string;
+  /** Cabecera de una parte («CD 1», «Cara A»…), sin duración. */
+  cabecera?: boolean;
 }
 
 export interface Coleccion {

@@ -7,6 +7,8 @@
 //    físicas de Discogs (necesita el token de .env.local) y las de MusicBrainz
 //    con portada en el Cover Art Archive.
 
+import type { Item, Pista } from './types.ts';
+
 export interface Candidata {
   url: string;
   /** Título tal cual viene de la fuente, para comparar con el apuntado. */
@@ -336,30 +338,146 @@ async function buscarDiscogs(artista: string | undefined, album: string): Promis
     .filter((c): c is Candidata => !!c && !vistas.has(c.url) && !!vistas.add(c.url));
 }
 
-/** Una edición concreta de Discogs a partir de su enlace o su número. */
-export async function edicionDiscogs(enlace: string): Promise<Candidata & { discogs: number }> {
-  const id = Number(enlace.match(/release\/(\d+)/)?.[1] ?? enlace.match(/^\s*\[?r?(\d+)\]?\s*$/)?.[1]);
-  if (!id) throw new Error('No es un enlace de una edición de Discogs (…/release/123456…)');
+/** Todo lo que se trae de una edición de Discogs al vincularla. */
+export interface EdicionDiscogs {
+  discogs: number;
+  portada?: string;
+  titulo: string;
+  artista?: string;
+  anio?: number;
+  formato?: string;
+  /** Al estilo de Discogs y del Excel: «2 x CD, Compilation, Digipak». */
+  edicion?: string;
+  sello?: string;
+  catalogo?: string;
+  pais?: string;
+  generos?: string[];
+  pistas?: Pista[];
+}
+
+const PAISES: Record<string, string> = {
+  Spain: 'España', US: 'EE. UU.', UK: 'Reino Unido', Europe: 'Europa', Germany: 'Alemania', France: 'Francia',
+  Italy: 'Italia', Japan: 'Japón', Mexico: 'México', Netherlands: 'Países Bajos', Portugal: 'Portugal',
+  Argentina: 'Argentina', Colombia: 'Colombia', Venezuela: 'Venezuela', 'Puerto Rico': 'Puerto Rico',
+  Brazil: 'Brasil', Canada: 'Canadá', Sweden: 'Suecia', Belgium: 'Bélgica', Australia: 'Australia',
+  'UK & Europe': 'Reino Unido y Europa', 'USA & Canada': 'EE. UU. y Canadá', Worldwide: 'Todo el mundo',
+};
+
+/** El formato de Discogs pasado a los de la discoteca. */
+function formatoDeDiscogs(nombre?: string) {
+  const n = (nombre ?? '').toLowerCase();
+  if (n.startsWith('cd') || n === 'sacd' || n === 'hybrid') return 'CD';
+  if (n.includes('vinyl') || n === 'lp') return 'Vinilo';
+  if (n.includes('cassette')) return 'Cassette';
+  if (n.includes('dvd')) return 'DVD';
+  if (n.includes('vhs')) return 'VHS';
+  return undefined;
+}
+
+/**
+ * El id de una edición a partir de lo que se pegue: el enlace
+ * (…/release/123456-Artista-Titulo), «[r123456]» o el número a secas. Los
+ * enlaces de un «master» llevan a su edición principal.
+ */
+async function idDeEdicion(enlace: string): Promise<number> {
+  const edicion = enlace.match(/release\/(\d+)/)?.[1] ?? enlace.match(/^\s*\[?r?(\d+)\]?\s*$/i)?.[1];
+  if (edicion) return Number(edicion);
+  const master = enlace.match(/master\/(\d+)/)?.[1] ?? enlace.match(/^\s*\[m(\d+)\]\s*$/i)?.[1];
+  if (master) {
+    const m: { main_release: number } = await api(`${discogsBase}/masters/${master}`, {}, discogsCabeceras);
+    return m.main_release;
+  }
+  throw new Error('No es un enlace de Discogs (…/release/123456…)');
+}
+
+/** Una edición concreta de Discogs, con todos sus datos, a partir de su enlace. */
+export async function edicionDiscogs(enlace: string): Promise<EdicionDiscogs> {
+  const id = await idDeEdicion(enlace);
   const r: {
     title: string;
     year?: number;
     country?: string;
     artists?: { name: string }[];
     images?: { type: string; uri: string }[];
-    formats?: { name: string; descriptions?: string[] }[];
+    formats?: { name: string; qty?: string; descriptions?: string[]; text?: string }[];
     labels?: { name: string; catno?: string }[];
+    genres?: string[];
+    styles?: string[];
+    tracklist?: { position?: string; title: string; duration?: string; type_?: string; artists?: { name: string }[] }[];
   } = await api(`${discogsBase}/releases/${id}`, {}, discogsCabeceras);
+
   const imagen = r.images?.find((i) => i.type === 'primary') ?? r.images?.[0];
   const artista = r.artists?.map((a) => sinNumero(a.name)).join(', ');
+  const formatos = r.formats ?? [];
+  // El formato principal ya va en su campo: en la edición solo se repite si
+  // hay varios discos o varios formatos («2 x CD, DVD, Compilation»).
+  const edicion = formatos
+    .flatMap((f) => {
+      const cantidad = Number(f.qty) || 1;
+      const nombre = cantidad > 1 ? `${cantidad} x ${f.name}` : formatos.length > 1 ? f.name : '';
+      return [nombre, ...(f.descriptions ?? []).filter((d) => d !== 'Album'), f.text ?? ''];
+    })
+    .filter(Boolean)
+    .join(', ');
+  const sello = r.labels?.find((l) => !/^not on label/i.test(l.name));
+  const pistas = (r.tracklist ?? [])
+    .filter((t) => t.type_ !== 'index')
+    .map((t) => {
+      const delArtista = t.artists?.map((a) => sinNumero(a.name)).join(', ');
+      return {
+        pos: t.position ?? '',
+        titulo: t.title,
+        ...(t.duration ? { duracion: t.duration } : {}),
+        ...(delArtista && delArtista !== artista ? { artista: delArtista } : {}),
+        ...(t.type_ === 'heading' ? { cabecera: true } : {}),
+      };
+    });
+
   return {
-    url: imagen?.uri ?? '',
-    titulo: r.title,
-    artista,
-    detalle: [artista, r.country, r.formats?.map((f) => f.name).join(', '), r.labels?.[0]?.name].filter(Boolean).join(' · '),
-    anio: r.year || undefined,
-    fuente: 'Discogs',
     discogs: id,
+    portada: imagen?.uri,
+    titulo: r.title,
+    artista: artista && !/^various$/i.test(artista) ? artista : 'Varios',
+    anio: r.year || undefined,
+    formato: formatoDeDiscogs(formatos[0]?.name),
+    edicion: edicion || undefined,
+    sello: sello ? sinNumero(sello.name) : undefined,
+    catalogo: sello?.catno && sello.catno !== 'none' ? sello.catno : undefined,
+    pais: r.country ? (PAISES[r.country] ?? r.country) : undefined,
+    generos: [...new Set([...(r.genres ?? []), ...(r.styles ?? [])])],
+    pistas: pistas.length ? pistas : undefined,
   };
+}
+
+/**
+ * Vincula un disco con su edición de Discogs. Siempre trae la portada, el año
+ * y los datos de la edición (sello, catálogo, país, géneros, canciones); el
+ * título, el artista, la edición y el formato solo si faltan o si se pide
+ * `todo`, para no pisar cómo los tenías apuntados.
+ */
+export function vincularDiscogs<T extends Item>(item: T, e: EdicionDiscogs, todo = false): T {
+  const vacio = (v: unknown) => v === undefined || v === '';
+  return {
+    ...item,
+    discogs: e.discogs,
+    ...(e.portada ? { portada: e.portada, portadaAuto: undefined } : {}),
+    anio: e.anio ?? item.anio,
+    sello: e.sello,
+    catalogo: e.catalogo,
+    pais: e.pais,
+    generos: e.generos?.length ? e.generos : undefined,
+    pistas: e.pistas,
+    titulo: todo || vacio(item.titulo) ? e.titulo : item.titulo,
+    artista: todo || vacio(item.artista) ? e.artista : item.artista,
+    edicion: todo || vacio(item.edicion) ? e.edicion : item.edicion,
+    formato: (todo || vacio(item.formato)) && e.formato ? e.formato : item.formato,
+  };
+}
+
+/** Quita el vínculo con Discogs y los datos que venían de allí. */
+export function desvincularDiscogs<T extends Item>(item: T): T {
+  const { discogs: _d, sello: _s, catalogo: _c, pais: _p, generos: _g, pistas: _t, ...resto } = item;
+  return resto as T;
 }
 
 let falloDiscogs = '';

@@ -53,6 +53,26 @@ Desarrolladores → «Generar token». Se pega en `.env.local`, detrás de `DISC
 - **La web publicada no usa Discogs:** es de solo lectura y solo enseña las portadas ya guardadas.
 - **Sin token** todo funciona igual, buscando solo en iTunes y MusicBrainz, y el formulario avisa.
 
+### Vincular un disco con su edición
+
+En el formulario de un disco, arriba del todo, se pega el enlace de la edición en Discogs
+(`…/release/123456-…`; también vale un enlace de *master*, que lleva a su edición principal).
+Al pegarlo se vincula solo:
+
+- **Siempre trae:** portada, año, sello, nº de catálogo, país, géneros y las canciones con su
+  duración (y su artista, en los recopilatorios).
+- **Al añadir un disco nuevo** trae también artista, álbum, edición («2 x CD, Compilation…») y
+  formato: basta con pegar el enlace y guardar.
+- **En un disco que ya tenías** respeta cómo lo apuntaste y, si Discogs lo dice distinto, lo ofrece
+  aparte: «En Discogs: Artista «Rammstein»» → *Usar estos* o *Dejar los míos*.
+- **Elegir una portada de Discogs** con «Buscar» también vincula esa edición.
+- Una vez vinculado: ver la edición en Discogs, volver a traer los datos, cambiar de edición o
+  desvincular.
+- En la ficha salen el sello, el país, los géneros y la lista de canciones con la duración total, y
+  el buscador encuentra los discos también por sello, nº de catálogo o por una canción.
+- `npm run discogs` completa con todos esos datos los discos vinculados a los que les falten
+  (`-- --todos` los vuelve a traer todos).
+
 ## Datos de cada título
 
 | Campo | Videoteca | Discoteca |

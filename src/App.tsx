@@ -138,7 +138,13 @@ export default function App() {
       .filter((i) => !formatos.length || formatos.includes(i.formato))
       .filter((i) => revision === 'todas' || (revision === 'sin-portada' ? !i.portada : i.portadaAuto))
       .filter(
-        (i) => !q || normalizar([i.titulo, i.artista, i.director, i.edicion, i.notas, i.anio].filter(Boolean).join(' ')).includes(q),
+        (i) =>
+          !q ||
+          normalizar(
+            [i.titulo, i.artista, i.director, i.edicion, i.notas, i.anio, i.sello, i.catalogo, i.pais, ...(i.generos ?? []), ...(i.pistas ?? []).map((p) => `${p.titulo} ${p.artista ?? ''}`)]
+              .filter(Boolean)
+              .join(' '),
+          ).includes(q),
       )
       .sort(comparar(orden));
   }, [deSeccion, formatos, revision, busqueda, orden]);

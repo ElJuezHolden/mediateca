@@ -50,7 +50,7 @@ function discogs(token: string | undefined): Plugin {
     configureServer(server) {
       server.middlewares.use('/api/discogs', async (req, res) => {
         const ruta = req.url ?? '';
-        if (!/^\/(database\/search\?|releases\/\d+$)/.test(ruta)) {
+        if (!/^\/(database\/search\?|releases\/\d+$|masters\/\d+$)/.test(ruta)) {
           res.statusCode = 404;
           res.end();
           return;
