@@ -13,3 +13,4 @@ Videoteca y discoteca del usuario. Ver README.md para qué hace y cómo está mo
 - Portadas: preferible ninguna a una equivocada. El buscador automático solo acepta coincidencias
   exactas y las marca con `portadaAuto` para revisarlas.
 - Wikimedia da 429 a peticiones sin User-Agent identificable: el script pone uno con la URL del repo.
+- Discogs: token del usuario en `.env.local` (ignorado por git). Claude no lo lee, no lo escribe ni lo muestra; la web lo usa solo a través del proxy local de `vite.config.ts`.

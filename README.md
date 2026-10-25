@@ -28,8 +28,10 @@ bisagra, el vinilo que asoma de la funda…
 - **Portadas por URL**, con un buscador que propone candidatas:
   - **Películas:** Wikipedia. Se busca en la española y se coge el póster de la inglesa, porque
     la española no tiene carteles. Al elegir una, rellena el año y la dirección si faltaban.
-  - **Discos:** iTunes, a 600 px, con el año; y detrás las ediciones físicas de MusicBrainz
-    (con país y formato), que tienen muchos recopilatorios españoles y descatalogados.
+  - **Discos:** iTunes, a 600 px, con el año; y detrás las ediciones físicas de Discogs y
+    MusicBrainz (con país, formato y sello), que tienen los recopilatorios españoles y
+    descatalogados. También se puede pegar el enlace de tu edición exacta en Discogs: pone su
+    portada y su año, y la ficha enlaza a esa edición.
   - **Si no aparece:** clic derecho en cualquier imagen de Google → «Copiar dirección de imagen».
 - **Portadas automáticas:** `npm run portadas` pone portada a todo lo que no la tenga, solo cuando
   casa sin duda. Quedan marcadas «por revisar»: en la ficha se confirman con un clic o se cambian.
@@ -39,6 +41,17 @@ bisagra, el vinilo que asoma de la funda…
     distintos (Titanic, Dumbo, El Rey León…), no pone ninguna.
   - **Discos:** el mismo artista y el mismo título, o un título que lo contiene entero con solo el
     nombre del artista o relleno de tienda de más («MTV Unplugged In New York», «Led Zeppelin II»).
+
+## Discogs
+
+Discogs solo da las imágenes con un token personal (gratis): discogs.com → Ajustes →
+Desarrolladores → «Generar token». Se pega en `.env.local`, detrás de `DISCOGS_TOKEN=`
+(hay un ejemplo en `.env.example`), y se reinicia `editar.cmd`.
+
+- **El token no sale de tu ordenador:** `.env.local` está en `.gitignore`, y la web no llama a
+  Discogs directamente sino a través del servidor local (`vite.config.ts`), que añade el token.
+- **La web publicada no usa Discogs:** es de solo lectura y solo enseña las portadas ya guardadas.
+- **Sin token** todo funciona igual, buscando solo en iTunes y MusicBrainz, y el formulario avisa.
 
 ## Datos de cada título
 

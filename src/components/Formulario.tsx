@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Loader2, Search, X } from 'lucide-react';
-import { buscarDisco, buscarPelicula, type Candidata } from '../portadas';
+import { Disc3, Loader2, Search, X } from 'lucide-react';
+import { avisoDiscogs, buscarDisco, buscarPelicula, edicionDiscogs, type Candidata } from '../portadas';
 import { FORMATOS, SECCIONES, type Item } from '../types';
 import { Portada } from './Portada';
 
@@ -18,6 +18,8 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
   const [candidatas, setCandidatas] = useState<Candidata[] | null>(null);
   const [buscando, setBuscando] = useState(false);
   const [error, setError] = useState('');
+  const [enlaceDiscogs, setEnlaceDiscogs] = useState('');
+  const [cargandoDiscogs, setCargandoDiscogs] = useState(false);
   const musica = b.seccion === 'discoteca';
 
   useEffect(() => {
@@ -58,8 +60,25 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
       portadaAuto: undefined,
       anio: reemplazar ? (c.anio ?? x.anio) : (x.anio ?? c.anio),
       director: musica ? x.director : reemplazar ? (c.director ?? x.director) : (x.director ?? c.director),
+      // Una portada de Discogs dice qué edición es; las demás no lo cambian.
+      discogs: c.discogs ?? x.discogs,
     }));
     setCandidatas(null);
+  }
+
+  async function cargarDiscogs() {
+    if (!enlaceDiscogs.trim()) return;
+    setCargandoDiscogs(true);
+    setError('');
+    try {
+      const e = await edicionDiscogs(enlaceDiscogs);
+      setB((x) => ({ ...x, discogs: e.discogs, anio: e.anio ?? x.anio, ...(e.url ? { portada: e.url, portadaAuto: undefined } : {}) }));
+      setEnlaceDiscogs('');
+    } catch (e) {
+      setError(`Discogs: ${e instanceof Error ? e.message : e}`);
+    } finally {
+      setCargandoDiscogs(false);
+    }
   }
 
   function enviar(e: React.FormEvent) {
@@ -177,12 +196,31 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                   {buscando ? <Loader2 size={15} className="animate-spin" /> : <Search size={15} />} Buscar
                 </button>
               </div>
+              {musica && (
+                <div className="mt-2 flex gap-2">
+                  <input
+                    className="campo"
+                    placeholder={b.discogs ? `Edición de Discogs: ${b.discogs}. Pega otro enlace para cambiarla` : 'O pega el enlace de tu edición en Discogs'}
+                    value={enlaceDiscogs}
+                    onChange={(e) => setEnlaceDiscogs(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), cargarDiscogs())}
+                  />
+                  <button type="button" className="boton shrink-0" onClick={cargarDiscogs} disabled={cargandoDiscogs || !enlaceDiscogs.trim()}>
+                    {cargandoDiscogs ? <Loader2 size={15} className="animate-spin" /> : <Disc3 size={15} />} Cargar
+                  </button>
+                </div>
+              )}
               {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
               {candidatas && (
                 <div className="mt-3 rounded-xl border border-[var(--borde)] bg-[var(--fondo)] p-3">
+                  {musica && avisoDiscogs() && (
+                    <p className="mb-3 text-xs text-amber-300">
+                      Sin Discogs: {avisoDiscogs().includes('DISCOGS_TOKEN') ? 'falta tu token en el archivo .env.local.' : avisoDiscogs()}
+                    </p>
+                  )}
                   {candidatas.length === 0 ? (
                     <p className="text-sm text-[var(--suave)]">
-                      Sin resultados en {musica ? 'iTunes ni MusicBrainz' : 'Wikipedia'}. Busca la imagen en Google, haz clic derecho → «Copiar
+                      Sin resultados en {musica ? 'iTunes, Discogs ni MusicBrainz' : 'Wikipedia'}. Busca la imagen en Google, haz clic derecho → «Copiar
                       dirección de imagen» y pégala arriba.
                     </p>
                   ) : (

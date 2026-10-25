@@ -9,13 +9,22 @@
 // y volver a lanzar. No lo ejecutes con la web abierta editando.
 import fs from 'node:fs';
 import path from 'node:path';
-import { buscarDisco, buscarPelicula, candidataSegura, usarCabeceras } from '../src/portadas.ts';
+import { buscarDisco, buscarPelicula, candidataSegura, usarCabeceras, usarTokenDiscogs } from '../src/portadas.ts';
 import type { Coleccion, Seccion } from '../src/types.ts';
 
 const ARCHIVO = path.resolve(import.meta.dirname, '../public/coleccion.json');
 const coleccion: Coleccion = JSON.parse(fs.readFileSync(ARCHIVO, 'utf8'));
 // Wikimedia limita mucho las peticiones sin un User-Agent que diga quién es.
 usarCabeceras({ 'User-Agent': 'Mediateca/1.0 (https://github.com/ElJuezHolden/mediateca; coleccion personal)' });
+
+// El token de Discogs, si está en .env.local; sin él se busca en iTunes y MusicBrainz.
+try {
+  process.loadEnvFile(path.resolve(import.meta.dirname, '../.env.local'));
+} catch {
+  /* sin .env.local */
+}
+if (process.env.DISCOGS_TOKEN?.trim()) usarTokenDiscogs(process.env.DISCOGS_TOKEN.trim());
+else console.log('Sin DISCOGS_TOKEN en .env.local: los discos se buscan solo en iTunes y MusicBrainz.\n');
 
 const solo = process.argv[2] as Seccion | undefined;
 const pendientes = coleccion.items.filter((i) => !i.portada && (!solo || i.seccion === solo));
@@ -39,6 +48,7 @@ for (const [n, item] of pendientes.entries()) {
     if (c) {
       item.portada = c.url;
       item.portadaAuto = true;
+      if (c.discogs) item.discogs = c.discogs;
       item.anio ??= c.anio;
       if (item.seccion === 'videoteca' && c.director) item.director ??= c.director;
       puestas++;

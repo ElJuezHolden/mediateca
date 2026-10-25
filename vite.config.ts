@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -42,13 +42,51 @@ function guardarColeccion(): Plugin {
   };
 }
 
-export default defineConfig({
-  // En GitHub Pages la web vive en /<repo>/; en local, en la raíz.
-  base: process.env.BASE_PATH ?? '/',
-  plugins: [react(), tailwindcss(), guardarColeccion()],
-  server: {
-    port: 3340,
-    // Si Vite vigilara la colección, cada guardado recargaría la página.
-    watch: { ignored: ['**/public/coleccion.json*'] },
-  },
+// Solo en local: la web pide a Discogs a través de aquí, que añade el token de
+// .env.local. Así el token nunca llega al navegador ni a la web publicada.
+function discogs(token: string | undefined): Plugin {
+  return {
+    name: 'discogs',
+    configureServer(server) {
+      server.middlewares.use('/api/discogs', async (req, res) => {
+        const ruta = req.url ?? '';
+        if (!/^\/(database\/search\?|releases\/\d+$)/.test(ruta)) {
+          res.statusCode = 404;
+          res.end();
+          return;
+        }
+        if (!token) {
+          res.statusCode = 503;
+          res.end('Falta DISCOGS_TOKEN en .env.local');
+          return;
+        }
+        try {
+          const r = await fetch(`https://api.discogs.com${ruta}`, {
+            headers: { Authorization: `Discogs token=${token}`, 'User-Agent': 'Mediateca/1.0 +https://github.com/ElJuezHolden/mediateca' },
+          });
+          res.statusCode = r.status;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(await r.text());
+        } catch (error) {
+          res.statusCode = 502;
+          res.end(String(error));
+        }
+      });
+    },
+  };
+}
+
+export default defineConfig(({ mode }) => {
+  // Sin prefijo VITE_: estas variables no se meten en el código del navegador.
+  const env = loadEnv(mode, import.meta.dirname, '');
+  return {
+    // En GitHub Pages la web vive en /<repo>/; en local, en la raíz.
+    base: process.env.BASE_PATH ?? '/',
+    plugins: [react(), tailwindcss(), guardarColeccion(), discogs(env.DISCOGS_TOKEN?.trim() || undefined)],
+    server: {
+      port: 3340,
+      // Si Vite vigilara la colección, cada guardado recargaría la página.
+      watch: { ignored: ['**/public/coleccion.json*'] },
+    },
+  };
 });

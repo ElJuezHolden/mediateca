@@ -3,8 +3,9 @@
 //  - Películas: Wikipedia. Se busca el título en la española (que es como
 //    están apuntadas) y se coge el póster del artículo en inglés, porque la
 //    española solo admite imágenes libres y no tiene carteles.
-//  - Discos: la API de búsqueda de iTunes, con portadas a 600 px, y las
-//    ediciones físicas de MusicBrainz con portada en el Cover Art Archive.
+//  - Discos: la API de búsqueda de iTunes, con portadas a 600 px; las ediciones
+//    físicas de Discogs (necesita el token de .env.local) y las de MusicBrainz
+//    con portada en el Cover Art Archive.
 
 export interface Candidata {
   url: string;
@@ -14,7 +15,9 @@ export interface Candidata {
   detalle?: string;
   anio?: number;
   director?: string;
-  fuente: 'Wikipedia' | 'iTunes' | 'MusicBrainz';
+  fuente: 'Wikipedia' | 'iTunes' | 'MusicBrainz' | 'Discogs';
+  /** Id de la edición en Discogs, si salió de ahí. */
+  discogs?: number;
   /** Otros títulos de la película (el de España, el original…), para comparar. */
   otrosTitulos?: string;
   /** Salió de la búsqueda de respaldo en la Wikipedia inglesa. */
@@ -57,16 +60,17 @@ function sinQuery(url: string) {
   return url.split('?')[0];
 }
 
-async function api(url: string, params: Record<string, string>) {
-  const u = new URL(url);
+async function api(url: string, params: Record<string, string>, extra: Record<string, string> = {}) {
+  // Relativa en el navegador (/api/discogs, el servidor local).
+  const u = new URL(url, globalThis.location?.href);
   for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
-  // Wikipedia e iTunes devuelven 429 o 403 si se les pide mucho seguido:
-  // se espera y se reintenta un par de veces.
+  // Wikipedia, iTunes y Discogs devuelven 429 o 403 si se les pide mucho
+  // seguido: se espera y se reintenta un par de veces.
   for (let intento = 0; ; intento++) {
-    const r = await fetch(u, { headers: cabeceras });
+    const r = await fetch(u, { headers: { ...cabeceras, ...extra } });
     if (r.ok) return r.json();
-    if (intento >= 3 || (r.status !== 429 && r.status !== 403 && r.status < 500)) {
-      throw new Error(`${u.host}: HTTP ${r.status}`);
+    if (intento >= 3 || ![403, 429, 500, 502, 504].includes(r.status)) {
+      throw new Error(`${u.host}: HTTP ${r.status}${r.status === 503 ? ` (${await r.text()})` : ''}`);
     }
     const espera = Number(r.headers.get('retry-after')) || 5 * (intento + 1);
     await new Promise((fin) => setTimeout(fin, Math.min(espera, 60) * 1000));
@@ -278,13 +282,106 @@ async function buscarMusicBrainz(artista: string | undefined, album: string): Pr
   return conPortada.filter((c): c is NonNullable<typeof c> => c !== null);
 }
 
-/** Primero iTunes (portadas grandes y limpias); después las ediciones de MusicBrainz. */
+// Discogs: en el navegador se pide al servidor local, que pone el token; desde
+// el script se llama directamente con el token de .env.local.
+let discogsBase = '/api/discogs';
+let discogsCabeceras: Record<string, string> = {};
+export function usarTokenDiscogs(token: string) {
+  discogsBase = 'https://api.discogs.com';
+  discogsCabeceras = { Authorization: `Discogs token=${token}` };
+}
+
+interface ResultadoDiscogs {
+  id: number;
+  type: string;
+  title: string;
+  year?: string;
+  country?: string;
+  format?: string[];
+  label?: string[];
+  cover_image?: string;
+}
+
+/** «Camela (2)» → «Camela»: Discogs numera a los artistas con el mismo nombre. */
+const sinNumero = (t: string) => t.replace(/\s*\(\d+\)/g, '').replace(/\*$/, '').trim();
+
+function candidataDiscogs(r: ResultadoDiscogs): Candidata | null {
+  // Las imágenes vacías de Discogs son un «spacer.gif».
+  if (!r.cover_image || r.cover_image.endsWith('.gif')) return null;
+  const corte = r.title.indexOf(' - ');
+  const artista = corte > 0 ? sinNumero(r.title.slice(0, corte)) : undefined;
+  const titulo = corte > 0 ? r.title.slice(corte + 3) : r.title;
+  return {
+    url: r.cover_image,
+    titulo,
+    artista,
+    detalle: [artista, r.country, r.format?.slice(0, 2).join(', '), r.label?.[0]].filter(Boolean).join(' · '),
+    anio: r.year ? Number(r.year) || undefined : undefined,
+    fuente: 'Discogs',
+    discogs: r.id,
+  };
+}
+
+async function buscarDiscogs(artista: string | undefined, album: string): Promise<Candidata[]> {
+  const buscar = (params: Record<string, string>) =>
+    api(`${discogsBase}/database/search`, { type: 'release', per_page: '15', ...params }, discogsCabeceras).then(
+      (r: { results: ResultadoDiscogs[] }) => r.results,
+    );
+  const porArtista = artista && !VARIOS.test(artista);
+  let resultados = await buscar(porArtista ? { artist: artista, release_title: album } : { release_title: album });
+  if (!resultados.length) resultados = await buscar({ q: [porArtista ? artista : '', album].join(' ').trim() });
+  const vistas = new Set<string>();
+  return resultados
+    .map(candidataDiscogs)
+    .filter((c): c is Candidata => !!c && !vistas.has(c.url) && !!vistas.add(c.url));
+}
+
+/** Una edición concreta de Discogs a partir de su enlace o su número. */
+export async function edicionDiscogs(enlace: string): Promise<Candidata & { discogs: number }> {
+  const id = Number(enlace.match(/release\/(\d+)/)?.[1] ?? enlace.match(/^\s*\[?r?(\d+)\]?\s*$/)?.[1]);
+  if (!id) throw new Error('No es un enlace de una edición de Discogs (…/release/123456…)');
+  const r: {
+    title: string;
+    year?: number;
+    country?: string;
+    artists?: { name: string }[];
+    images?: { type: string; uri: string }[];
+    formats?: { name: string; descriptions?: string[] }[];
+    labels?: { name: string; catno?: string }[];
+  } = await api(`${discogsBase}/releases/${id}`, {}, discogsCabeceras);
+  const imagen = r.images?.find((i) => i.type === 'primary') ?? r.images?.[0];
+  const artista = r.artists?.map((a) => sinNumero(a.name)).join(', ');
+  return {
+    url: imagen?.uri ?? '',
+    titulo: r.title,
+    artista,
+    detalle: [artista, r.country, r.formats?.map((f) => f.name).join(', '), r.labels?.[0]?.name].filter(Boolean).join(' · '),
+    anio: r.year || undefined,
+    fuente: 'Discogs',
+    discogs: id,
+  };
+}
+
+let falloDiscogs = '';
+/** Por qué falló Discogs en la última búsqueda de discos (vacío si fue bien). */
+export function avisoDiscogs() {
+  return falloDiscogs;
+}
+
+/**
+ * Primero iTunes (portadas grandes y limpias); después las ediciones físicas
+ * de Discogs y de MusicBrainz. Si una fuente falla, se sigue con las demás.
+ */
 export async function buscarDisco(artista: string | undefined, album: string): Promise<Candidata[]> {
-  const [itunes, mb] = await Promise.all([
+  const [itunes, dg, mb] = await Promise.all([
     buscarItunes(artista, album).catch(() => []),
+    buscarDiscogs(artista, album).then(
+      (r) => ((falloDiscogs = ''), r),
+      (e) => ((falloDiscogs = String(e instanceof Error ? e.message : e)), []),
+    ),
     buscarMusicBrainz(artista, album).catch(() => []),
   ]);
-  return [...itunes, ...mb];
+  return [...itunes, ...dg, ...mb];
 }
 
 /** Quita añadidos de las tiendas: «(Bonus Track Version)», «(Remastered)»… */

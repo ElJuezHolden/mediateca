@@ -17,7 +17,10 @@ function enlaces(item: Item) {
   const q = encodeURIComponent(item.artista ? `${item.artista} ${item.titulo}` : item.titulo);
   return item.seccion === 'discoteca'
     ? [
-        { nombre: 'Discogs', url: `https://www.discogs.com/search/?q=${q}&type=all` },
+        {
+          nombre: item.discogs ? 'Su edición en Discogs' : 'Discogs',
+          url: item.discogs ? `https://www.discogs.com/release/${item.discogs}` : `https://www.discogs.com/search/?q=${q}&type=all`,
+        },
         { nombre: 'YouTube', url: `https://www.youtube.com/results?search_query=${q}` },
       ]
     : [

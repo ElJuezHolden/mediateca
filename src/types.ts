@@ -17,6 +17,8 @@ export interface Item {
   portada?: string;
   /** La puso el buscador automático y nadie la ha revisado aún. */
   portadaAuto?: boolean;
+  /** Id de la edición en Discogs (solo discoteca). */
+  discogs?: number;
   notas?: string;
   /** Fecha ISO (AAAA-MM-DD) en que se añadió. */
   anadido: string;
