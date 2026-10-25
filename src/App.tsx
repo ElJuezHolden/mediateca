@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Disc3, Film, LayoutGrid, List, Plus, Search, X } from 'lucide-react';
-import { cargar, claveOrden, EDITABLE, guardar, nuevoId } from './datos';
+import { Disc3, Film, LayoutGrid, List, Lock, LockOpen, Plus, Search, X } from 'lucide-react';
+import { cargar, claveOrden, guardar, nuevoId } from './datos';
+import { puedeEditar } from './sesion';
 import { normalizar } from './portadas';
 import { FORMATOS, SECCIONES, type Coleccion, type Item, type Seccion } from './types';
+import { Acceso } from './components/Acceso';
 import { Ficha } from './components/Ficha';
 import { Formulario } from './components/Formulario';
 import { Portada } from './components/Portada';
@@ -80,11 +82,19 @@ export default function App() {
   const [editando, setEditando] = useState<{ item: Item; nuevo: boolean; elegirEdicion?: boolean } | null>(null);
   const [aviso, setAviso] = useState<{ texto: string; error?: boolean } | null>(null);
   const buscador = useRef<HTMLInputElement>(null);
+  const [editable, setEditable] = useState(puedeEditar);
+  const [acceso, setAcceso] = useState(false);
 
   const { seccion, vista } = prefs;
   const orden = prefs.orden[seccion];
 
   useEffect(() => {
+    cargar().then(setColeccion, (e) => setErrorCarga(String(e)));
+  }, []);
+
+  // Al entrar o salir: los permisos, y la colección desde donde toque (GitHub o la copia publicada).
+  const cambioDeAcceso = useCallback(() => {
+    setEditable(puedeEditar());
     cargar().then(setColeccion, (e) => setErrorCarga(String(e)));
   }, []);
 
@@ -165,14 +175,15 @@ export default function App() {
   );
 
   const actualizar = useCallback(
-    async (cambio: (items: Item[]) => Item[], textoAviso: string) => {
+    async (cambio: (items: Item[]) => Item[], textoAviso: string, mensaje?: string) => {
       if (!coleccion) return;
       const anterior = coleccion;
       const nueva: Coleccion = { ...coleccion, actualizado: new Date().toISOString(), items: cambio(coleccion.items) };
       setColeccion(nueva);
       try {
-        await guardar(nueva);
-        setAviso({ texto: textoAviso });
+        await guardar(nueva, mensaje);
+        // En la web publicada se guarda en GitHub, que vuelve a publicarla.
+        setAviso({ texto: import.meta.env.DEV ? textoAviso : `${textoAviso} · la web pública se actualiza en 1-2 min` });
       } catch (e) {
         setColeccion(anterior);
         setAviso({ texto: `No se pudo guardar: ${e instanceof Error ? e.message : e}`, error: true });
@@ -200,6 +211,7 @@ export default function App() {
     actualizar(
       (lista) => (nuevo ? [...lista, item] : lista.map((i) => (i.id === item.id ? item : i))),
       nuevo ? 'Añadido' : 'Guardado',
+      `Mediateca: ${nuevo ? 'añadido' : 'editado'} «${item.artista ? `${item.artista} — ` : ''}${item.titulo}»`,
     );
     setEditando(null);
     if (nuevo && item.seccion !== seccion) cambiarSeccion(item.seccion);
@@ -209,7 +221,7 @@ export default function App() {
   function borrar(item: Item) {
     if (!confirm(`¿Borrar «${item.titulo}»${item.artista ? ` de ${item.artista}` : ''}?`)) return;
     setAbierto(null);
-    actualizar((lista) => lista.filter((i) => i.id !== item.id), 'Borrado');
+    actualizar((lista) => lista.filter((i) => i.id !== item.id), 'Borrado', `Mediateca: borrado «${item.titulo}»`);
   }
 
   function anadir() {
@@ -236,6 +248,7 @@ export default function App() {
               : 'Cargando…'}
           </p>
         </div>
+        <div className="flex items-center gap-2">
         <nav className="flex rounded-2xl border border-[var(--borde)] bg-[var(--panel)] p-1">
           {(Object.keys(SECCIONES) as Seccion[]).map((s) => {
             const Icono = s === 'videoteca' ? Film : Disc3;
@@ -252,6 +265,17 @@ export default function App() {
             );
           })}
         </nav>
+          {!import.meta.env.DEV && (
+            <button
+              className={`rounded-xl border border-[var(--borde)] p-2.5 ${editable ? 'text-[var(--acento)]' : 'text-[var(--suave)] hover:text-[var(--texto)]'}`}
+              onClick={() => setAcceso(true)}
+              title={editable ? 'Editando: acceso en este navegador' : 'Acceso para editar'}
+              aria-label={editable ? 'Acceso para editar (activo)' : 'Acceso para editar'}
+            >
+              {editable ? <LockOpen size={18} /> : <Lock size={18} />}
+            </button>
+          )}
+        </div>
       </header>
 
       <div className="sticky top-0 z-20 -mx-4 mb-6 flex flex-col gap-3 border-b border-[var(--borde)] bg-[var(--fondo)]/90 px-4 py-3 backdrop-blur sm:-mx-8 sm:px-8">
@@ -305,7 +329,7 @@ export default function App() {
               </button>
             ))}
           </div>
-          {EDITABLE && (
+          {editable && (
             <button className="boton boton-acento py-[9px]" onClick={anadir} aria-label="Añadir" title="Añadir">
               <Plus size={16} /> <span className="hidden sm:inline">Añadir</span>
             </button>
@@ -326,7 +350,7 @@ export default function App() {
               {f} · {n}
             </button>
           ))}
-          {EDITABLE && (porRevisar > 0 || sinPortada > 0) && (
+          {editable && (porRevisar > 0 || sinPortada > 0) && (
             <>
               <span className="mx-1 w-px shrink-0 bg-[var(--borde)]" />
               {porRevisar > 0 && (
@@ -423,9 +447,14 @@ export default function App() {
           onMover={mover}
           onEditar={() => setEditando({ item: itemAbierto, nuevo: false })}
           onElegirEdicion={() => setEditando({ item: itemAbierto, nuevo: false, elegirEdicion: true })}
+          editable={editable}
           onBorrar={() => borrar(itemAbierto)}
           onConfirmarPortada={() =>
-            actualizar((l) => l.map((i) => (i.id === itemAbierto.id ? { ...i, portadaAuto: undefined } : i)), 'Portada confirmada')
+            actualizar(
+              (l) => l.map((i) => (i.id === itemAbierto.id ? { ...i, portadaAuto: undefined } : i)),
+              'Portada confirmada',
+              `Mediateca: portada confirmada de «${itemAbierto.titulo}»`,
+            )
           }
         />
       )}
@@ -440,6 +469,8 @@ export default function App() {
           onCancelar={cancelarEdicion}
         />
       )}
+
+      {acceso && <Acceso onCerrar={() => setAcceso(false)} onCambio={cambioDeAcceso} />}
 
       {aviso && (
         <div

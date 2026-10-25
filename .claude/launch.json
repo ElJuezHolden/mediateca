@@ -4,8 +4,14 @@
     {
       "name": "mediateca-dev",
       "runtimeExecutable": "cmd.exe",
-      "runtimeArgs": ["/c", "set PATH=C:\Program Files\nodejs;%PATH% && npm run dev"],
+      "runtimeArgs": ["/c", "set PATH=C:\\Program Files\\nodejs;%PATH% && npm run dev"],
       "port": 3340
+    },
+    {
+      "name": "mediateca-publicada",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "set PATH=C:\\Program Files\\nodejs;%PATH% && set BASE_PATH=/mediateca/&& npm run build && npx vite preview --port 3341 --strictPort"],
+      "port": 3341
     }
   ]
 }

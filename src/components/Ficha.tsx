@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Check, ChevronLeft, ChevronRight, ExternalLink, Pencil, Trash2, X } from 'lucide-react';
-import { EDITABLE } from '../datos';
 import type { Item } from '../types';
 import { Portada } from './Portada';
 
@@ -13,6 +12,8 @@ interface Props {
   onConfirmarPortada: () => void;
   /** Abrir el formulario con la lista de ediciones de Discogs. */
   onElegirEdicion: () => void;
+  /** Si se muestran los botones de editar (en local, o con acceso en la web). */
+  editable: boolean;
 }
 
 function enlaces(item: Item) {
@@ -31,7 +32,7 @@ function enlaces(item: Item) {
       ];
 }
 
-export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmarPortada, onElegirEdicion }: Props) {
+export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmarPortada, onElegirEdicion, editable }: Props) {
   useEffect(() => {
     const tecla = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onCerrar();
@@ -113,7 +114,7 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
 
           {item.notas && <p className="whitespace-pre-line rounded-xl bg-[var(--fondo)] p-3 text-sm text-[var(--suave)]">{item.notas}</p>}
 
-          {EDITABLE && musica && (
+          {editable && musica && (
             <div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-[var(--borde)] p-3 text-sm">
               <span className="min-w-0 flex-1 text-[var(--suave)]">
                 {item.discogs ? 'Vinculado a su edición de Discogs.' : 'Sin vincular a Discogs.'}
@@ -124,7 +125,7 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
             </div>
           )}
 
-          {EDITABLE && item.portadaAuto && (
+          {editable && item.portadaAuto && (
             <div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-[var(--borde)] p-3 text-sm">
               <span className="text-[var(--suave)]">Portada puesta automáticamente. ¿Es la tuya?</span>
               <button className="boton py-1" onClick={onConfirmarPortada}>
@@ -142,7 +143,7 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
                 {e.nombre} <ExternalLink size={13} />
               </a>
             ))}
-            {EDITABLE && (
+            {editable && (
               <>
                 <span className="flex-1" />
                 <button className="boton" onClick={onBorrar} aria-label="Borrar">

@@ -7,6 +7,7 @@
 //    físicas de Discogs (necesita el token de .env.local) y las de MusicBrainz
 //    con portada en el Cover Art Archive.
 
+import { leerToken } from './sesion.ts';
 import type { FotoDisco, Item, Pista } from './types.ts';
 
 export interface Candidata {
@@ -284,13 +285,22 @@ async function buscarMusicBrainz(artista: string | undefined, album: string): Pr
   return conPortada.filter((c): c is NonNullable<typeof c> => c !== null);
 }
 
-// Discogs: en el navegador se pide al servidor local, que pone el token; desde
-// el script se llama directamente con el token de .env.local.
-let discogsBase = '/api/discogs';
-let discogsCabeceras: Record<string, string> = {};
+// Discogs, según desde dónde se llame:
+//  - Scripts: directamente, con el token de .env.local (usarTokenDiscogs).
+//  - Web en local: a través del servidor local, que pone el token de .env.local.
+//  - Web publicada: directamente, con el token guardado en este navegador
+//    (en la URL, que Discogs admite y así no hace falta el permiso previo de CORS).
+let tokenScript = '';
 export function usarTokenDiscogs(token: string) {
-  discogsBase = 'https://api.discogs.com';
-  discogsCabeceras = { Authorization: `Discogs token=${token}` };
+  tokenScript = token;
+}
+
+function discogs(ruta: string, params: Record<string, string> = {}) {
+  if (tokenScript) return api(`https://api.discogs.com${ruta}`, params, { Authorization: `Discogs token=${tokenScript}` });
+  if (import.meta.env?.DEV) return api(`/api/discogs${ruta}`, params);
+  const token = leerToken('discogs');
+  if (!token) return Promise.reject(new Error('Falta DISCOGS_TOKEN'));
+  return api(`https://api.discogs.com${ruta}`, { ...params, token });
 }
 
 interface ResultadoDiscogs {
@@ -326,7 +336,7 @@ function candidataDiscogs(r: ResultadoDiscogs): Candidata | null {
 
 async function buscarDiscogs(artista: string | undefined, album: string): Promise<Candidata[]> {
   const buscar = (params: Record<string, string>) =>
-    api(`${discogsBase}/database/search`, { type: 'release', per_page: '15', ...params }, discogsCabeceras).then(
+    discogs('/database/search', { type: 'release', per_page: '15', ...params }).then(
       (r: { results: ResultadoDiscogs[] }) => r.results,
     );
   const porArtista = artista && !VARIOS.test(artista);
@@ -395,7 +405,7 @@ async function idDeEdicion(enlace: string): Promise<number> {
   if (edicion) return Number(edicion);
   const master = enlace.match(/master\/(\d+)/)?.[1] ?? enlace.match(/^\s*\[m(\d+)\]\s*$/i)?.[1];
   if (master) {
-    const m: { main_release: number } = await api(`${discogsBase}/masters/${master}`, {}, discogsCabeceras);
+    const m: { main_release: number } = await discogs(`/masters/${master}`);
     return m.main_release;
   }
   throw new Error('No es un enlace de Discogs (…/release/123456…)');
@@ -416,7 +426,7 @@ export async function edicionDiscogs(enlace: string): Promise<EdicionDiscogs> {
     styles?: string[];
     tracklist?: { position?: string; title: string; duration?: string; type_?: string; artists?: { name: string }[] }[];
     foto_disco?: FotoDisco | null;
-  } = await api(`${discogsBase}/releases/${id}`, {}, discogsCabeceras);
+  } = await discogs(`/releases/${id}`);
 
   const imagen = r.images?.find((i) => i.type === 'primary') ?? r.images?.[0];
   const imagenes = [imagen?.uri, ...(r.images ?? []).map((i) => i.uri).filter((u) => u !== imagen?.uri)].filter(
@@ -483,7 +493,7 @@ export interface OpcionEdicion {
 /** Todas las ediciones de un disco en Discogs, para elegir la tuya. */
 export async function edicionesDiscogs(artista: string | undefined, album: string): Promise<OpcionEdicion[]> {
   const buscar = (params: Record<string, string>) =>
-    api(`${discogsBase}/database/search`, { type: 'release', per_page: '50', ...params }, discogsCabeceras).then(
+    discogs('/database/search', { type: 'release', per_page: '50', ...params }).then(
       (r: { results: (ResultadoDiscogs & { catno?: string; thumb?: string })[] }) => r.results,
     );
   const porArtista = artista && !VARIOS.test(artista);

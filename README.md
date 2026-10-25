@@ -9,11 +9,21 @@ bisagra, el vinilo que asoma de la funda…
 
 ## Cómo funciona
 
-- **La colección es un archivo:** `public/coleccion.json`. Es lo que lee la web, en local y publicada.
-- **Se edita en local.** Doble clic en `editar.cmd` (o `npm run dev`) abre http://localhost:3340 con
-  los botones de añadir, editar y borrar. Cada cambio se guarda al momento en `coleccion.json`.
-- **Se consulta en internet.** La versión publicada en GitHub Pages es de solo lectura. Para que
-  salgan los cambios, se hace commit de `coleccion.json` y push (o se dice «publica»).
+- **La colección es un archivo:** `public/coleccion.json`, en el repo. Es lo que lee la web.
+- **Se edita desde la web publicada,** en cualquier dispositivo. El candado de la cabecera abre
+  «Acceso para editar»: se pega una vez el token de GitHub (y el de Discogs, para los discos) y
+  aparecen añadir, editar, borrar y todo lo de Discogs. Cada cambio es un commit en el repo, firmado
+  como ElJuezHolden, y la web pública se vuelve a publicar sola en 1-2 minutos. Quien edita lee la
+  colección directamente de GitHub, así que ve sus cambios al momento.
+- **Los tokens se quedan en ese navegador** (localStorage). «Salir en este navegador» los borra.
+  El de GitHub conviene crearlo con acceso solo a este repo y solo a «Contents».
+- **Sin acceso, la web es de solo lectura.**
+- **También se puede editar en local:** `editar.cmd` (o `npm run dev`) se trae antes lo editado en
+  la web (`git pull`) y abre http://localhost:3340, donde los cambios se guardan en el archivo y
+  luego hay que hacer commit y push. Solo en local se detecta sola la foto del disco; en la web se
+  elige a mano entre las fotos de la edición.
+- **Si se edita a la vez desde dos sitios,** el segundo en guardar recibe un aviso para recargar
+  la página: así nunca se pisa un cambio.
 
 ## Qué hace
 

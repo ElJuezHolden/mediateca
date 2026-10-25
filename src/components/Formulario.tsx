@@ -103,7 +103,7 @@ export function Formulario({ item, nuevo, elegirEdicion, artistas, onGuardar, on
       setEnlaceDiscogs('');
       setCambiandoEdicion(false);
     } catch (e) {
-      setError(`Discogs: ${e instanceof Error ? e.message : e}`);
+      setError(`Discogs: ${explicarDiscogs(e)}`);
     } finally {
       setCargandoDiscogs(false);
     }
@@ -119,7 +119,7 @@ export function Formulario({ item, nuevo, elegirEdicion, artistas, onGuardar, on
     try {
       setEdiciones(await edicionesDiscogs(b.artista, b.titulo));
     } catch (e) {
-      setError(`Discogs: ${e instanceof Error ? e.message : e}`);
+      setError(`Discogs: ${explicarDiscogs(e)}`);
     } finally {
       setCargandoEdiciones(false);
     }
@@ -132,7 +132,7 @@ export function Formulario({ item, nuevo, elegirEdicion, artistas, onGuardar, on
     try {
       setFotos((await edicionDiscogs(String(b.discogs))).imagenes);
     } catch (e) {
-      setError(`Discogs: ${e instanceof Error ? e.message : e}`);
+      setError(`Discogs: ${explicarDiscogs(e)}`);
     } finally {
       setCargandoDiscogs(false);
     }
@@ -511,7 +511,7 @@ export function Formulario({ item, nuevo, elegirEdicion, artistas, onGuardar, on
                 <div className="mt-3 rounded-xl border border-[var(--borde)] bg-[var(--fondo)] p-3">
                   {musica && avisoDiscogs() && (
                     <p className="mb-3 text-xs text-amber-300">
-                      Sin Discogs: {avisoDiscogs().includes('DISCOGS_TOKEN') ? 'falta tu token en el archivo .env.local.' : avisoDiscogs()}
+                      Sin Discogs: {explicarDiscogs(avisoDiscogs())}
                     </p>
                   )}
                   {candidatas.length === 0 ? (
@@ -563,3 +563,10 @@ export function Formulario({ item, nuevo, elegirEdicion, artistas, onGuardar, on
 }
 
 const canciones = (n: number) => `${n} ${n === 1 ? 'canción' : 'canciones'}`;
+
+/** El error de Discogs dicho para quien lo lee: si falta el token, dónde se pone. */
+function explicarDiscogs(e: unknown) {
+  const texto = e instanceof Error ? e.message : String(e);
+  if (!texto.includes('DISCOGS_TOKEN')) return texto;
+  return import.meta.env.DEV ? 'falta tu token en el archivo .env.local.' : 'pon tu token de Discogs en el candado de arriba (Acceso para editar).';
+}
