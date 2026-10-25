@@ -1,15 +1,17 @@
 // Completa los discos que ya están vinculados a una edición de Discogs con
-// todos sus datos: sello, nº de catálogo, país, géneros y canciones. No toca
+// todos sus datos: sello, nº de catálogo, país, géneros, canciones y la foto
+// del disco para la animación. No toca
 // cómo los tenías apuntados (título, artista, edición, formato) ni si su
 // portada está aún por revisar.
 //
-//   npm run discogs              los vinculados a los que les faltan datos
+//   npm run discogs              los vinculados a los que les faltan datos o la foto del disco
 //   npm run discogs -- --todos   vuelve a traerlos todos
 //
 // Necesita DISCOGS_TOKEN en .env.local. No lo ejecutes con la web abierta editando.
 import fs from 'node:fs';
 import path from 'node:path';
-import { edicionDiscogs, usarTokenDiscogs, vincularDiscogs } from '../src/portadas.ts';
+import { edicionDiscogs, usarDetectorFotoDisco, usarTokenDiscogs, vincularDiscogs } from '../src/portadas.ts';
+import { buscarFotoDisco } from './foto-disco.ts';
 import type { Coleccion } from '../src/types.ts';
 
 const ARCHIVO = path.resolve(import.meta.dirname, '../public/coleccion.json');
@@ -24,10 +26,11 @@ if (!token) {
   process.exit(1);
 }
 usarTokenDiscogs(token);
+usarDetectorFotoDisco(buscarFotoDisco);
 
 const coleccion: Coleccion = JSON.parse(fs.readFileSync(ARCHIVO, 'utf8'));
 const todos = process.argv.includes('--todos');
-const pendientes = coleccion.items.filter((i) => i.discogs && (todos || !i.pistas));
+const pendientes = coleccion.items.filter((i) => i.discogs && (todos || !i.pistas || !i.fotoDisco));
 
 function guardar() {
   coleccion.actualizado = new Date().toISOString();
@@ -47,7 +50,7 @@ for (const [n, item] of pendientes.entries()) {
     if (!item.portadaAuto) delete item.portadaAuto;
     for (const k of Object.keys(item) as (keyof typeof item)[]) if (item[k] === undefined) delete item[k];
     completados++;
-    console.log(`${prefijo}: ${[e.sello, e.catalogo, e.pais, `${e.pistas?.length ?? 0} pistas`].filter(Boolean).join(' · ')}`);
+    console.log(`${prefijo}: ${[e.sello, e.catalogo, e.pais, `${e.pistas?.length ?? 0} pistas`, item.fotoDisco ? 'foto del disco' : ''].filter(Boolean).join(' · ')}`);
   } catch (error) {
     console.log(`${prefijo}: ✗ ${error}`);
   }

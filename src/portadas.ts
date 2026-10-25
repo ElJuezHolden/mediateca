@@ -7,7 +7,7 @@
 //    físicas de Discogs (necesita el token de .env.local) y las de MusicBrainz
 //    con portada en el Cover Art Archive.
 
-import type { Item, Pista } from './types.ts';
+import type { FotoDisco, Item, Pista } from './types.ts';
 
 export interface Candidata {
   url: string;
@@ -353,6 +353,17 @@ export interface EdicionDiscogs {
   pais?: string;
   generos?: string[];
   pistas?: Pista[];
+  /** Todas las fotos de la edición, la portada primero. */
+  imagenes: string[];
+  /** La del disco, si se encontró. */
+  fotoDisco?: FotoDisco;
+}
+
+// Desde el navegador, la foto del disco la busca el servidor local; desde los
+// scripts se pasa el detector directamente.
+let detectorFotoDisco: ((urls: string[]) => Promise<FotoDisco | null>) | null = null;
+export function usarDetectorFotoDisco(detector: typeof detectorFotoDisco) {
+  detectorFotoDisco = detector;
 }
 
 const PAISES: Record<string, string> = {
@@ -404,9 +415,14 @@ export async function edicionDiscogs(enlace: string): Promise<EdicionDiscogs> {
     genres?: string[];
     styles?: string[];
     tracklist?: { position?: string; title: string; duration?: string; type_?: string; artists?: { name: string }[] }[];
+    foto_disco?: FotoDisco | null;
   } = await api(`${discogsBase}/releases/${id}`, {}, discogsCabeceras);
 
   const imagen = r.images?.find((i) => i.type === 'primary') ?? r.images?.[0];
+  const imagenes = [imagen?.uri, ...(r.images ?? []).map((i) => i.uri).filter((u) => u !== imagen?.uri)].filter(
+    (u): u is string => !!u,
+  );
+  const fotoDisco = r.foto_disco !== undefined ? r.foto_disco : detectorFotoDisco ? await detectorFotoDisco(imagenes) : null;
   const artista = r.artists?.map((a) => sinNumero(a.name)).join(', ');
   const formatos = r.formats ?? [];
   // El formato principal ya va en su campo: en la edición solo se repite si
@@ -446,7 +462,47 @@ export async function edicionDiscogs(enlace: string): Promise<EdicionDiscogs> {
     pais: r.country ? (PAISES[r.country] ?? r.country) : undefined,
     generos: [...new Set([...(r.genres ?? []), ...(r.styles ?? [])])],
     pistas: pistas.length ? pistas : undefined,
+    imagenes,
+    fotoDisco: fotoDisco ?? undefined,
   };
+}
+
+/** Una edición de un disco en Discogs, para elegir la tuya de la lista. */
+export interface OpcionEdicion {
+  discogs: number;
+  titulo: string;
+  artista?: string;
+  anio?: number;
+  pais?: string;
+  formato?: string;
+  sello?: string;
+  catalogo?: string;
+  miniatura?: string;
+}
+
+/** Todas las ediciones de un disco en Discogs, para elegir la tuya. */
+export async function edicionesDiscogs(artista: string | undefined, album: string): Promise<OpcionEdicion[]> {
+  const buscar = (params: Record<string, string>) =>
+    api(`${discogsBase}/database/search`, { type: 'release', per_page: '50', ...params }, discogsCabeceras).then(
+      (r: { results: (ResultadoDiscogs & { catno?: string; thumb?: string })[] }) => r.results,
+    );
+  const porArtista = artista && !VARIOS.test(artista);
+  let resultados = await buscar(porArtista ? { artist: artista, release_title: album } : { release_title: album });
+  if (!resultados.length) resultados = await buscar({ q: [porArtista ? artista : '', album].join(' ').trim() });
+  return resultados.map((r) => {
+    const corte = r.title.indexOf(' - ');
+    return {
+      discogs: r.id,
+      titulo: corte > 0 ? r.title.slice(corte + 3) : r.title,
+      artista: corte > 0 ? sinNumero(r.title.slice(0, corte)) : undefined,
+      anio: Number(r.year) || undefined,
+      pais: r.country ? (PAISES[r.country] ?? r.country) : undefined,
+      formato: r.format?.join(', '),
+      sello: r.label?.[0] ? sinNumero(r.label[0]) : undefined,
+      catalogo: r.catno && r.catno !== 'none' ? r.catno : undefined,
+      miniatura: r.thumb && !r.thumb.endsWith('.gif') ? r.thumb : undefined,
+    };
+  });
 }
 
 /**
@@ -467,6 +523,8 @@ export function vincularDiscogs<T extends Item>(item: T, e: EdicionDiscogs, todo
     pais: e.pais,
     generos: e.generos?.length ? e.generos : undefined,
     pistas: e.pistas,
+    // Si no se encontró la del disco en la misma edición, se queda la que hubiera.
+    fotoDisco: e.fotoDisco ?? (e.discogs === item.discogs ? item.fotoDisco : undefined),
     titulo: todo || vacio(item.titulo) ? e.titulo : item.titulo,
     artista: todo || vacio(item.artista) ? e.artista : item.artista,
     edicion: todo || vacio(item.edicion) ? e.edicion : item.edicion,
@@ -476,7 +534,7 @@ export function vincularDiscogs<T extends Item>(item: T, e: EdicionDiscogs, todo
 
 /** Quita el vínculo con Discogs y los datos que venían de allí. */
 export function desvincularDiscogs<T extends Item>(item: T): T {
-  const { discogs: _d, sello: _s, catalogo: _c, pais: _p, generos: _g, pistas: _t, ...resto } = item;
+  const { discogs: _d, sello: _s, catalogo: _c, pais: _p, generos: _g, pistas: _t, fotoDisco: _f, ...resto } = item;
   return resto as T;
 }
 

@@ -25,9 +25,23 @@ export interface Item {
   pais?: string;
   generos?: string[];
   pistas?: Pista[];
+  /** Foto del disco (el CD o el vinilo) para la animación, normalmente de Discogs. */
+  fotoDisco?: FotoDisco;
   notas?: string;
   /** Fecha ISO (AAAA-MM-DD) en que se añadió. */
   anadido: string;
+}
+
+/** Dónde está el disco dentro de su foto. */
+export interface FotoDisco {
+  url: string;
+  /** Centro del disco, en fracción del ancho y del alto de la foto. */
+  x: number;
+  y: number;
+  /** Radio del disco, en fracción del ancho. */
+  r: number;
+  /** Alto entre ancho de la foto. */
+  proporcion: number;
 }
 
 export interface Pista {

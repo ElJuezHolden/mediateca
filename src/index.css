@@ -297,6 +297,17 @@ body::before {
   width: 98%;
 }
 
+/* Con la foto real del disco: sin el dibujo, la foto recortada en círculo. */
+.disco.con-foto {
+  background: #1a1a1d;
+  overflow: hidden;
+}
+.foto-disco {
+  position: absolute;
+  max-width: none;
+  height: auto;
+}
+
 .galleta {
   position: absolute;
   inset: 33%;

@@ -11,6 +11,8 @@ interface Props {
   onEditar: () => void;
   onBorrar: () => void;
   onConfirmarPortada: () => void;
+  /** Abrir el formulario con la lista de ediciones de Discogs. */
+  onElegirEdicion: () => void;
 }
 
 function enlaces(item: Item) {
@@ -29,7 +31,7 @@ function enlaces(item: Item) {
       ];
 }
 
-export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmarPortada }: Props) {
+export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmarPortada, onElegirEdicion }: Props) {
   useEffect(() => {
     const tecla = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onCerrar();
@@ -110,6 +112,17 @@ export function Ficha({ item, onCerrar, onMover, onEditar, onBorrar, onConfirmar
           ) : null}
 
           {item.notas && <p className="whitespace-pre-line rounded-xl bg-[var(--fondo)] p-3 text-sm text-[var(--suave)]">{item.notas}</p>}
+
+          {EDITABLE && musica && (
+            <div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-[var(--borde)] p-3 text-sm">
+              <span className="min-w-0 flex-1 text-[var(--suave)]">
+                {item.discogs ? 'Vinculado a su edición de Discogs.' : 'Sin vincular a Discogs.'}
+              </span>
+              <button className="boton py-1" onClick={onElegirEdicion}>
+                {item.discogs ? '¿No es tu edición?' : 'Vincular con Discogs'}
+              </button>
+            </div>
+          )}
 
           {EDITABLE && item.portadaAuto && (
             <div className="flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-[var(--borde)] p-3 text-sm">

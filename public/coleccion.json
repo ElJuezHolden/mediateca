@@ -1931,7 +1931,14 @@
      "pos": "",
      "titulo": ""
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/-exhBULf5IHT13mvQdQg1GZZ-awfk6X0Z3jAR4yh5EM/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYwODcy/MjYtMTY5Nzg2OTg5/OS00NTYzLmpwZWc.jpeg",
+    "x": 0.5,
+    "y": 0.5052083333333334,
+    "r": 0.4973958333333333,
+    "proporcion": 0.996661101836394
+   }
   },
   {
    "id": "934d684733",
@@ -2882,7 +2889,14 @@
      "titulo": "Me Va, Me Va",
      "duracion": "5:59"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/H1Nbr2RCCuHMgZlAspsQ3YD8pIqKB0oju9dD5Spc8lM/rs:fit/g:sm/q:90/h:565/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwMDY2/NTk5LTE2MzA0MzU5/NDktMjU3Ni5qcGVn.jpeg",
+    "x": 0.5,
+    "y": 0.5,
+    "r": 0.5,
+    "proporcion": 0.9432387312186978
+   }
   },
   {
    "id": "3432d7e78b",
@@ -3065,7 +3079,14 @@
      "titulo": "Por El Aire Va",
      "duracion": "3:57"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/M87VH2w7duybHb4RNk__U_KWFVjBvUw5wh3J2Nw6O1g/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ1OTU2/MjgtMTM2OTQ0Mjky/Ni03OTA5LmpwZWc.jpeg",
+    "x": 0.5,
+    "y": 0.5,
+    "r": 0.4895833333333333,
+    "proporcion": 1
+   }
   },
   {
    "id": "12e92e00ad",
@@ -3191,7 +3212,14 @@
      "titulo": "Pitu-Pitufando (Smurfing Throughout The Years)",
      "duracion": "4:07"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/nlvQoeM9owXssBUOmh7xNeafR341c9dRnphUkopIJ6M/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4MDU2/OTctMTMwMTg1Mzgx/Ni5qcGVn.jpeg",
+    "x": 0.5,
+    "y": 0.5,
+    "r": 0.5,
+    "proporcion": 0.9983333333333333
+   }
   },
   {
    "id": "1c37752564",
@@ -4419,7 +4447,14 @@
      "titulo": "De Una Nana Siendo Niño",
      "duracion": "7:51"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/-a9bbD-uoEHdLwEJXGnHpxU9zOdAkWiPzJ6HtxNhc4c/rs:fit/g:sm/q:90/h:600/w:591/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyMTA0/NzktMTczNzc0MTk5/MC01OTM4LmpwZWc.jpeg",
+    "x": 0.5,
+    "y": 0.5,
+    "r": 0.5,
+    "proporcion": 1.0135363790186125
+   }
   },
   {
    "id": "87c8bb8772",
@@ -4540,7 +4575,14 @@
      "duracion": "3:07",
      "artista": "Miguel Cadenas"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/IPR7AmcImHTYpT9dIFUKpitKIh-MKHihx8ahNCuhCa0/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1Mzc4/NDUxLTE1OTA1NzI2/MTMtNjEyMS5qcGVn.jpeg",
+    "x": 0.5,
+    "y": 0.5,
+    "r": 0.5,
+    "proporcion": 1
+   }
   },
   {
    "id": "6f52414618",
@@ -4720,7 +4762,14 @@
      "duracion": "8:21",
      "artista": "Fania All Stars"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/VrG9iuLHp3vtU1KJHKGte-WGlfDpOd_gdjhPOp1HPsk/rs:fit/g:sm/q:90/h:600/w:590/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQxMjE2/ODItMTY5MzEzMTIy/NS02MTY1LmpwZWc.jpeg",
+    "x": 0.5,
+    "y": 0.5,
+    "r": 0.4895833333333333,
+    "proporcion": 1.0152542372881357
+   }
   },
   {
    "id": "cab0e7534a",
@@ -4802,7 +4851,14 @@
      "duracion": "4:40",
      "artista": "Ray Barretto, Celia Cruz"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/er8adP-C9qlP6UlFnkmXXFIyq5s-SCmbunO1JrKvGZw/rs:fit/g:sm/q:90/h:600/w:590/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyOTM1/NTMtMTY5MzEzMTY1/Mi0yMDE5LmpwZWc.jpeg",
+    "x": 0.5,
+    "y": 0.4947916666666667,
+    "r": 0.4869791666666667,
+    "proporcion": 1.0169491525423728
+   }
   },
   {
    "id": "03c7cb62a4",
@@ -4884,7 +4940,14 @@
      "duracion": "3:28",
      "artista": "La Sonora Ponceña"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/G-Pxe9fHpdomU3x10gESMhQ02ExJgfcTqPf6dE2FtDI/rs:fit/g:sm/q:90/h:600/w:598/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQzNjk0/ODctMTY5MzEzMjA5/OS00NjYzLmpwZWc.jpeg",
+    "x": 0.4947916666666667,
+    "y": 0.5,
+    "r": 0.4869791666666667,
+    "proporcion": 1.0016722408026757
+   }
   },
   {
    "id": "b9d08fe107",
@@ -4966,7 +5029,14 @@
      "duracion": "3:50",
      "artista": "Tito Puente"
     }
-   ]
+   ],
+   "fotoDisco": {
+    "url": "https://i.discogs.com/PYKRO8AfExpcqGa6QgHfzEtE87DlkBcibFmYx8O0-Jc/rs:fit/g:sm/q:90/h:600/w:593/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQxMjE2/NjEtMTY5MzEzMjQw/Ni0xOTgyLmpwZWc.jpeg",
+    "x": 0.5,
+    "y": 0.4947916666666667,
+    "r": 0.4921875,
+    "proporcion": 1.0101180438448567
+   }
   },
   {
    "id": "6e43c2ca9c",
@@ -5756,5 +5826,5 @@
    "anadido": "2026-10-25"
   }
  ],
- "actualizado": "2026-10-25T07:45:21.144Z"
+ "actualizado": "2026-10-25T07:56:26.993Z"
 }

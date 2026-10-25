@@ -66,11 +66,18 @@ Al pegarlo se vincula solo:
 - **En un disco que ya tenías** respeta cómo lo apuntaste y, si Discogs lo dice distinto, lo ofrece
   aparte: «En Discogs: Artista «Rammstein»» → *Usar estos* o *Dejar los míos*.
 - **Elegir una portada de Discogs** con «Buscar» también vincula esa edición.
+- **Sin el enlace a mano:** «Elegir de la lista» enseña todas las ediciones del disco en Discogs
+  (país, año, formato, sello, nº de catálogo) y se marca la tuya. Desde la ficha, «Vincular con
+  Discogs» o «¿No es tu edición?» abren el formulario con esa lista ya abierta.
+- **Foto del disco:** entre las fotos de la edición se busca la del CD o el vinilo (un círculo
+  grande sobre fondo liso, lo analiza `scripts/foto-disco.ts` con sharp en el servidor local) y es
+  lo que sale de la caja en la animación. Si no la encuentra, o se equivoca, el botón de fotos de
+  la edición deja elegir a mano cuál es la portada y cuál el disco.
 - Una vez vinculado: ver la edición en Discogs, volver a traer los datos, cambiar de edición o
   desvincular.
 - En la ficha salen el sello, el país, los géneros y la lista de canciones con la duración total, y
   el buscador encuentra los discos también por sello, nº de catálogo o por una canción.
-- `npm run discogs` completa con todos esos datos los discos vinculados a los que les falten
+- `npm run discogs` completa con todos esos datos (y la foto del disco) los discos vinculados a los que les falten
   (`-- --todos` los vuelve a traer todos).
 
 ## Datos de cada título

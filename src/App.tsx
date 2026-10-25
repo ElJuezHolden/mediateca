@@ -77,7 +77,7 @@ export default function App() {
   const [formatos, setFormatos] = useState<string[]>([]);
   const [revision, setRevision] = useState<Revision>('todas');
   const [abierto, setAbierto] = useState<string | null>(null);
-  const [editando, setEditando] = useState<{ item: Item; nuevo: boolean } | null>(null);
+  const [editando, setEditando] = useState<{ item: Item; nuevo: boolean; elegirEdicion?: boolean } | null>(null);
   const [aviso, setAviso] = useState<{ texto: string; error?: boolean } | null>(null);
   const buscador = useRef<HTMLInputElement>(null);
 
@@ -376,7 +376,7 @@ export default function App() {
                   <button key={i.id} className="tarjeta" onClick={() => setAbierto(i.id)}>
                     <Portada item={i} />
                     <span className="min-w-0">
-                      <span className="line-clamp-2 block text-sm font-semibold leading-tight">{i.titulo}</span>
+                      <span className="line-clamp-2 block min-h-[2.5em] text-sm font-semibold leading-tight">{i.titulo}</span>
                       <span className="mt-0.5 block truncate text-xs text-[var(--suave)]">
                         {[i.artista, i.formato, i.anio].filter(Boolean).join(' · ')}
                       </span>
@@ -422,6 +422,7 @@ export default function App() {
           onCerrar={cerrarFicha}
           onMover={mover}
           onEditar={() => setEditando({ item: itemAbierto, nuevo: false })}
+          onElegirEdicion={() => setEditando({ item: itemAbierto, nuevo: false, elegirEdicion: true })}
           onBorrar={() => borrar(itemAbierto)}
           onConfirmarPortada={() =>
             actualizar((l) => l.map((i) => (i.id === itemAbierto.id ? { ...i, portadaAuto: undefined } : i)), 'Portada confirmada')
@@ -430,7 +431,14 @@ export default function App() {
       )}
 
       {editando && (
-        <Formulario item={editando.item} nuevo={editando.nuevo} artistas={artistas} onGuardar={guardarItem} onCancelar={cancelarEdicion} />
+        <Formulario
+          item={editando.item}
+          nuevo={editando.nuevo}
+          elegirEdicion={editando.elegirEdicion}
+          artistas={artistas}
+          onGuardar={guardarItem}
+          onCancelar={cancelarEdicion}
+        />
       )}
 
       {aviso && (

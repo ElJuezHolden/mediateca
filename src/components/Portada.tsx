@@ -18,7 +18,7 @@ export function claseFormato(formato: string) {
 const BANDA: Record<string, string> = { dvd: 'DVD', bluray: 'Blu-ray Disc', uhd: '4K ULTRA HD' };
 
 interface Props {
-  item: Pick<Item, 'titulo' | 'artista' | 'formato' | 'portada'>;
+  item: Pick<Item, 'titulo' | 'artista' | 'formato' | 'portada' | 'fotoDisco'>;
   /** La ficha grande: sin animación al pasar el ratón y con el disco fuera. */
   grande?: boolean;
 }
@@ -32,8 +32,9 @@ export function Portada({ item, grande }: Props) {
   return (
     <div className={`objeto objeto-${clase}${grande ? ' grande' : ''}`}>
       {lleva && (
-        <div className={`disco disco-${clase}`} aria-hidden>
-          {clase === 'vinilo' && (
+        <div className={`disco disco-${clase}${item.fotoDisco ? ' con-foto' : ''}`} aria-hidden>
+          {item.fotoDisco && <FotoDelDisco foto={item.fotoDisco} />}
+          {clase === 'vinilo' && !item.fotoDisco && (
             <span className="galleta" style={conImagen ? { backgroundImage: `url("${item.portada}")` } : undefined} />
           )}
         </div>
@@ -58,5 +59,22 @@ export function Portada({ item, grande }: Props) {
         <span className="brillo" aria-hidden />
       </div>
     </div>
+  );
+}
+
+/** La foto real del disco, recortada en círculo y centrada en él. */
+function FotoDelDisco({ foto }: { foto: NonNullable<Item['fotoDisco']> }) {
+  // El ancho de la foto para que el disco ocupe todo el círculo, y su posición
+  // para que el centro del disco caiga en el centro (en % del círculo).
+  const ancho = 100 / (2 * foto.r);
+  return (
+    <img
+      src={foto.url}
+      alt=""
+      loading="lazy"
+      referrerPolicy="no-referrer"
+      className="foto-disco"
+      style={{ width: `${ancho}%`, left: `${50 - foto.x * ancho}%`, top: `${50 - foto.y * foto.proporcion * ancho}%` }}
+    />
   );
 }

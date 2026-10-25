@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Disc3, ExternalLink, Link2, Link2Off, Loader2, RefreshCw, Search, X } from 'lucide-react';
+import { Disc3, ExternalLink, Images, Link2, Link2Off, List, Loader2, RefreshCw, Search, X } from 'lucide-react';
 import {
   avisoDiscogs,
   buscarDisco,
   buscarPelicula,
   desvincularDiscogs,
   edicionDiscogs,
+  edicionesDiscogs,
+  normalizar,
   vincularDiscogs,
   type Candidata,
   type EdicionDiscogs,
+  type OpcionEdicion,
 } from '../portadas';
 import { FORMATOS, SECCIONES, type Item } from '../types';
 import { Portada } from './Portada';
@@ -16,13 +19,15 @@ import { Portada } from './Portada';
 interface Props {
   item: Item;
   nuevo: boolean;
+  /** Abrir directamente la lista de ediciones de Discogs para elegir la tuya. */
+  elegirEdicion?: boolean;
   /** Para sugerir artistas ya apuntados al escribir. */
   artistas: string[];
   onGuardar: (item: Item) => void;
   onCancelar: () => void;
 }
 
-export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Props) {
+export function Formulario({ item, nuevo, elegirEdicion, artistas, onGuardar, onCancelar }: Props) {
   const [b, setB] = useState<Item>(item);
   const [candidatas, setCandidatas] = useState<Candidata[] | null>(null);
   const [buscando, setBuscando] = useState(false);
@@ -32,6 +37,11 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
   /** La última edición vinculada, para ofrecer sus datos si difieren de los tuyos. */
   const [vinculada, setVinculada] = useState<EdicionDiscogs | null>(null);
   const [cambiandoEdicion, setCambiandoEdicion] = useState(false);
+  /** Las ediciones del disco en Discogs, para elegir la tuya de la lista. */
+  const [ediciones, setEdiciones] = useState<OpcionEdicion[] | null>(null);
+  const [cargandoEdiciones, setCargandoEdiciones] = useState(false);
+  /** Las fotos de la edición vinculada, para elegir portada y disco a mano. */
+  const [fotos, setFotos] = useState<string[] | null>(null);
   const musica = b.seccion === 'discoteca';
 
   useEffect(() => {
@@ -88,6 +98,8 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
       // lo apuntaste y se ofrece lo de Discogs aparte.
       setB((x) => vincularDiscogs(x, e, nuevo && !x.titulo.trim()));
       setVinculada(e);
+      setFotos(e.imagenes.length > 1 ? e.imagenes : null);
+      setEdiciones(null);
       setEnlaceDiscogs('');
       setCambiandoEdicion(false);
     } catch (e) {
@@ -96,6 +108,47 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
       setCargandoDiscogs(false);
     }
   }
+
+  async function cargarEdiciones() {
+    if (!b.titulo.trim()) {
+      setError('Discogs: escribe primero el álbum (y el artista) para ver sus ediciones.');
+      return;
+    }
+    setCargandoEdiciones(true);
+    setError('');
+    try {
+      setEdiciones(await edicionesDiscogs(b.artista, b.titulo));
+    } catch (e) {
+      setError(`Discogs: ${e instanceof Error ? e.message : e}`);
+    } finally {
+      setCargandoEdiciones(false);
+    }
+  }
+
+  async function cargarFotos() {
+    if (!b.discogs) return;
+    setCargandoDiscogs(true);
+    setError('');
+    try {
+      setFotos((await edicionDiscogs(String(b.discogs))).imagenes);
+    } catch (e) {
+      setError(`Discogs: ${e instanceof Error ? e.message : e}`);
+    } finally {
+      setCargandoDiscogs(false);
+    }
+  }
+
+  /** Una foto elegida a mano como la del disco: se supone que lo llena. */
+  function usarComoDisco(url: string, img: HTMLImageElement | null) {
+    const proporcion = img?.naturalWidth ? img.naturalHeight / img.naturalWidth : 1;
+    setB((x) => ({ ...x, fotoDisco: { url, x: 0.5, y: 0.5, r: Math.min(1, proporcion) / 2, proporcion } }));
+  }
+
+  // Desde la ficha («¿No es tu edición?»): la lista de ediciones, abierta.
+  useEffect(() => {
+    if (elegirEdicion && item.seccion === 'discoteca') cargarEdiciones();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Lo que Discogs dice distinto de lo apuntado, para poder usarlo con un clic.
   const diferencias = vinculada
@@ -106,7 +159,7 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
           ['edicion', 'Edición'],
           ['formato', 'Formato'],
         ] as const
-      ).filter(([k]) => vinculada[k] && vinculada[k] !== b[k])
+      ).filter(([k]) => vinculada[k] && normalizar(vinculada[k]!) !== normalizar(b[k] ?? ''))
     : [];
 
   function enviar(e: React.FormEvent) {
@@ -194,6 +247,15 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                     >
                       {cargandoDiscogs ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
                     </button>
+                    <button
+                      type="button"
+                      className="boton py-1"
+                      onClick={() => (fotos ? setFotos(null) : cargarFotos())}
+                      title="Fotos de la edición"
+                      aria-label="Fotos de la edición"
+                    >
+                      <Images size={14} />
+                    </button>
                     <button type="button" className="boton py-1" onClick={() => setCambiandoEdicion(true)}>
                       Cambiar
                     </button>
@@ -241,9 +303,14 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                         </button>
                       )}
                     </div>
-                    <p className="mt-1.5 text-xs text-[var(--suave)]">
-                      {nuevo ? 'Se rellena todo: ' : 'Trae '}portada, año, sello, nº de catálogo, país, géneros y canciones.
-                    </p>
+                    <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                      <p className="min-w-0 flex-1 text-xs text-[var(--suave)]">
+                        {nuevo ? 'Se rellena todo: ' : 'Trae '}portada, año, sello, nº de catálogo, país, géneros y canciones.
+                      </p>
+                      <button type="button" className="boton py-1 text-xs" onClick={cargarEdiciones} disabled={cargandoEdiciones}>
+                        {cargandoEdiciones ? <Loader2 size={13} className="animate-spin" /> : <List size={13} />} Elegir de la lista
+                      </button>
+                    </div>
                   </>
                 )}
                 {diferencias.length > 0 && (
@@ -266,6 +333,93 @@ export function Formulario({ item, nuevo, artistas, onGuardar, onCancelar }: Pro
                     <button type="button" className="boton py-1" onClick={() => setVinculada(null)}>
                       Dejar los míos
                     </button>
+                  </div>
+                )}
+                {ediciones && (
+                  <div className="mt-3 border-t border-[var(--borde)] pt-3">
+                    <div className="mb-2 flex items-center justify-between text-xs text-[var(--suave)]">
+                      <span>
+                        {ediciones.length
+                          ? `${ediciones.length} ediciones en Discogs. Marca la tuya:`
+                          : 'Discogs no tiene ediciones con ese artista y álbum. Prueba a corregirlos o pega el enlace.'}
+                      </span>
+                      <button type="button" className="p-1 hover:text-white" onClick={() => setEdiciones(null)} aria-label="Cerrar la lista">
+                        <X size={14} />
+                      </button>
+                    </div>
+                    <div className="max-h-72 overflow-y-auto rounded-lg border border-[var(--borde)]">
+                      {ediciones.map((o) => (
+                        <button
+                          key={o.discogs}
+                          type="button"
+                          onClick={() => vincular(String(o.discogs))}
+                          className={`grid w-full grid-cols-[2.5rem_1fr] items-center gap-3 border-b border-[var(--borde)] px-2 py-1.5 text-left text-xs last:border-b-0 hover:bg-[var(--panel-2)] ${
+                            o.discogs === b.discogs ? 'bg-[var(--panel-2)]' : ''
+                          }`}
+                        >
+                          <span className="h-10 w-10 overflow-hidden rounded bg-[var(--panel)]">
+                            {o.miniatura && <img src={o.miniatura} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-cover" />}
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block truncate font-semibold">
+                              {o.titulo}
+                              {o.discogs === b.discogs && <span className="acento"> · la tuya</span>}
+                            </span>
+                            <span className="block truncate text-[var(--suave)]">
+                              {[o.pais, o.anio, o.formato].filter(Boolean).join(' · ')}
+                            </span>
+                            <span className="block truncate text-[var(--suave)]">{[o.sello, o.catalogo].filter(Boolean).join(' · ')}</span>
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {fotos && (
+                  <div className="mt-3 border-t border-[var(--borde)] pt-3">
+                    <div className="mb-2 flex items-center justify-between text-xs text-[var(--suave)]">
+                      <span>Fotos de la edición: elige la portada y la del disco (la que sale de la caja).</span>
+                      <button type="button" className="p-1 hover:text-white" onClick={() => setFotos(null)} aria-label="Cerrar las fotos">
+                        <X size={14} />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
+                      {fotos.map((url) => (
+                        <div key={url} className="flex flex-col gap-1">
+                          <img
+                            src={url}
+                            alt=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer"
+                            className={`aspect-square w-full rounded-md object-cover ${
+                              url === b.portada || url === b.fotoDisco?.url ? 'ring-2 ring-[var(--acento)]' : ''
+                            }`}
+                          />
+                          <div className="flex gap-1 text-[10px]">
+                            <button
+                              type="button"
+                              className="chip flex-1 px-1 py-0.5 text-[10px]"
+                              aria-pressed={url === b.portada}
+                              onClick={() => setB((x) => ({ ...x, portada: url, portadaAuto: undefined }))}
+                            >
+                              Portada
+                            </button>
+                            <button
+                              type="button"
+                              className="chip flex-1 px-1 py-0.5 text-[10px]"
+                              aria-pressed={url === b.fotoDisco?.url}
+                              onClick={(e) =>
+                                url === b.fotoDisco?.url
+                                  ? setB((x) => ({ ...x, fotoDisco: undefined }))
+                                  : usarComoDisco(url, e.currentTarget.parentElement?.previousElementSibling as HTMLImageElement)
+                              }
+                            >
+                              Disco
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {error.startsWith('Discogs') && <p className="mt-2 text-sm text-red-400">{error}</p>}

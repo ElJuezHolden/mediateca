@@ -3,6 +3,7 @@ import path from 'node:path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { buscarFotoDisco } from './scripts/foto-disco.ts';
 
 const COLECCION = path.resolve(import.meta.dirname, 'public/coleccion.json');
 
@@ -66,7 +67,15 @@ function discogs(token: string | undefined): Plugin {
           });
           res.statusCode = r.status;
           res.setHeader('Content-Type', 'application/json');
-          res.end(await r.text());
+          // En una edición, se añade cuál de sus fotos es la del disco.
+          if (r.ok && ruta.startsWith('/releases/')) {
+            const edicion = await r.json();
+            const urls = (edicion.images ?? []).map((i: { uri: string }) => i.uri);
+            edicion.foto_disco = await buscarFotoDisco(urls);
+            res.end(JSON.stringify(edicion));
+          } else {
+            res.end(await r.text());
+          }
         } catch (error) {
           res.statusCode = 502;
           res.end(String(error));
